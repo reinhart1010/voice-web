@@ -1,15 +1,18 @@
 @import url('vars.css');
-@import url('layout/nav.css');
+@import url('ui/ui.css');
+
 @import url('alert/alert.css');
 @import url('contact-modal/contact-modal.css');
 @import url('listen-box/listen-box.css');
 @import url('modal/modal.css');
 @import url('pages/data/data.css');
 @import url('pages/home/home.css');
+@import url('pages/languages/languages.css');
+@import url('pages/languages/get-involved-modal.css');
 @import url('pages/record/record.css');
 @import url('profile-form/profile-form.css');
+@import url('progress-bar/progress-bar.css');
 @import url('request-language-modal/request-language-modal.css');
-@import url('ui/ui.css');
 
 /* Define our icon font. */
 @font-face {
@@ -17,16 +20,11 @@
     src: url("/font/icomoon.ttf");
 }
 
-@font-face {
-    font-family: ZillaSlab;
-    src: url("/font/ZillaSlab-Light.ttf");
-}
-
 html {
     font-family: var(--base-font-family);
-    font-size: var(--base-font-size);
-    color: var(--base-font-color);
-    background-color: var(--base-background-color);
+    font-size: var(--font-size);
+    color: var(--black);
+    background-color: var(--white);
     overflow: auto;
 }
 
@@ -62,7 +60,7 @@ h2 {
 a {
     outline: none;
     text-decoration: none;
-    color: var(--base-font-color);
+    color: var(--black);
 }
 
 a:hover {
@@ -82,6 +80,30 @@ a:active {
 button {
     background: none;
     cursor: pointer;
+}
+
+.staging-banner {
+    position: sticky;
+    top: var(--header-height);
+    padding: .5rem;
+    color: var(--white);
+    background: var(--red);
+    text-align: center;
+    z-index: 5;
+
+    @media (--md-up) {
+        top: 0;
+    }
+
+    & a {
+        color: var(--white);
+        text-decoration: underline;
+    }
+
+    & button {
+        border: none;
+        background: var(--grey);
+    }
 }
 
 .is-keyboard-focus *:focus {
@@ -117,8 +139,8 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: transform 1s var(--easing);
+    background-color: color(var(--black) alpha(60%));
+    transition: transform var(--transition-duration-slow) var(--easing);
 }
 
 @keyframes fadein {
@@ -133,28 +155,36 @@ button {
 #main {
     position: relative;
     box-sizing: border-box;
-    background-color: var(--base-background-color);
-    animation: fadein 0.5s linear;
+    background-color: var(--white);
+    animation: fadein var(--transition-duration-slow) linear;
 }
 
 #scroller {
-    position: relative;
+    position: fixed;
+    top: var(--header-height);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @media (--md-up) {
+        position: relative;
+        top: initial;
+        bottom: initial;
+        left: initial;
+        right: initial;
+        overflow: initial;
+    }
 }
 
-@media (--mobile) {
-    #scroller {
-        position: fixed;
-        top: var(--header-height);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
+body:not(.focus) #scroller {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
 
-    body:not(.focus) #scroller {
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
+    @media (--md-up) {
+        -webkit-overflow-scrolling: initial;
+        scroll-behavior: initial;
     }
 }
 
@@ -162,11 +192,24 @@ button {
     position: relative;
 }
 
-.faq #background-container,
-.terms #background-container,
-.privacy #background-container,
-.profile #background-container {
-    opacity: 0;
+.home #content, .record #content, .profile #content, .data #content {
+    margin: 0 auto;
+    max-width: var(--old-desktop-width);
+}
+
+.privacy #content, .terms #content {
+    & h1 {
+        margin: 1rem 0;
+        text-decoration: underline;
+    }
+
+    & h2 {
+        margin: 1.5rem 0 .5rem;
+    }
+
+    & a {
+        color: var(--link-color);
+    }
 }
 
 #background-container {
@@ -179,22 +222,25 @@ button {
     background-position: center;
     background-size: 100% 100%;
     z-index: var(--bottom-z-index);
-    transition: opacity 0.4s var(--easing), transform 0.2s var(--easing);
+    transition:
+        opacity var(--transition-duration-slow) var(--easing),
+        transform var(--transition-duration) var(--easing);
     pointer-events: none;
-}
-
-#background-container:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20rem;
     opacity: 0;
-    transition: opacity 0.2s linear;
-    background: repeat-x center;
-    background-size: 100% 100%;
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 20rem;
+        opacity: 0;
+        transition: opacity var(--transition-duration) linear;
+        background: repeat-x center;
+        background-size: 100% 100%;
+    }
 }
 
 .hiding #background-container {
@@ -232,7 +278,7 @@ button {
 /* Don't use background transitions on desktop since
  * Normal scaling is already smooth enough */
 body:not(.ios) .recording #background-container {
-    transition: opacity 0.4 var(--easing);
+    transition: opacity var(--transition-duration-slow) var(--easing);
 }
 
 /* For native iOS css background image is not performance
@@ -251,7 +297,7 @@ body:not(.ios) .recording #background-container {
     bottom: 0;
     left: 0;
     right: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity var(--transition-duration) linear;
 }
 
 .ios .recording #background-container img:first-child,
@@ -266,7 +312,7 @@ body:not(.ios) .recording #background-container {
 @media (--mobile) {
     #background-container {
         height: 12.5rem;
-        background-image: var(--base-background-image-mobile);
+        background-image: url("/img/wave-blue-mobile.png");
     }
 
     #background-container:after {
@@ -278,7 +324,7 @@ body:not(.ios) .recording #background-container {
 @media (--desktop) {
     #background-container {
         height: 20rem;
-        background-image: var(--base-background-image);
+        background-image: url("/img/wave-blue-large.png");
     }
 
     #background-container:after {
@@ -319,17 +365,18 @@ body:not(.ios) .recording #background-container {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(61, 254, 253, 0.9);
+    background-color: var(--black);
     height: 3rem;
     line-height: 3rem;
     vertical-align: middle;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: var(--white);
     font-weight: bold;
     z-index: var(--top-z-index);
     transform: translateY(0);
-    transition: transform 0.2s linear;
+    transition: transform var(--transition-duration) linear;
+    font-family: var(--base-font-family);
 }
 
 #install-app.hide {
@@ -341,7 +388,7 @@ body:not(.ios) .recording #background-container {
     right: 0;
     height: 100%;
     width: 3rem;
-    color: white;
+    color: var(--white);
 }
 
 /**
@@ -362,89 +409,85 @@ body:not(.ios) .recording #background-container {
     }
 }
 
-#profile-container, #record-container, #terms-container, #privacy-container, #faq-container {
-    animation: slide-fade-in .2s var(--easing);
+#profile-container, #record-container, #faq-container {
+    animation: slide-fade-in var(--transition-duration) var(--easing);
 }
 
-@media (--desktop) {
-    #content {
+#content {
+    @media (--md-up) {
         position: unset;
         flex: 1 1 100%;
-    }
-}
-
-#content > div {
-    box-sizing: border-box;
-    transition: opacity 0.4s ease-in;
-    max-width: var(--desktop-width);
-    margin-right: auto;
-    margin-left: auto;
-}
-
-@media (--mobile) {
-    #content > div {
-        box-sizing: border-box;
-        min-height: 100%;
         padding: 0 var(--page-margin);
     }
 
-    .main-logo {
-        height: 100%;
-    }
+    & > div {
+        box-sizing: border-box;
+        transition: opacity var(--transition-duration-slow) var(--easing);
+        max-width: var(--desktop-width);
+        margin-right: auto;
+        margin-left: auto;
+        min-height: 100%;
+        padding: 0 var(--page-margin);
 
-    .main-mozilla-logo {
-        height: 100%;
+        @media (--md-up) {
+            min-height: auto;
+            padding: 0;
+        }
     }
 }
 
-@media (--desktop) {
-    .main-logo {
+.main-logo {
+    @media (--md-up) {
+        margin-right: var(--standard-margin);
         width: 10rem;
+    }
+
+    @media (--lg-up) {
+        margin-right: 4rem;
+    }
+
+    &, & .main-mozilla-logo {
+        height: 100%;
     }
 }
 
 .hero {
+    display: none;
     text-align: center;
-    height: var(--hero-height);
     position: relative;
-}
+    height: var(--hero-height-mobile);
 
-@media (--mobile) {
-    .hero {
-        height: var(--hero-height-mobile);
+    @media (--md-up) {
+        height: var(--hero-height);
     }
 }
 
 .hero-space {
-    height: 10rem;
-}
+    display: none;
+    height: 3rem;
+    background: none;
 
-@media (--mobile) {
-    .hero-space {
-        height: 3rem;
-        background: none;
+    @media (--md-up) {
+        height: 10rem;
     }
 }
 
-.faq .hero,
-.terms .hero,
-.privacy .hero,
-.profile .hero {
-    display: none;
+.home, .record, .data {
+    & #background-container {
+        opacity: 1;
+    }
+
+    & .hero, & .hero-space {
+        display: block;
+    }
 }
 
-.faq .hero-space,
-.terms .hero-space,
-.privacy .hero-space,
-.profile .hero-space {
-    display: none;
-}
 
 .robot {
     position: relative;
     display: inline-block;
     height: var(--robot-height);
-    transition: transform 0.2s ease-in-out;
+    transition: transform var(--transition-duration) var(--easing);
     transform: translate(0, 15rem) scale(0);
     opacity: 0;
 }
@@ -502,28 +545,9 @@ body:not(.ios) .recording #background-container {
 }
 
 #content > #faq-container,
-#content > #terms-container,
-#content > #privacy-container,
 #content > #profile-container {
     margin-top: var(--standard-margin);
-    padding-bottom: 2rem;
     text-align: left;
-}
-
-#debug-box {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: var(--debug-box-height);
-    background-color: var(--base-font-color);
-    color: var(--base-background-color);
-    z-index: var(--top-z-index);
-    overflow: scroll;
-}
-
-#debug-box.hidden {
-    display: none;
 }
 
 .loading {
@@ -543,39 +567,6 @@ body:not(.ios) .recording #background-container {
     }
 }
 
-.privacy-content {
-    background-color: var(--base-background-color);
-    max-width: var(--desktop-width);
-    padding: var(--page-margin);
-}
-
-@media (--desktop) {
-    .privacy-content {
-        border-radius: 4px;
-    }
-}
-
-#terms-container .terms-content,
-#privacy-container .privacy-content {
-    width: unset;
-    padding: 0;
-}
-
-.privacy-content > * {
-    margin: 1rem 0;
-}
-
-.terms-content > h1:first-child,
-.privacy-content > h1:first-child {
-    margin: 1rem 0;
-    text-decoration: underline;
-}
-
-.privacy-content a {
-    display: inline-block;
-    color: blue;
-}
-
 .button-holder {
     text-align: center;
 }
@@ -586,19 +577,16 @@ body:not(.ios) .recording #background-container {
     }
 }
 
-#faq-container h3,
-#terms-container h3 {
+#faq-container h3 {
     margin: 1.5rem 0 0.5rem;
 }
 
-#faq-container p,
-#terms-container p {
+#faq-container p {
     margin-bottom: 1rem;
 }
 
-#faq-container a,
-#terms-container a {
-    color: blue;
+#faq-container a {
+    color: var(--link-color);
 }
 
 #spinner {
@@ -626,9 +614,9 @@ body:not(.ios) .recording #background-container {
     right: 0;
     margin: auto;
     animation: spin 4s linear infinite;
-    background-color: black;
+    background-color: var(--black);
     opacity: 1;
-    transition: opacity 0.1s linear;
+    transition: opacity var(--transition-duration) linear;
 }
 
 @keyframes spin {
@@ -649,24 +637,26 @@ body:not(.ios) .recording #background-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
 
-.title-and-action a {
-    font-size: var(--small-font-size);
-    font-weight: 600;
-    text-decoration: underline;
-    cursor: pointer;
+    & a {
+        font-size: var(--font-size-small);
+        font-weight: 600;
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 
 .opt-in {
     display: flex;
-    font-size: var(--small-font-size);
-}
+    font-size: var(--font-size-small);
 
-.opt-in input {
-    margin: .1rem .3rem .1rem .1rem;
-    width: .8rem;
-    height: .8rem;
+    & input {
+        margin: .1rem .3rem .1rem .1rem;
+        // mobile Safari needs this
+        width: 100%;
+        max-width: .8rem;
+        height: .8rem;
+    }
 }
 
 .opt-in input:checked {
@@ -674,10 +664,21 @@ body:not(.ios) .recording #background-container {
 }
 
 .small {
-    font-size: var(--small-font-size);
+    font-size: var(--font-size-small);
     color: var(--grey-font-color);
 }
 
 a.small, .small a {
     text-decoration: underline;
+}
+
+.with-down-arrow::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/img/down-arrow.svg') no-repeat right 15px center;
+    background-size: 13px 9px;
+    pointer-events: none;
 }

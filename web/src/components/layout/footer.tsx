@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-const { Localized } = require('fluent-react');
+import { LocalizationProps, Localized, withLocalization } from 'fluent-react';
 import { trackSharing } from '../../services/tracker';
 import URLS from '../../urls';
 import ContactModal from '../contact-modal/contact-modal';
+import { LocaleLink } from '../locale-helpers';
 import {
   ContactIcon,
   FontIcon,
@@ -13,21 +13,15 @@ import {
 } from '../ui/icons';
 import Logo from './logo';
 
-const shareURL = 'https://voice.mozilla.org/';
-const encodedShareText = encodeURIComponent(
-  'Help teach machines how real people speak, donate your voice at ' + shareURL
-);
+import './footer.css';
+
+const SHARE_URL = 'https://voice.mozilla.org/';
 
 interface FooterState {
   showContactModal: boolean;
 }
 
-export default class Footer extends React.Component<
-  {
-    basePath: string;
-  },
-  FooterState
-> {
+class Footer extends React.PureComponent<LocalizationProps, FooterState> {
   private shareURLInput: HTMLInputElement;
 
   state: FooterState = {
@@ -45,19 +39,21 @@ export default class Footer extends React.Component<
   };
 
   render() {
-    const { basePath } = this.props;
+    const encodedShareText = encodeURIComponent(
+      this.props.getString('share-text', { link: SHARE_URL })
+    );
     return (
       <footer>
         {this.state.showContactModal && (
           <ContactModal onRequestClose={this.toggleContactModal} />
         )}
         <div id="help-links">
-          <Link id="help" to={basePath + URLS.FAQ}>
+          <LocaleLink id="help" to={URLS.FAQ}>
             <SupportIcon />
             <Localized id="help">
               <div />
             </Localized>
-          </Link>
+          </LocaleLink>
           <div className="divider" />
           <a
             id="contribute"
@@ -84,14 +80,14 @@ export default class Footer extends React.Component<
         </div>
         <div id="moz-links">
           <div className="content">
-            <Logo reverse to={basePath} />
+            <Logo reverse />
             <div className="links">
               <p>
                 <Localized id="privacy">
-                  <Link to={basePath + URLS.PRIVACY} />
+                  <LocaleLink to={URLS.PRIVACY} />
                 </Localized>
                 <Localized id="terms">
-                  <Link to={basePath + URLS.TERMS} />
+                  <LocaleLink to={URLS.TERMS} />
                 </Localized>
                 <Localized id="cookies">
                   <a
@@ -100,7 +96,7 @@ export default class Footer extends React.Component<
                   />
                 </Localized>
                 <Localized id="faq">
-                  <Link to={basePath + URLS.FAQ}>FAQ</Link>
+                  <LocaleLink to={URLS.FAQ}>FAQ</LocaleLink>
                 </Localized>
               </p>
               <p>
@@ -128,7 +124,7 @@ export default class Footer extends React.Component<
                 <input
                   type="text"
                   readOnly
-                  value={shareURL}
+                  value={SHARE_URL}
                   ref={node => (this.shareURLInput = node)}
                 />
                 <FontIcon type="link" />
@@ -145,7 +141,7 @@ export default class Footer extends React.Component<
               <a
                 href={
                   'https://www.facebook.com/sharer/sharer.php?u=' +
-                  encodeURIComponent(shareURL)
+                  encodeURIComponent(SHARE_URL)
                 }
                 target="_blank"
                 rel="noopener noreferrer"
@@ -154,8 +150,22 @@ export default class Footer extends React.Component<
               </a>
             </div>
           </div>
+          <Localized id="back-top">
+            <a
+              className="back-top"
+              href="javascript:void(0)"
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                })
+              }
+            />
+          </Localized>
         </div>
       </footer>
     );
   }
 }
+
+export default withLocalization(Footer);

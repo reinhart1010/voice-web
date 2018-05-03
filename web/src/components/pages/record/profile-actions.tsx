@@ -1,11 +1,12 @@
+import { Localized } from 'fluent-react';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import URLS from '../../../urls';
 import ProfileForm from '../../profile-form/profile-form';
 import StateTree from '../../../stores/tree';
 import { User } from '../../../stores/user';
-import messages from '../../../messages';
 import Alert from '../../alert/alert';
+import { LocaleLink } from '../../locale-helpers';
 import { Button, Hr } from '../../ui/ui';
 
 interface WhyProfileState {
@@ -25,19 +26,23 @@ class WhyProfile extends React.Component<{}, WhyProfileState> {
       <div>
         <div id="why-profile-title">
           {expanded ? (
-            messages.WHY_PROFILE.TITLE
+            <Localized id="why-profile-title">
+              <span />
+            </Localized>
           ) : (
-            <a href="javascript:void(0)" onClick={this.toggle}>
-              {messages.WHY_PROFILE.TITLE}
-            </a>
+            <Localized id="why-profile-title">
+              <a href="javascript:void(0)" onClick={this.toggle} />
+            </Localized>
           )}
         </div>
         {expanded && (
           <div id="why-profile">
-            <p id="why-profile-text">{messages.WHY_PROFILE.CONTENT}</p>
-            <a href="javascript:void(0)" onClick={this.toggle}>
-              Close
-            </a>
+            <Localized id="why-profile-text">
+              <p id="why-profile-text" />
+            </Localized>
+            <Localized id="profile-close">
+              <a href="javascript:void(0)" onClick={this.toggle} />
+            </Localized>
           </div>
         )}
       </div>
@@ -79,12 +84,14 @@ class ProfileActions extends React.Component<PropsFromState, State> {
       <div id="profile-actions">
         {!profileFormVisible && <Hr />}
         {alertVisible && (
-          <Alert autoHide onClose={this.closeAlert}>
-            Success, profile created!
-          </Alert>
+          <Localized id="profile-create-success">
+            <Alert autoHide onClose={this.closeAlert} />
+          </Localized>
         )}
         {this.props.hasEnteredInfo ? (
-          <Link to="/profile">Edit Profile</Link>
+          <Localized id="edit-profile">
+            <LocaleLink to={URLS.PROFILE} />
+          </Localized>
         ) : (
           <div>
             {profileFormVisible ? (
@@ -92,9 +99,9 @@ class ProfileActions extends React.Component<PropsFromState, State> {
                 <ProfileForm onExit={this.toggleProfileForm} />
               </div>
             ) : (
-              <Button outline onClick={this.toggleProfileForm}>
-                Create a profile
-              </Button>
+              <Localized id="profile-create">
+                <Button outline onClick={this.toggleProfileForm} />
+              </Localized>
             )}
             <WhyProfile />
           </div>

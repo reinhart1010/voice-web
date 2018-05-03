@@ -4,11 +4,65 @@ yes-receive-emails = Ano, posílejte mi e-maily. Rád bych zůstal o projektu Co
 stayintouch = V Mozille budujeme komunitu okolo hlasových technologií. Rádi bychom zůstali v kontaktu s novinkami, novými zdroji dat a rádi bychom se dozvěděli, jak tato data používáte.
 privacy-info = Slibujeme, že budeme vaše informace zpracovávat s péčí. Přečtěte si více v našich <privacyLink>Zásadách ochrany soukromí</privacyLink>.
 return-to-cv = Návrat do Common Voice
+email-input =
+    .label = E-mail
+submit-form-action = Odeslat
+loading = Načítání…
+audio-loading-error = Omlouváme se, ale zrovna zpracováváme další nahrávky. Zkuste to později.
+
+# Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+
+
+## Languages
+
+bn = Bengálština
+ca = Katalánština
+cs = Čeština
+cv = Čuvaština
+cy = Velština
+da = Dánština
+de = Němčina
+el = Řečtina
+en = Angličtina
+es = Španělština
+es-AR = Španělština (Argentina)
+es-CL = Španělština (Chile)
+fr = Francouzština
+fy-NL = Fríština
+ga-IE = Irština
+he = Hebrejština
+hu = Maďarština
+id = Indonéština
+it = Italština
+ka = Gruzínština
+ko = Korejština
+kw = Kornština
+mk = Makedonština
+nb-NO = Norština (Bokmål)
+nl = Nizozemština
+nn-NO = Nynorsk
+or = Udijština
+pl = Polština
+pt-BR = Portugalština (Brazílie)
+ro = Rumunština
+ru = Ruština
+sk = Slovenština
+sq = Albánština
+sv-SE = Švédština
+ta = Tamilština
+th = Thajština
+tr = Turečtina
+tt = Tatarština
+uk = Ukrajinština
+uz = Uzbečtina
+zh-CN = Čínština (Čína)
+zh-TW = Čínština (Taiwan)
 
 ## Layout
 
 speak = Mluvte
 datasets = Datasety
+languages = Jazyky
 profile = Profil
 help = Nápověda
 contact = Kontakt
@@ -18,6 +72,8 @@ cookies = Cookies
 faq = FAQ
 content-license-text = Obsah je dostupný pod <licenseLink>licencí Creative Commons</licenseLink>
 share-title = Pomozte nám najít další, kteří darují svůj hlas!
+share-text = Pomozte strojům pochopit, jak mluví lidé, darujte svůj hlas na { $link }
+back-top = Zpět nahoru
 
 ## Home Page
 
@@ -29,6 +85,8 @@ wall-of-text-more-desktop = Teď můžete darovat svůj hlas a pomoct nám vytvo
 show-wall-of-text = Přečíst si více
 help-us-title = Pomozte nám ověřovat věty!
 help-us-explain = Stiskněte přehrát, poslouchejte a řekněte nám: přečetli správně větu níže?
+vote-yes = Ano
+vote-no = Ne
 request-language-text = Nevidíte svůj jazyk na Common Voice?
 request-language-button = Požádat o jazyk
 
@@ -36,7 +94,6 @@ request-language-button = Požádat o jazyk
 
 status-title = Celkový stav projektu: podívejte se, jak jsme daleko!
 status-contribute = Přispějte svým hlasem
-status-loading = Načítání…
 status-hours =
     { $hours ->
         [one] Zatím jedna ověřená hodina!
@@ -46,12 +103,12 @@ status-hours =
 # Variables:
 # $goal - number of hours representing the next goal
 status-goal = Další cíl: { $goal }
-status-more-soon = Další jazyky již brzy!
+english = Angličtina
 
 ## ProfileForm
 
-profile-form-email =
-    .label = E-mail
+profile-form-cancel = Opustit formulář
+profile-form-delete = Smazat profil
 profile-form-username =
     .label = Uživatelské jméno
 profile-form-language =
@@ -63,6 +120,21 @@ profile-form-age =
     .label = Věk
 profile-form-gender =
     .label = Pohlaví
+profile-form-submit-save = Uložit
+profile-form-submit-saved = Uloženo
+profile-keep-data = Ponechat data
+profile-delete-data = Smazat data
+male = Muž
+female = Žena
+# Gender
+other = Ostatní
+why-profile-title = Proč mít profil?
+why-profile-text = Tím, že nám o sobě poskytnete nějaké informace budou data, která odešlete do Common Voice, více užitečná pro systémy pro prozpoznávání řeči, které tato data využívají ke zvýšení přesnosti.
+edit-profile = Upravit profil
+profile-create = Vytvořit profil
+profile-create-success = Profil byl úspěšně vytvořen!
+profile-close = Zavřít
+profile-clear-modal = Po smazání dat z vašeho profilu už nebudou tyto demografické údaje odesílány do databáze Common Voice společně s vašimi nahrávkami.
 
 ## FAQ
 
@@ -97,42 +169,11 @@ profile-why-content = Tím, že nám poskytnete informace o sobě, budou data, k
 notfound-title = Nenalezeno
 notfound-content = Obávám se, že nevím, co hledáte.
 
-## Privacy
-
-privacy-title = Zásady ochrany soukromí projektu Common Voice
-privacy-effective = Platné od { DATETIME($date, day: "numeric", month: "long", year: "numeric") }
-privacy-policy = Když Mozilla (to jsme my) získává informace od vás, naše <policy>Zásady ochrany soukromí</policy> popisuje, jak s těmito daty nakládáme.
-privacy-data-demographic = <name>Demografická data.</name> Dobrovolně nám můžete odeslat informace, jako je váš přízvuk, věk a pohlaví. To pomáhá nám a ostatním výzkumníkům zlepšovat a vytvářet technologie a nástroje pro převod řeči na text.
-privacy-data-account = <name>Informace o účtu.</name> Dobrovolně si můžete vytvořit účet, přičemž my obdržíme vaši e-mailovou adresu. Ta je spojená s vašimi demografickými a interakčními daty, ale není dostupná pro veřejnost.
-privacy-data-recordings = <name>Hlasové nahrávky.</name> Hlasové nahrávky, spolu s jakýmykoli demografickými daty, mohou být dostupné v databázi Common Voice pro veřejné využití.
-privacy-data-interaction = <name>Interakční data.</name> Používáme Google Analytics, abychom lépe pochopili, jak pracujete s aplikací nebo webem Common Voice. To zahrnuje například počet zvukových nahrávek, které jste nahráli nebo poslechli, interakce s tlačítky a menu, nebo délku relace.
-privacy-data-technical = <name>Technická data.</name> Pomocí Google Analytics sbíráme adresy URL a názvy stránek Common Voice, které navštěvujete. Sbíráme také typ vašeho prohlížeče, velikost zobrazení a rozlišení obrazovky. Také sbíráme vaši polohu a nastavení jazyka ve vašem prohlížeči.
-privacy-more = <more>Zjistit více</more>
-
-## Terms
-
-terms-title = Právní podmínky projektu Common Voice
-terms-effective = Platné od { DATETIME($date, day: "numeric", month: "long", year: "numeric") }
-terms-eligibility-title = Oprávněnost
-terms-eligibility-content = Musíte být starší 13 let nebo mít svolení rodiče či opatrovníka, který na vás v našem projektu musí dohlížet.
-terms-privacy-title = Soukromí
-terms-privacy-content = Naše <privacyLink>Zásady ochrany soukromí</privacyLink> vysvětlují, jak přijímáme a nakládáme s vašimi daty.
-terms-contributions-title = Vaše příspěvky a uvolnění práv
-terms-contributions-content = Odesláním vašich nahrávek se vzdáváte všech autorských práv a souvisejících práv, která můžete mít, a souhlasíte se zveřejněním nahrávek pod licencí <licenseLink>CC-0</licenseLink>. To znamená, že souhlasíte se vzdáním se celosvětově všech práv k nahrávkám podle autorského zákona a zákona o sběru údajů, včetně morálních a viditelnostních práv, a všech spojených a souvisejících práv.
-terms-communications-title = Komunikace
-terms-communications-content = Pokud se přihlásíte k odběru našeho zpravodaje nebo si v souvislosti s projektem Common Voice vytvoříte účet, můžete od nás dostávat e-maily spojené s vaším účtem (například aktualizace podmínek, zásad ochrany soukromí a bezpečnostních informací).
-terms-general-title = Obecné
-terms-general-liability1 = Zřeknutí se práv; Omezení odpovědnosti: COMMON VOICE A VŠECHNY JEHO NAHRÁVKY JSOU POSKYTNUTÉ NA BÁZI „JAK JE“ BEZ JAKÉKOLI ZÁRUKY, AŤ UŽ VYSLOVENÉ NEBO PŘEDPOKLÁDANÉ. MOZILLA SE ZŘÍKÁ ODPOVĚDNOSTI A NEDRŽÍ ŽÁDNOU ODPOVĚDNOST ZA ŽÁDNÉ NAHRÁVKY, KTERÉ VY, JINÝ UŽIVATEL NEBO TŘETÍ STRANA PUBLIKUJE NEBO PŘENÁŠÍ PROSTŘEDNICTVÍM PROJEKTU COMMON VOICE.
-terms-general-liability2 = MOZILLA SE VÝSLOVNĚ ZŘÍKÁ VŠECH ZÁRUK A PODMÍNEK OBCHODOVATELNOSTI, VHODNOSTI PRO URČITÝ ÚČEL, PORUŠENÍ A JAKÉKOLI ZÁRUKY VYPLÝVAJÍCÍ Z PRŮBĚHU JEDNÁNÍ NEBO OBCHODU.
-terms-general-liability3 = V ROZSAHU POVOLENÉM PŘÍSLUŠNÝM ZÁKONEM SOUHLASÍTE S UPUŠTĚNÍM OD PRÁV A PONECHÁNÍ MOZILLY CORPORATION A JEJÍCH ZODPOVĚDNÝCH SUBJEKTŮ, DCEŘINÝCH SPOLEČNOSTÍ, SPOLEČNOSTÍ, ŘEDITELŮ, ÚŘEDNIKŮ, ZAMĚSTNANCŮ A AGENTŮ („STRANY MOZILLY“), Z JAKÉKOLI A KAŽDÉ ODPOVĚDNOSTI ZA POŠKOZENÍ, ZTRÁTU NEBO ZPOŽDĚNÍ (VČETNĚ OSOBNÍCH ÚŘAZŮ, SMRTI NEBO POŠKOZENÍ MAJETKU) ZAVINĚNÝCH PŘÍMO NEBO NEPŘÍMO CELOU NEBO ČÁSTÍ VAŠEHO ZAPOJENÍ DO PROJEKTU COMMON VOICE.
-terms-general-liability4 = KROMĚ PŘÍPADŮ, KDY TO VYŽADUJE ZÁKON, MOZILLA A STRANY MOZILLY NEBUDOU ODPOVĚDNÍ ZA JAKÉKOLI NEPŘÍMÉ, SPECIÁLNÍ, NÁHODNÉ, NÁSLEDNÉ NEBO EXEMPLÁRNÍ ŠKODY VYPLÝVAJÍCÍ NEBO JAKKOLI SPOJENÉ S TĚMITO PODMÍNKAMI NEBO POUŽITÍM NEBO NEMOŽNOSTÍ POUŽITÍ SLUŽEB, VČETNĚ PŘÍMÉHO A NEPŘÍMÉHO POŠKOZENÍ NEBO ZTRÁTY POVĚSTI, ZASTAVENÍ PRÁCE, ZTRÁTY ZISKU, ZTRÁTY DAT A SELHÁNÍ POČÍTAČE NEBO JEHO SELHÁNÍ, A TO I KDYŽ BUDETE NA MOŽNOST TAKOVÝCH ŠKOD UPOZORNĚNI, BEZ OHLEDU NA PODKLADY (SMLOUVU, ČIN A OSTATNÍ), NA KTERÝCH JE TAKOVÝ NÁROK POSTAVEN. SOUHRNNÁ ODPOVĚDNOST MOZILLY A STRAN MOZILLY PODLE TÉTO DOHODY NEPŘEKROČÍ $500 (PĚT SET DOLARŮ). NĚKTERÉ JURISDIKCE NEUMOŽŇUJÍ VYLOUČENÍ NEBO OMEZENÍ NÁHODNÉ, NÁSLEDNÉ NEBO SPECIÁLNÍ ŠKODY, TAKŽE SE VÁS TOTO VYLOUČENÍ A OMEZENÍ NEMUSÍ VZTAHOVAT.
-terms-general-updates = Aktualizace: Mozilla může tyto Podmínky čas od času aktualizovat, aby zahrnula novou funkci Služeb nebo ujasnila ustanovení. Aktualizované Podmínky budou zveřejněny online. Pokud jsou změny postatné, oznámíme je přes běžné kanály Mozilly pro taková oznámení, jako jsou příspěvky na blogu nebo fóra. Vaším dalším používáním Služeb po datu platnosti změn vyjadřujete souhlas s těmito změnami. Abychom udělali kontrolu jednodušší, zveřejníme datum platnosti na začátek této stránky.
-terms-general-termination = Ukončení: Můžeme kdykoli pozastavit nebo ukončit váš přístup ke Službám z jakéhokoli důvodu. Vyvineme přiměřené úsilí, abychom vás informovali na e-mailovou adresu přiřazenou k vašemu účtu, nebo při vašem příštím pokusu o využití Služeb. Bez ohledu na ukončení budou dále všechny nahrávky, které odešlete Mozille, veřejně dostupné.
-terms-general-law = Rozhodné právo: Tyto Právní podmínky představují úplnou dohodu mezi vámi a Mozillou ohledně projektu Common Voice a řídí se zákony státu Kalifornie, USA.
-
 ## Data
 
 data-download-button = Stáhnout data Common Voice
+data-download-yes = Ano
+data-download-deny = Ne
 data-download-license = Licence: <licenseLink>CC-0</licenseLink>
 data-download-modal = Chystáte se zahájit stahování <size>{ $size } GB</size>, chcete pokračovat?
 data-subtitle = Vytváříme otevřený a veřejně dostupný dataset hlasu, který může kdokoli použít k trénování jeho hlasových aplikací.
@@ -149,6 +190,7 @@ data-other-tatoeba-description = Tatoeba je rozsáhlá databáze vět, překlad�
 data-bundle-button = Stáhnout balík datasetů
 data-bundle-description = Data Common Voice a data všech ostatních datasetů výše.
 license = Licence: <licenseLink>{ $license }</licenseLink>
+license-mixed = Kombinovaná
 
 ## Record Page
 
@@ -156,6 +198,8 @@ record-platform-not-supported = Je nám líto, ale vaše platforma zatím není 
 record-platform-not-supported-desktop = Na počítačích si můžete stáhnout nejnovější:
 record-platform-not-supported-ios = Uživatelé <bold>iOS</bold> si mohou zdarma stáhnout naši aplikaci:
 record-must-allow-microphone = Musíte povolit přístup k mikrofonu.
+record-cancel = Zrušit opakovaný záznam
+record-retry = Opakovat
 record-error-too-short = Nahrávka byla příliš krátká.
 record-error-too-long = Nahrávka byla příliš dlouhá.
 record-error-too-quiet = Nahrávka byla příliš tichá.
@@ -163,12 +207,16 @@ record-submit-success = Odeslání bylo úspěšné! Chcete nahrávat znovu?
 record-help = Prosím, klepněte na Nahrát a poté hlasitě přečtěte větu výše.
 record-cancel = Zrušit opakovaný záznam
 review-terms = Používáním Common Voice souhlasíte s našimi <termsLink>Podmínkami</termsLink> a <privacyLink>Zásadami ochrany soukromí</privacyLink>
+terms-agree = Souhlasím
+terms-disagree = Nesouhlasím
 review-aborted = Nahrávání bylo zrušeno. Chcete smazat vaše nahrávky?
 review-submit-title = Kontrola a odeslání
 review-submit-msg = Děkujeme za nahrávky!<lineBreak></lineBreak>Teď je níže zkontrolujte a odešlete.
 review-recording = Zkontrolovat
 review-rerecord = Nahrát znovu
 review-cancel = Zrušit odeslání
+review-keep-recordings = Uchovat nahrávky
+review-delete-recordings = Smazat nahrávky
 
 ## Download Modal
 
@@ -177,7 +225,6 @@ download-helpus = Pomozte nám vybudovat komunitu okolo hlasových technologií,
 download-form-email =
     .label = Zadejte váš e-mail
     .value = Děkujeme, budeme ve spojení
-download-form-submit = Odeslat
 download-back = Zpět na datasety Common Voice
 download-no = Ne, děkuji
 
@@ -185,14 +232,11 @@ download-no = Ne, děkuji
 
 contact-title = Kontaktní formulář
 contact-cancel = Zrušit
-contact-form-email =
-    .label = E-mail
 contact-form-name =
     .label = Jméno
 contact-form-message =
     .label = Zpráva
 contact-required = *vyžadováno
-contact-submit = Odeslat
 
 ## Request Language Modal
 
@@ -200,8 +244,14 @@ request-language-title = Požádat o jazyk
 request-language-cancel = Zavřít formulář
 request-language-form-language =
     .label = Jazyk
-request-language-form-email =
-    .label = E-mailová adresa
-request-language-submit = Odeslat
 request-language-success-title = Žádost o jazyk byla odeslána. Děkujeme vám.
-request-language-success-text = Až bude váš jazyk dostupný, pošleme vám více informací.
+request-language-success-content = Velmi brzy vám dáme vědět, jak můžete přidat váš jazyk do Common Voice.
+
+## Languages Overview
+
+language-section-in-progress = Spouští se
+language-section-launched = Spuštěno
+languages-show-more = Zobrazit více
+languages-show-less = Zobrazit méně
+language-speakers = Mluvčí
+language-total-progress = Celkem

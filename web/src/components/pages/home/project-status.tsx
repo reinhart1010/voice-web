@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-const { Localized } = require('fluent-react');
+import { Localized } from 'fluent-react';
 import { trackNavigation } from '../../../services/tracker';
-import { isProduction } from '../../../utility';
+import URLS from '../../../urls';
+import ProgressBar from '../../progress-bar/progress-bar';
 import API from '../../../services/api';
 import StateTree from '../../../stores/tree';
+import { ContributableLocaleLock, LocaleLink } from '../../locale-helpers';
 import { Button, Hr } from '../../ui/ui';
 
 const GOAL_HOURS = 500;
@@ -43,28 +44,25 @@ class ProjectStatus extends React.Component<Props, State> {
           <Localized id="status-title">
             <h4 />
           </Localized>
-          <Localized id="status-contribute">
-            <Link
-              to="/record"
-              onClick={() => trackNavigation('progress-to-record')}
-            />
-          </Localized>
+
+          <ContributableLocaleLock>
+            <Localized id="status-contribute">
+              <LocaleLink
+                to={URLS.RECORD}
+                onClick={() => trackNavigation('progress-to-record')}
+              />
+            </Localized>
+          </ContributableLocaleLock>
         </div>
 
         <div className="contents">
           <div className="language-progress">
-            <b>ENGLISH</b>
-            <div className="progress-bar">
-              <div
-                className="validated-hours"
-                style={
-                  validatedHours
-                    ? { width: 100 * validatedHours / goal + '%' }
-                    : { width: 0, padding: 0 }
-                }>
-                {validatedHours}
-              </div>
-            </div>
+            <Localized id="en">
+              <b />
+            </Localized>
+            <ProgressBar progress={validatedHours ? validatedHours / goal : 0}>
+              {validatedHours}
+            </ProgressBar>
             <div className="numbers">
               {validatedHours === null ? (
                 <Localized id="status-loading">
@@ -83,30 +81,21 @@ class ProjectStatus extends React.Component<Props, State> {
             </div>
           </div>
 
-          {isProduction() ? (
-            <div>
-              <Localized id="status-more-soon">
-                <span />
-              </Localized>
-              <div className="progress-bar" />
-            </div>
-          ) : (
-            <div className="request-language">
-              <Hr style={{ marginBottom: '2rem' }} />
+          <div className="request-language">
+            <Hr style={{ marginBottom: '2rem' }} />
 
-              <Localized id="request-language-text">
-                <div />
-              </Localized>
+            <Localized id="request-language-text">
+              <div />
+            </Localized>
 
-              <br />
+            <br />
 
-              <Localized id="request-language-button">
-                <Button rounded onClick={this.props.onRequestLanguage} />
-              </Localized>
+            <Localized id="request-language-button">
+              <Button rounded onClick={this.props.onRequestLanguage} />
+            </Localized>
 
-              <br />
-            </div>
-          )}
+            <br />
+          </div>
         </div>
       </div>
     );

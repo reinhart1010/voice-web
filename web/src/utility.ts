@@ -90,6 +90,10 @@ export function isProduction(): boolean {
   return window.location.origin === 'https://voice.mozilla.org';
 }
 
+export function isStaging(): boolean {
+  return window.location.origin === 'https://voice.allizom.org';
+}
+
 export function getItunesURL(): string {
   return 'https://itunes.apple.com/us/app/project-common-voice-by-mozilla/id1240588326';
 }
@@ -99,4 +103,13 @@ export function getItunesURL(): string {
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Replaces the locale part of a given path
+ */
+export function replacePathLocale(pathname: string, locale: string) {
+  const pathParts = pathname.split('/');
+  pathParts[1] = locale;
+  return pathParts.join('/');
 }

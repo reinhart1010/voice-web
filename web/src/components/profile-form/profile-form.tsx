@@ -1,11 +1,11 @@
+import { LocalizationProps, Localized, withLocalization } from 'fluent-react';
 import pick = require('lodash.pick');
 import * as React from 'react';
 import { connect } from 'react-redux';
 import StateTree from '../../stores/tree';
 import { ACCENTS, AGES, GENDERS, User } from '../../stores/user';
 import Modal from '../modal/modal';
-import { Button, LabeledInput, LabeledSelect } from '../ui/ui';
-const { Localized } = require('fluent-react');
+import { Button, Hr, LabeledInput, LabeledSelect } from '../ui/ui';
 
 interface EditableUser {
   email: string;
@@ -38,7 +38,7 @@ interface PropsFromDispatch {
   updateUser: (state: any) => void;
 }
 
-interface Props extends PropsFromState, PropsFromDispatch {
+interface Props extends LocalizationProps, PropsFromState, PropsFromDispatch {
   onExit?: () => any;
 }
 
@@ -79,7 +79,7 @@ class ProfileForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { hasEnteredInfo, onExit, user } = this.props;
+    const { getString, hasEnteredInfo, onExit, user } = this.props;
     const { email, username, accent, age, gender, sendEmails } = this.state;
 
     const isModified = userFormFields.some(key => {
@@ -90,29 +90,35 @@ class ProfileForm extends React.Component<Props, State> {
     return (
       <div id="profile-card">
         {this.state.showClearModal && (
-          <Modal
-            onRequestClose={this.toggleClearModal}
-            buttons={{
-              'Keep Data': this.toggleClearModal,
-              'Delete Data': this.clear,
-            }}>
-            Clearing your profile data means this demographic information will
-            no longer be submitted to Common Voice with your clip recordings.
-          </Modal>
+          <Localized id="profile-clear-modal">
+            <Modal
+              onRequestClose={this.toggleClearModal}
+              buttons={{
+                [getString('profile-keep-data')]: this.toggleClearModal,
+                [getString('profile-delete-data')]: this.clear,
+              }}
+            />
+          </Localized>
         )}
 
         <div className="title-and-action">
-          <h1>Create a Profile</h1>
-          <a
-            href="javascript:void(0)"
-            onClick={onExit || this.toggleClearModal}>
-            {onExit ? 'Exit Form' : hasEnteredInfo && 'Delete Profile'}
-          </a>
+          <Localized id="profile-create">
+            <h1 />
+          </Localized>
+          <Localized
+            id={
+              'profile-form-' + (onExit ? 'cancel' : hasEnteredInfo && 'delete')
+            }>
+            <a
+              href="javascript:void(0)"
+              onClick={onExit || this.toggleClearModal}
+            />
+          </Localized>
         </div>
         <br />
 
         <form onSubmit={this.save}>
-          <Localized id="profile-form-email" attrs={{ label: true }}>
+          <Localized id="email-input" attrs={{ label: true }}>
             <LabeledInput
               className="half-width"
               label="Email"
@@ -146,7 +152,7 @@ class ProfileForm extends React.Component<Props, State> {
             </Localized>
           </label>
 
-          <hr />
+          <Hr />
 
           <Localized id="profile-form-language" attrs={{ label: true }}>
             <LabeledSelect
@@ -195,9 +201,10 @@ class ProfileForm extends React.Component<Props, State> {
           </Localized>
 
           <div className="buttons">
-            <Button type="submit" outline={!isModified}>
-              {isModified ? 'SAVE' : 'SAVED'}
-            </Button>
+            <Localized
+              id={'profile-form-submit-' + (isModified ? 'save' : 'saved')}>
+              <Button type="submit" outline={!isModified} rounded />
+            </Localized>
           </div>
         </form>
       </div>
@@ -207,7 +214,7 @@ class ProfileForm extends React.Component<Props, State> {
   private renderOptionsFor(options: any) {
     return Object.keys(options).map(key => (
       <option key={key} value={key}>
-        {options[key]}
+        {this.props.getString(key, null, options[key])}
       </option>
     ));
   }
@@ -226,4 +233,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect<PropsFromState, PropsFromDispatch>(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileForm);
+)(withLocalization(ProfileForm));

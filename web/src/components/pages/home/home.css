@@ -3,7 +3,7 @@
 @media (--desktop) {
     #home-title {
         margin-top: 3.8rem;
-        width: var(--desktop-width);
+        max-width: var(--old-desktop-width);
     }
 
     #wall-of-text {
@@ -35,10 +35,6 @@
     }
 }
 
-#home-container {
-    margin-bottom: 6rem;
-}
-
 #home-container hr {
     margin: 3rem 0;
 }
@@ -46,11 +42,13 @@
 #home-title {
     position: absolute;
     top: 0;
-    animation: fade-in .5s;
+    animation: fade-in var(--transition-duration-slow);
 }
 
 #contribute-button {
     position: absolute;
+    min-width: 16rem;
+    justify-content: center;
 }
 
 #contribute-button img {
@@ -73,7 +71,7 @@
 }
 
 #show-more-button {
-    font-size: var(--small-font-size);
+    font-size: var(--font-size-small);
     font-weight: 600;
     text-transform: uppercase;
     text-decoration: underline;
@@ -96,7 +94,7 @@
 
 #help-explain {
     margin: var(--standard-margin) 0 1.5rem;
-    font-size: var(--small-font-size);
+    font-size: var(--font-size-small);
     font-style: italic;
     color: var(--grey-font-color);
 }

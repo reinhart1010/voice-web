@@ -39,7 +39,6 @@
 
 #profile-card hr {
     margin: 2.3rem 0;
-    border-color: rgba(0, 0, 0, 0.2);
     width: 100%;
 }
 
@@ -53,5 +52,4 @@
     margin-top: 1rem;
     width: 100%;
     max-width: 12rem;
-    height: var(--input-height);
 }

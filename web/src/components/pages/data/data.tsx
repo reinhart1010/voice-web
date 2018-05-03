@@ -1,14 +1,13 @@
+import { LocalizationProps, Localized, withLocalization } from 'fluent-react';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Modal from '../../modal/modal';
-import { CardAction, Button, Hr } from '../../ui/ui';
+import { CardAction, Button } from '../../ui/ui';
 import { trackDataset } from '../../../services/tracker';
 import StateTree from '../../../stores/tree';
 import { User } from '../../../stores/user';
 import { DownloadIcon } from '../../ui/icons';
 import AfterDownloadModal from './after-download-modal';
-
-const { Localized } = require('fluent-react');
 
 const commonVoiceDataset = {
   nick: 'commonvoice',
@@ -21,10 +20,7 @@ const commonVoiceDataset = {
 const datasets = [
   {
     name: 'LibriSpeech',
-    translateName: false,
     nick: 'librispeech',
-    description:
-      'LibriSpeech is a corpus of approximately 1000 hours of 16Khz read English speech derived from read audiobooks from the LibriVox project.',
     size: 57.2,
     url: 'http://www.openslr.org/12',
     download: [],
@@ -34,11 +30,7 @@ const datasets = [
     },
   },
   {
-    name: 'TED-LIUM Corpus',
-    translateName: true,
     nick: 'ted',
-    description:
-      'The TED-LIUM corpus was made from audio talks and their transcriptions available on the TED website.',
     size: 19.8,
     url: 'http://www.openslr.org/7/',
     download: ['http://www.openslr.org/resources/7/TEDLIUM_release1.tar.gz'],
@@ -49,10 +41,7 @@ const datasets = [
   },
   {
     name: 'VoxForge',
-    translateName: false,
     nick: 'voxforge',
-    description:
-      'VoxForge was set up to collect transcribed speech for use with Free and Open Source Speech Recognition Engines.',
     size: 10.4,
     url: 'http://www.repository.voxforge1.org/downloads/SpeechCorpus/Trunk/',
     download: [
@@ -65,15 +54,12 @@ const datasets = [
   },
   {
     name: 'Tatoeba',
-    translateName: false,
     nick: 'tatoeba',
-    description:
-      'Tatoeba is a large database of sentences, translations, and spoken audio for use in language learning. This download contains all of the spoken English recorded by their community.',
     size: 3.8,
     url: 'https://tatoeba.org/eng/downloads',
     download: ['https://downloads.tatoeba.org/audio/tatoeba_audio_eng.zip'],
     license: {
-      name: 'Mixed',
+      name: 'license-mixed',
       url: 'https://tatoeba.org/eng/downloads',
     },
   },
@@ -96,7 +82,7 @@ interface PropsFromDispatch {
   updateUser: typeof User.actions.update;
 }
 
-interface Props extends PropsFromState, PropsFromDispatch {}
+interface Props extends LocalizationProps, PropsFromState, PropsFromDispatch {}
 
 interface ModalInfo {
   nick: string;
@@ -141,7 +127,9 @@ class DataPage extends React.Component<Props, State> {
   };
 
   render() {
+    const { getString } = this.props;
     const { showModalFor } = this.state;
+
     return (
       <div id="data-container">
         {typeof showModalFor === 'string' ? (
@@ -154,8 +142,8 @@ class DataPage extends React.Component<Props, State> {
             <Modal
               innerClassName="download-modal"
               buttons={{
-                Yes: this.startDownload,
-                No: this.hideModal,
+                [getString('data-download-yes')]: this.startDownload,
+                [getString('data-download-deny')]: this.hideModal,
               }}
               onRequestClose={this.hideModal}>
               <Localized
@@ -219,20 +207,20 @@ class DataPage extends React.Component<Props, State> {
         </Localized>
 
         <div id="datasets">
-          {datasets.map(dataset => (
-            <div key={dataset.name} className="dataset">
+          {datasets.map((dataset: any, i) => (
+            <div key={i} className="dataset">
               <div className="contents">
                 <h2>
                   <a
                     href={dataset.url}
                     target="_blank"
                     rel="noopener noreferrer">
-                    {dataset.translateName === true ? (
+                    {dataset.name ? (
+                      dataset.name
+                    ) : (
                       <Localized id={'data-other-' + dataset.nick + '-name'}>
                         <span />
                       </Localized>
-                    ) : (
-                      dataset.name
                     )}
                   </a>
                 </h2>
@@ -244,7 +232,9 @@ class DataPage extends React.Component<Props, State> {
               <div>
                 <Localized
                   id="license"
-                  $license={dataset.license.name}
+                  $license={
+                    getString(dataset.license.name) || dataset.license.name
+                  }
                   licenseLink={
                     <a
                       href={dataset.license.url}
@@ -307,4 +297,4 @@ const mapDispatchToProps = {
 export default connect<PropsFromState, PropsFromDispatch>(
   mapStateToProps,
   mapDispatchToProps
-)(DataPage);
+)(withLocalization(DataPage));

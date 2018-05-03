@@ -1,4 +1,4 @@
-const { Localized } = require('fluent-react');
+import { Localized } from 'fluent-react';
 import * as React from 'react';
 import { SuccessIcon } from '../ui/icons';
 
@@ -21,7 +21,7 @@ export default ({ onRequestClose }: { onRequestClose: () => void }) => (
 
     <br />
 
-    <Localized id="request-language-success-text">
+    <Localized id="request-language-success-content">
       <p className="small" />
     </Localized>
 

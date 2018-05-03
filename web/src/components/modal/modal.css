@@ -3,7 +3,7 @@
     z-index: var(--top-z-index);
     width: 100%;
     height: 100%;
-    animation: fade-in .2s;
+    animation: fade-in var(--transition-duration);
 }
 
 /* We need to use !important because the react modal library we use sets inline-styles */
@@ -31,9 +31,14 @@
     padding: 2rem;
     width: 100%;
     max-width: 40rem;
+    min-height: 99vh;
     text-align: center;
-    background: var(--base-background-color);
+    background: var(--white);
     pointer-events: all;
+
+    @media (--md-up) {
+        min-height: auto;
+    }
 }
 
 .ReactModal__Content .buttons {

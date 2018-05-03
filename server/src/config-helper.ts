@@ -1,7 +1,5 @@
-/**
- * Definition for all common voice config options.
- */
 import * as fs from 'fs';
+import { S3 } from 'aws-sdk';
 
 export type CommonVoiceConfig = {
   VERSION: string;
@@ -18,6 +16,14 @@ export type CommonVoiceConfig = {
   BUCKET_LOCATION: string;
   ENVIRONMENT: string;
   RELEASE_VERSION?: string;
+  SECRET: string;
+  S3_CONFIG: S3.Types.ClientConfiguration;
+  ADMIN_EMAILS: string;
+  AUTH0: {
+    DOMAIN: string;
+    CLIENT_ID: string;
+    CLIENT_SECRET: string;
+  };
 };
 
 const DEFAULTS: CommonVoiceConfig = {
@@ -35,25 +41,43 @@ const DEFAULTS: CommonVoiceConfig = {
   BUCKET_NAME: 'common-voice-corpus',
   BUCKET_LOCATION: '',
   ENVIRONMENT: 'default',
+  SECRET: 'TODO: Set a secure SECRET in config.json',
+  ADMIN_EMAILS: '[]', // array of admin emails, as JSON
+  S3_CONFIG: {
+    signatureVersion: 'v4',
+  },
+  AUTH0: {
+    DOMAIN: '',
+    CLIENT_ID: '',
+    CLIENT_SECRET: '',
+  },
 };
 
-/**
- * Create our configuration by merging config.json and our DEFAULTS.
- */
-export function getConfig(): CommonVoiceConfig {
-  const localConfig = load();
-  return Object.assign(DEFAULTS, localConfig);
+let injectedConfig: CommonVoiceConfig;
+
+export function injectConfig(config: any) {
+  injectedConfig = { ...DEFAULTS, ...config };
 }
 
-/**
- * Attempt to load a json file, but return null if not found.
- */
-function load(): CommonVoiceConfig {
+let loadedConfig: CommonVoiceConfig;
+
+export function getConfig(): CommonVoiceConfig {
+  if (injectedConfig) {
+    return injectedConfig;
+  }
+
+  if (loadedConfig) {
+    return loadedConfig;
+  }
+
   let config = null;
   try {
-    config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+    let config_path = process.env.SERVER_CONFIG_PATH || './config.json';
+    config = JSON.parse(fs.readFileSync(config_path, 'utf-8'));
   } catch (err) {
     console.log('could not load config.json, using defaults');
   }
-  return config;
+  loadedConfig = { ...DEFAULTS, ...config };
+
+  return loadedConfig;
 }

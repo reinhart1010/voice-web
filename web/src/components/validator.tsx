@@ -1,12 +1,9 @@
+import { Localized } from 'fluent-react';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import StateTree from '../stores/tree';
 import ListenBox from './listen-box/listen-box';
 import { Clips } from '../stores/clips';
-
-const LOADING_MESSAGE = 'Loading...';
-const LOAD_ERROR_MESSAGE =
-  'Sorry! We are processing our audio files, please try again shortly.';
 
 interface PropsFromState {
   loadError: boolean;
@@ -30,7 +27,17 @@ export default connect<PropsFromState, PropsFromDispatch>(
     <ListenBox
       src={clip ? clip.audioSrc : ''}
       sentence={
-        clip ? clip.sentence : loadError ? LOAD_ERROR_MESSAGE : LOADING_MESSAGE
+        clip ? (
+          clip.sentence
+        ) : loadError ? (
+          <Localized id="audio-loading-error">
+            <span />
+          </Localized>
+        ) : (
+          <Localized id="loading">
+            <span />
+          </Localized>
+        )
       }
       onVote={vote}
       vote

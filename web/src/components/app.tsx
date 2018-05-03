@@ -8,7 +8,6 @@ import {
   withRouter,
 } from 'react-router';
 import { Router } from 'react-router-dom';
-const { negotiateLanguages } = require('fluent-langneg');
 const { LocalizationProvider } = require('fluent-react');
 import { createBrowserHistory } from 'history';
 import store from '../stores/root';
@@ -19,21 +18,18 @@ import {
   isNativeIOS,
   sleep,
   isProduction,
+  replacePathLocale,
 } from '../utility';
 import {
   createMessagesGenerator,
   DEFAULT_LOCALE,
   LOCALES,
+  negotiateLocales,
 } from '../services/localization';
 import API from '../services/api';
+import { Locale } from '../stores/locale';
 import StateTree from '../stores/tree';
 import Layout from './layout/layout';
-
-function replacePathLocale(pathname: string, locale: string) {
-  const pathParts = pathname.split('/');
-  pathParts[1] = locale;
-  return pathParts.join('/');
-}
 
 const LOAD_TIMEOUT = 5000; // we can only wait so long.
 
@@ -52,13 +48,25 @@ const PRELOAD = [
   '/img/wave-blue-mobile.png',
   '/img/wave-red-large.png',
   '/img/wave-red-mobile.png',
+  '/img/waves/_1.svg',
+  '/img/waves/_2.svg',
+  '/img/waves/_3.svg',
+  '/img/waves/fading.svg',
+  '/img/waves/Eq.svg',
 ];
 
 interface PropsFromState {
   api: API;
 }
 
-interface LocalizedPagesProps extends PropsFromState, RouteComponentProps<any> {
+interface PropsFromDispatch {
+  setLocale: typeof Locale.actions.set;
+}
+
+interface LocalizedPagesProps
+  extends PropsFromState,
+    PropsFromDispatch,
+    RouteComponentProps<any> {
   userLocales: string[];
 }
 
@@ -67,9 +75,12 @@ interface LocalizedPagesState {
 }
 
 const LocalizedLayout = withRouter(
-  connect<PropsFromState>(({ api }: StateTree) => ({
-    api,
-  }))(
+  connect<PropsFromState, PropsFromDispatch>(
+    ({ api }: StateTree) => ({
+      api,
+    }),
+    { setLocale: Locale.actions.set }
+  )(
     class extends React.Component<LocalizedPagesProps, LocalizedPagesState> {
       state: LocalizedPagesState = {
         messagesGenerator: null,
@@ -80,7 +91,11 @@ const LocalizedLayout = withRouter(
       }
 
       async componentWillReceiveProps(nextProps: LocalizedPagesProps) {
-        if (nextProps.userLocales !== this.props.userLocales) {
+        if (
+          nextProps.userLocales.find(
+            (locale, i) => locale !== this.props.userLocales[i]
+          )
+        ) {
           await this.prepareMessagesGenerator(nextProps);
         }
       }
@@ -95,12 +110,16 @@ const LocalizedLayout = withRouter(
 
         // Since we make no distinction between "en-US", "en-UK",... we redirect them all to "en"
         if (mainLocale.startsWith('en-')) {
+          this.props.setLocale('en');
           history.replace(replacePathLocale(pathname, 'en'));
           return;
         }
 
         if (!LOCALES.includes(mainLocale)) {
+          this.props.setLocale(DEFAULT_LOCALE);
           history.replace(replacePathLocale(pathname, DEFAULT_LOCALE));
+        } else {
+          this.props.setLocale(userLocales[0]);
         }
 
         this.setState({
@@ -112,8 +131,8 @@ const LocalizedLayout = withRouter(
         const { messagesGenerator } = this.state;
         return (
           messagesGenerator && (
-            <LocalizationProvider messages={messagesGenerator()}>
-              <Layout locale={this.props.userLocales[0]} />
+            <LocalizationProvider messages={messagesGenerator}>
+              <Layout />
             </LocalizationProvider>
           )
         );
@@ -154,9 +173,7 @@ class App extends React.Component<{}, State> {
       document.body.classList.add('mobile-safari');
     }
 
-    this.userLocales = negotiateLanguages(navigator.languages, LOCALES, {
-      defaultLocale: DEFAULT_LOCALE,
-    });
+    this.userLocales = negotiateLocales(navigator.languages);
   }
 
   /**
@@ -200,10 +217,6 @@ class App extends React.Component<{}, State> {
     ]);
   }
 
-  private selectLocale = async ({ target: { value: locale } }: any) => {
-    history.push(replacePathLocale(history.location.pathname, locale));
-  };
-
   render() {
     return this.state.loaded ? (
       <Provider store={store}>
@@ -220,20 +233,7 @@ class App extends React.Component<{}, State> {
             <Route
               path="/:locale"
               render={({ match: { params: { locale } } }) => (
-                <React.Fragment>
-                  {LOCALES.length > 1 && (
-                    <select value={locale} onChange={this.selectLocale}>
-                      {LOCALES.map(code => (
-                        <option key={code} value={code}>
-                          {code}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                  <LocalizedLayout
-                    userLocales={[locale, ...this.userLocales]}
-                  />
-                </React.Fragment>
+                <LocalizedLayout userLocales={[locale, ...this.userLocales]} />
               )}
             />
           </Switch>

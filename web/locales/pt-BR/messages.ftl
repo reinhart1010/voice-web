@@ -1,7 +1,62 @@
+## General
+
+yes-receive-emails = Sim, envie-me e-mails. Eu gostaria de ficar informado sobre o Projeto Common Voice.
+stayintouch = Nós da Mozilla estamos construindo uma comunidade ao redor da tecnologia de voz. Nós gostaríamos de manter contato com atualizações, novas fontes de dados e ouvir mais sobre como você está usando esses dados.
+privacy-info = Nós prometemos cuidar das suas informações com cautela. Leia mais em nosso <privacyLink>Aviso de Privacidade</privacyLink>.
+return-to-cv = Voltar para o Common Voice
+email-input =
+    .label = E-mail
+submit-form-action = Enviar
+loading = Carregando…
+audio-loading-error = Desculpe! Nós estamos processando nossos arquivos de audio, por favor tente novamente em breve.
+
+# Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+
+
+## Languages
+
+bn = Bengalês
+ca = Catalão
+cs = Tcheco
+cv = Tchuvache
+cy = Galês
+da = Dinamarquês
+de = Alemão
+el = Grego
+es-AR = Espanhol (Argentina)
+es-CL = Espanhol (Chile)
+fr = Francês
+fy-NL = Frisão
+ga-IE = Irlandês
+he = Hebraico
+hu = Húngaro
+id = Indonésio
+it = Italiano
+ko = Coreano
+mk = Macedônio
+nl = Holandês
+nn-NO = Novo norueguês
+pl = Polonês
+pt-BR = Português (Brasil)
+ro = Romeno
+ru = Russo
+sk = Eslovaco
+sq = Albanês
+sv-SE = Sueco
+ta = Tâmil
+th = Tailandês
+tr = Turco
+tt = Tártaro
+uk = Ucraniano
+uz = Usbeque
+zh-CN = Chinês (China)
+zh-TW = Chinês (Taiwan)
+
 ## Layout
 
 speak = Falar
 datasets = Conjuntos de dados
+languages = Idiomas
 profile = Perfil
 help = Ajuda
 contact = Contato
@@ -11,6 +66,8 @@ cookies = Cookies
 faq = Perguntas frequentes
 content-license-text = Conteúdo disponível sob licença <licenseLink>Creative Commons</licenseLink>
 share-title = Ajude-nos a encontrar outros doadores de voz!
+share-text = Ajude a ensinar às máquinas como uma pessoal fala, doando sua voz em { $link }
+back-top = Voltar para o início
 
 ## Home Page
 
@@ -22,13 +79,17 @@ wall-of-text-more-desktop = Agora você pode doar sua voz para nos ajudar a cons
 show-wall-of-text = Saiba mais
 help-us-title = Ajude-nos a validar as frases!
 help-us-explain = Aperte o play, ouça e diga-nos: Eles pronunciaram a frase abaixo corretamente?
+vote-yes = Sim
+vote-no = Não
+request-language-text = Seu idioma ainda não está disponível no Common Voice?
+request-language-button = Solicite um idioma
 
 ## ProjectStatus
 
 status-title = Status geral do projeto: veja o nosso progresso!
 status-contribute = Contribua com sua voz
-status-loading = Carregando…
-status-hours = { $hours ->
+status-hours =
+    { $hours ->
         [one] Uma hora válida até agora!
        *[other] { $hours } horas válidas até agora!
     }
@@ -36,14 +97,14 @@ status-hours = { $hours ->
 # $goal - number of hours representing the next goal
 status-goal = Próximo objetivo: { $goal }
 status-more-soon = Mais idiomas em breve!
+english = Inglês
 
 ## ProfileForm
 
-profile-form-email =
-    .label = E-mail
+profile-form-cancel = Sair do formulário
+profile-form-delete = Excluir perfil
 profile-form-username =
     .label = Usuário
-yes-receive-emails = Sim, envie-me e-mails. Eu gostaria de ficar informado sobre o Projeto Common Voice.
 profile-form-language =
     .label = Idioma
 profile-form-more-languages = Mais idiomas em breve!
@@ -53,6 +114,20 @@ profile-form-age =
     .label = Idade
 profile-form-gender =
     .label = Gênero
+profile-form-submit-save = Salvar
+profile-form-submit-saved = Salvo
+profile-keep-data = Manter dados
+profile-delete-data = Excluir dados
+male = Masculino
+female = Feminino
+# Gender
+other = Outro
+why-profile-title = Por que um perfil?
+why-profile-text = Ao fornecer algumas informações sobre você, os dados de audio que você enviou ao Common Voice serão mais úteis aos mequanismos de reconhecimento de fala que usamos para aprimorar sua precisão.
+edit-profile = Editar perfil
+profile-create = Criar um perfil
+profile-create-success = Perfil criado com sucesso!
+profile-close = Fechar
 
 ## FAQ
 
@@ -87,72 +162,89 @@ profile-why-content = Ao fornecer algumas informações sobre você, os dados de
 notfound-title = Não encontrado
 notfound-content = Eu tenho receio de não saber o que vocês estão procurando.
 
-## Privacy
-
-privacy-title = Aviso de Privacidade do Common Voice
-privacy-effective = Eficaz
-privacy-policy = Quando a Mozilla (somos nós) recebemos a informação de você, nossa <policy>Política de Privacidade da Mozilla</policy> descrevem como tratamos aquela informação.
-privacy-data-demographic = <name>Dados demográficos</name> Você pode opcionalmente nos enviar informações como sotaque, idade e gênero. Isso ajudará a nós e a outros pesquisadores a melhorar e criar tecnologias de voz para texto e ferramentas.
-privacy-data-account = <name>Dados da conta.</name> Você pode opcionalmente criar uma conta, caso em que recebemos seus endereço de e-mail. Isto será associado com seus dados demográficos e interações, mas não será compartilhada publicamente.
-privacy-data-recordings = <name>Gravações de Voz.</name> As gravações de voz, assim como todos os dados demográficos associados, podem estar disponíveis na base de dados do Common Voice pra uso e consumo público.
-privacy-data-interaction = <name>Interação de dados.</name> Nós usamos o Google Analytics para melhor entender como você interage com o site ou o aplicativo do Common Voice. Por exemplo, o número de amostras de voz que você grava ou escuta, interações com botões e menus, duração de sessão.
-privacy-data-technical = <name>Dados técnicos.</name> Usando o Google Analytics, nós coletamos os endereços e título das páginas que você visita no Common Voice. Coletamos dados sobre o seu navegador, dimensão da janela de visualização e resolução de tela. Nós coletamos também sua localização e configurações de idioma do seu navegador.
-privacy-more = <more>Saiba mais</more>
-
-## Terms
-
-terms-title = Termos Legais do Common Voice
-terms-effective = Efetivado em { DATETIME($date, month: "long", year: "numeric", day: "numeric") }
-terms-eligibility-title = Elegibilidade
-terms-eligibility-content = Você deve ter mais de 13 anos ou ter o consentimento dos seus pais ou responsável para supervisionar sua participação em nosso projeto colaborativo.
-terms-privacy-title = Privacidade
-terms-privacy-content = Nossos <privacyLink>Avisos de Privacidade</privacyLink> explicam como receberemos e cuidaremos dos seus dados.
-terms-contributions-title = Suas contribuições e liberação de direitos
-terms-communications-title = Comunicações
-terms-general-title = Geral
-
 ## Data
 
 data-download-button = Baixar os dados do Common Voice
+data-download-yes = Sim
+data-download-deny = Não
 data-download-license = Licença: <licenseLink>CC-0</licenseLink>
 data-download-modal = Você está preste a iniciar um download de <size>{ $size }GB</size>, deseja continuar?
+data-subtitle = Nós estamos construindo um conjunto de dados de voz aberto e publicamente disponível para que qualquer um possa usar no treinamento de suas aplicações de voz-ativa.
+data-explanatory-text = Acreditamos que conjuntos de dados de voz grandes e acessíveis ao público promovem a inovação e a saudável concorrência comercial na aprendizagem de máquina baseada em voz. Este é um esforço global e convidamos todos a participar. O nosso objetivo é ajudar a tecnologia de voz a ser mais inclusivo, refletindo a diversidade das vozes ao redor do mundo.
+data-get-started = <speechBlogLink>Comece com o reconhecimento de voz</speechBlogLink>
+data-other-title = Outro conjunto de dados de voz...
 data-other-goto = Vá para { $name }
 data-other-download = Baixar dados
+data-other-librispeech-description = O LibriSpeech é um corpus de aproximadamente 1000 horas (em 16 Khz) de leitura em inglês derivada de audiolivros do projeto LibriVox.
+data-other-ted-name = TED-LIUM Corpus
+data-other-ted-description = O TED-LIUM corpus foi criado a partir dos áudio das palestras e suas transcrições que estão disponíveis na página do TED.
+data-other-voxforge-description = VoxForge foi configurado para coletar falas transcritas para serem usadas com motores de reconhecimento de fala gratuito e de código aberto.
+data-other-tatoeba-description = Tatoeba é uma grande base de dados de frases, traduções e áudio para uso em aprendizagem de idioma. Este arquivo contém todas as falas em inglês gravadas por sua comunidade.
 data-bundle-button = Baixar pacote do conjunto de dados
+data-bundle-description = Os dados do Common Voice mais todos os outros conjuntos de dados acima.
 license = Licença: <licenseLink>{ $license }</licenseLink>
+license-mixed = Misto
 
 ## Record Page
 
 record-platform-not-supported = Nos desculpe, mas sua plataforma não é suportada.
+record-platform-not-supported-desktop = Em computadores, você pode baixar o mais recente:
+record-platform-not-supported-ios = Usuários de <bold>iOS</bold> podem baixar nosso aplicativo gratuito:
 record-must-allow-microphone = Você deve permitir o acesso ao microfone.
+record-cancel = Cancelar regravação
+record-retry = Tentar novamente
 record-error-too-short = A gravação foi muito curta.
 record-error-too-long = A gravação foi muito longa
 record-error-too-quiet = A gravação ficou com volume muito baixa.
 record-submit-success = Enviada com sucesso! Deseja gravar novamente?
 record-help = Toque para gravar, depois leias as frases em voz alta.
+record-cancel = Cancelar regravação
+review-terms = Usando o Common Voice, você aceita nossos <termsLink>Termos</termsLink> e <privacyLink>Política de Privacidade</privacyLink>
+terms-agree = Estou de acordo
+terms-disagree = Não estou de acordo
+review-aborted = Envio abortado. Deseja excluir suas gravações?
+review-submit-title = Revise e envie
+review-submit-msg = Obrigado pela sua gravação!<lineBreak></lineBreak>Agora revise e envie-as abaixo.
+review-recording = Revisar
 review-rerecord = Regravar
 review-cancel = Cancelar envio
+review-keep-recordings = Manter as gravações
+review-delete-recordings = Excluir minhas gravações
 
 ## Download Modal
 
 download-title = Seu download começou.
+download-helpus = Ajude-nos a construir uma comunidade ao redor da tecnologia de voz, mantenha contato por e-mail.
 download-form-email =
     .label = Digite seu e-mail
     .value = Obrigado, nós entraremos em contato.
-download-form-submit = Enviar
 download-back = Voltar ao conjunto de dados do Common Voice
 download-no = Não, obrigado
-privacy-info = Nós prometemos cuidar das suas informações com cautela. Leia mais em nosso <privacyLink>Aviso de Privacidade</privacyLink>.
 
-## Contact
+## Contact Modal
 
 contact-title = Formulário de contato
 contact-cancel = Cancelar
-contact-form-email =
-    .label = E-mail
 contact-form-name =
     .label = Nome
 contact-form-message =
     .label = Mensagem
 contact-required = *necessário
-contact-submit = Enviar
+
+## Request Language Modal
+
+request-language-title = Solicitação de idioma
+request-language-cancel = Sair do formulário
+request-language-form-language =
+    .label = Idioma
+request-language-success-title = A solicitação de idioma foi enviada com sucesso, obrigado.
+request-language-success-content = Nós entraremos em contato com mais informações sobre como adicionar o seu idioma ao Common Voice muito em breve.
+
+## Languages Overview
+
+language-section-in-progress = Em andamento
+language-section-launched = Iniciada
+languages-show-more = Veja mais
+languages-show-less = Ver menos
+language-speakers = Falantes
+language-total-progress = Total

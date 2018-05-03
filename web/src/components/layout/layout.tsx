@@ -1,60 +1,67 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, RouteComponentProps, withRouter } from 'react-router';
-import { NavLink } from 'react-router-dom';
-const { Localized } = require('fluent-react');
+import { RouteComponentProps, withRouter } from 'react-router';
+import {
+  getNativeNameWithFallback,
+  LOCALES,
+} from '../../services/localization';
 import { Recordings } from '../../stores/recordings';
 import StateTree from '../../stores/tree';
 import { User } from '../../stores/user';
-import { Clips } from '../../stores/clips';
-import URLS from '../../urls';
-import { getItunesURL, isNativeIOS, isIOS, isSafari } from '../../utility';
+import { Locale } from '../../stores/locale';
+import {
+  getItunesURL,
+  isNativeIOS,
+  isIOS,
+  isSafari,
+  replacePathLocale,
+} from '../../utility';
 import { MenuIcon, RecordIcon, PlayIcon } from '../ui/icons';
-import Robot from './robot';
-import Home from '../pages/home/home';
-import Record from '../pages/record/record';
-import Data from '../pages/data/data';
-import Profile from '../pages/profile';
-import FAQ from '../pages/faq';
-import Privacy from '../pages/privacy';
-import Terms from '../pages/terms';
-import NotFound from '../pages/not-found';
+import { LabeledSelect } from '../ui/ui';
+import Content from './content';
 import Footer from './footer';
+import LanguageSelect from './language-select';
 import Logo from './logo';
+import Nav from './nav';
+import Robot from './robot';
 
 const KEYBOARD_FOCUS_CLASS_NAME = 'is-keyboard-focus';
 
 const LOW_FPS = 20;
 const DISABLE_ANIMATION_LOW_FPS_THRESHOLD = 3;
 
+const LOCALES_WITH_NAMES = LOCALES.map(code => [
+  code,
+  getNativeNameWithFallback(code),
+]).sort((l1, l2) => l1[1].localeCompare(l2[1]));
+
 interface PropsFromState {
+  locale: Locale.State;
   isSetFull: boolean;
   user: User.State;
 }
 
 interface PropsFromDispatch {
-  buildNewSentenceSet: typeof Recordings.actions.buildNewSentenceSet;
-  fillClipCache: typeof Clips.actions.refillCache;
+  setLocale: typeof Locale.actions.set;
 }
 
 interface LayoutProps
   extends PropsFromState,
     PropsFromDispatch,
-    RouteComponentProps<any> {
-  locale: string;
-}
+    RouteComponentProps<any> {}
 
 interface LayoutState {
   isMenuVisible: boolean;
-  scrolled: boolean;
+  hasScrolled: boolean;
+  hasScrolledDown: boolean;
   transitioning: boolean;
   isRecording: boolean;
+  showStagingBanner: boolean;
 }
 
-class Layout extends React.Component<LayoutProps, LayoutState> {
+class Layout extends React.PureComponent<LayoutProps, LayoutState> {
   private header: HTMLElement;
   private scroller: HTMLElement;
-  private content: HTMLElement;
   private bg: HTMLElement;
   private installApp: HTMLElement;
   private stopBackgroundRender: boolean;
@@ -70,15 +77,15 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
 
   state: LayoutState = {
     isMenuVisible: false,
-    scrolled: false,
+    hasScrolled: false,
+    hasScrolledDown: false,
     transitioning: false,
     isRecording: false,
+    showStagingBanner: true,
   };
 
   componentDidMount() {
-    this.props.buildNewSentenceSet();
-    this.props.fillClipCache();
-    this.addScrollListener();
+    this.scroller.addEventListener('scroll', this.handleScroll);
   }
 
   componentDidUpdate(nextProps: LayoutProps, nextState: LayoutState) {
@@ -91,11 +98,21 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
     }
 
     if (this.props.location !== nextProps.location) {
-      this.setState({ isRecording: false });
-      const mainContent = this.content.children[0];
-      mainContent &&
-        mainContent.addEventListener('animationend', this.scrollToTop);
+      this.setState({ isMenuVisible: false, isRecording: false });
+
+      // Immediately scrolling up after page change has no effect.
+      setTimeout(() => {
+        this.scroller.scrollTop = 0;
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }, 500);
     }
+  }
+
+  componentWillUnmount() {
+    this.scroller.removeEventListener('scroll', this.handleScroll);
   }
 
   private volume = 0;
@@ -174,36 +191,14 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
     });
   };
 
-  private addScrollListener = () => {
-    this.scroller.addEventListener('scroll', () => {
-      let scrolled = this.scroller.scrollTop > 0;
-      if (scrolled !== this.state.scrolled) {
-        this.setState({ scrolled: scrolled });
-      }
+  lastScrollTop: number;
+  private handleScroll = () => {
+    const { scrollTop } = this.scroller;
+    this.setState({
+      hasScrolled: scrollTop > 0,
+      hasScrolledDown: scrollTop > this.lastScrollTop,
     });
-  };
-
-  private scrollToTop = () => {
-    this.content.children[0].removeEventListener(
-      'animationend',
-      this.scrollToTop
-    );
-
-    // After changing pages we will scroll to the top, which
-    // is accomplished differentonly on mobile vs. desktop.
-    this.scroller.scrollTop = 0; // Scroll up on mobile.
-    this.setState(
-      {
-        isMenuVisible: false,
-      },
-      () => {
-        // Scroll to top on desktop.
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      }
-    );
+    this.lastScrollTop = scrollTop;
   };
 
   private toggleMenu = () => {
@@ -220,15 +215,26 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
     document.body.classList.remove(KEYBOARD_FOCUS_CLASS_NAME);
   };
 
-  basePath: string;
+  private selectLocale = async (locale: string) => {
+    const { setLocale, history } = this.props;
+    setLocale(locale);
+    history.push(replacePathLocale(history.location.pathname, locale));
+  };
+
   render() {
-    const pageName = this.props.location.pathname.split('/')[2] || 'home';
+    const { isSetFull, locale, location } = this.props;
+    const {
+      hasScrolled,
+      hasScrolledDown,
+      isMenuVisible,
+      showStagingBanner,
+    } = this.state;
+
+    const pageName = location.pathname.split('/')[2] || 'home';
     let className = pageName;
     if (this.state.isRecording) {
       className += ' recording';
     }
-
-    this.basePath = '/' + this.props.locale;
 
     return (
       <div
@@ -249,22 +255,50 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
               <a onClick={this.closeOpenInApp}>X</a>
             </div>
           )}
+        {window.location.hostname == 'voice.allizom.org' &&
+          showStagingBanner && (
+            <div className="staging-banner">
+              You're on the staging server.{' '}
+              <a href="https://voice.mozilla.org">Don't waste your breath.</a>{' '}
+              <a href="https://github.com/mozilla/voice-web/issues/new">
+                Feel free to report issues.
+              </a>{' '}
+              <button
+                onClick={() => this.setState({ showStagingBanner: false })}>
+                Close
+              </button>
+            </div>
+          )}
         <header
           className={
-            !this.state.isMenuVisible && this.state.scrolled ? 'active' : ''
+            !isMenuVisible &&
+            (hasScrolled ? 'active' : '') +
+              ' ' +
+              (hasScrolledDown ? 'hidden' : '')
           }
           ref={header => {
             this.header = header as HTMLElement;
           }}>
-          <Logo to={this.basePath} />
-          {this.renderTallies()}
-          <button
-            id="hamburger-menu"
-            onClick={this.toggleMenu}
-            className={this.state.isMenuVisible ? 'active' : ''}>
-            <MenuIcon className={this.state.isMenuVisible ? 'active' : ''} />
-          </button>
-          {this.renderNav('main-nav', true)}
+          <div>
+            <Logo />
+            <Nav id="main-nav" />
+          </div>
+          <div>
+            {this.renderTallies()}
+            {LOCALES.length > 1 && (
+              <LanguageSelect
+                locale={locale}
+                locales={LOCALES_WITH_NAMES}
+                onChange={this.selectLocale}
+              />
+            )}
+            <button
+              id="hamburger-menu"
+              onClick={this.toggleMenu}
+              className={isMenuVisible ? 'active' : ''}>
+              <MenuIcon className={isMenuVisible ? 'active' : ''} />
+            </button>
+          </div>
         </header>
         <div
           id="scroller"
@@ -283,40 +317,42 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
               <Robot
                 position={
                   pageName === 'record'
-                    ? this.props.isSetFull ? 'thanks' : 'record'
+                    ? isSetFull ? 'thanks' : 'record'
                     : null
                 }
               />
             </div>
             <div className="hero-space" />
-            {this.renderContent()}
-            <Footer basePath={this.basePath} />
+            <Content
+              isRecording={this.state.isRecording}
+              onRecord={this.onRecord}
+              onRecordStop={this.onRecordStop}
+              onVolume={this.handleVolumeChange}
+            />
+            <Footer />
           </div>
         </div>
         <div
           id="navigation-modal"
-          className={this.state.isMenuVisible ? 'active' : ''}
-          onClick={this.toggleMenu}>
-          {this.renderNav()}
+          className={this.state.isMenuVisible ? 'active' : ''}>
+          <Nav>
+            {LOCALES.length > 1 && (
+              <LabeledSelect
+                className="language-select"
+                value={locale}
+                onChange={(event: any) =>
+                  this.selectLocale(event.target.value)
+                }>
+                {LOCALES_WITH_NAMES.map(([code, name]) => (
+                  <option key={code} value={code}>
+                    {name}
+                  </option>
+                ))}
+              </LabeledSelect>
+            )}
+          </Nav>
         </div>
       </div>
-    );
-  }
-
-  private renderNav(id?: string, withTallies?: boolean) {
-    return (
-      <nav id={id} className="nav-list">
-        <Localized id="speak">
-          <NavLink to={this.basePath + URLS.RECORD} exact />
-        </Localized>
-        <Localized id="datasets">
-          <NavLink to={this.basePath + URLS.DATA} exact />
-        </Localized>
-        <Localized id="profile">
-          <NavLink to={this.basePath + URLS.PROFILE} exact />
-        </Localized>
-        {withTallies && this.renderTallies()}
-      </nav>
     );
   }
 
@@ -336,57 +372,16 @@ class Layout extends React.Component<LayoutProps, LayoutState> {
       </div>
     );
   }
-
-  private renderContent() {
-    return (
-      <div
-        id="content"
-        ref={div => {
-          this.content = div as HTMLElement;
-        }}>
-        <Switch>
-          <Route exact path={this.basePath + URLS.ROOT} component={Home} />
-          <Route
-            exact
-            path={this.basePath + URLS.RECORD}
-            render={props => (
-              <Record
-                isRecording={this.state.isRecording}
-                onRecord={this.onRecord}
-                onRecordStop={this.onRecordStop}
-                onVolume={this.handleVolumeChange}
-                {...props}
-              />
-            )}
-          />
-          <Route exact path={this.basePath + URLS.DATA} component={Data} />
-          <Route
-            exact
-            path={this.basePath + URLS.PROFILE}
-            component={Profile}
-          />
-          <Route exact path={this.basePath + URLS.FAQ} component={FAQ} />
-          <Route
-            exact
-            path={this.basePath + URLS.PRIVACY}
-            component={Privacy}
-          />
-          <Route exact path={this.basePath + URLS.TERMS} component={Terms} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    );
-  }
 }
 
-const mapStateToProps = ({ recordings, user }: StateTree) => ({
+const mapStateToProps = ({ locale, recordings, user }: StateTree) => ({
+  locale,
   isSetFull: Recordings.selectors.isSetFull(recordings),
   user,
 });
 
 const mapDispatchToProps = {
-  buildNewSentenceSet: Recordings.actions.buildNewSentenceSet,
-  fillClipCache: Clips.actions.refillCache,
+  setLocale: Locale.actions.set,
 };
 
 export default withRouter(
