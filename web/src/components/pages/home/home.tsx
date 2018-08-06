@@ -25,7 +25,10 @@ interface PropsFromState {
   api: API;
 }
 
-type Props = RouteComponentProps<any> & LocalePropsFromState & PropsFromState;
+interface Props
+  extends RouteComponentProps<any>,
+    LocalePropsFromState,
+    PropsFromState {}
 
 interface State {
   messagesGenerator: any;
@@ -54,14 +57,25 @@ class HomePage extends React.Component<Props, State> {
     await this.updateMessagesGenerator(nextProps);
   }
 
+  private isFetching = false;
   async updateMessagesGenerator({ api, locale }: Props) {
-    if (this.state.messagesGenerator && locale === this.props.locale) return;
-    this.setState({
-      messagesGenerator: createCrossLocaleMessagesGenerator(
-        await api.fetchCrossLocaleMessages(),
-        [locale]
-      ),
-    });
+    if (
+      this.isFetching ||
+      (this.state.messagesGenerator && locale === this.props.locale)
+    )
+      return;
+    this.isFetching = true;
+    this.setState(
+      {
+        messagesGenerator: createCrossLocaleMessagesGenerator(
+          await api.fetchCrossLocaleMessages(),
+          [locale]
+        ),
+      },
+      () => {
+        this.isFetching = false;
+      }
+    );
   }
 
   render() {
@@ -87,40 +101,42 @@ class HomePage extends React.Component<Props, State> {
           id="wall-of-text"
           className={showWallOfText ? 'show-more-text' : ''}>
           <ContributableLocaleLock
-            render={({ isContributable }) =>
-              isContributable ? (
-                <CardAction id="contribute-button" to={URLS.RECORD}>
-                  <div>
-                    <RecordIcon />
-                  </div>
-                  <Localized id="home-cta">
-                    <span />
-                  </Localized>
-                </CardAction>
-              ) : (
-                messagesGenerator && (
-                  <LocalizationProvider messages={messagesGenerator}>
-                    <React.Fragment>
-                      <Localized id="get-involved-button">
-                        <CardAction
-                          id="contribute-button"
-                          onClick={this.toggleGetInvolvedModal}
-                        />
-                      </Localized>
-                      {showGetInvolvedModal && (
-                        <GetInvolvedModal
-                          locale={{
-                            code: locale,
-                            name: getNativeNameWithFallback(locale),
-                          }}
-                          onRequestClose={this.toggleGetInvolvedModal}
-                        />
-                      )}
-                    </React.Fragment>
-                  </LocalizationProvider>
-                )
-              )
-            }
+            render={({ isContributable }: any) => (
+              <div className="home-cta-container">
+                {isContributable ? (
+                  <CardAction className="home-cta" to={URLS.SPEAK}>
+                    <div>
+                      <RecordIcon />
+                    </div>
+                    <Localized id="home-cta">
+                      <span />
+                    </Localized>
+                  </CardAction>
+                ) : (
+                  messagesGenerator && (
+                    <LocalizationProvider messages={messagesGenerator}>
+                      <React.Fragment>
+                        <Localized id="get-involved-button">
+                          <CardAction
+                            id="home-cta"
+                            onClick={this.toggleGetInvolvedModal}
+                          />
+                        </Localized>
+                        {showGetInvolvedModal && (
+                          <GetInvolvedModal
+                            locale={{
+                              code: locale,
+                              name: getNativeNameWithFallback(locale),
+                            }}
+                            onRequestClose={this.toggleGetInvolvedModal}
+                          />
+                        )}
+                      </React.Fragment>
+                    </LocalizationProvider>
+                  )
+                )}
+              </div>
+            )}
           />
 
           <Localized id="wall-of-text-start">
@@ -175,8 +191,6 @@ class HomePage extends React.Component<Props, State> {
     );
   }
 }
-export default withRouter(
-  connect<PropsFromState>(({ api }: StateTree) => ({
-    api,
-  }))(localeConnector(HomePage))
-);
+export default withRouter(connect<PropsFromState>(({ api }: StateTree) => ({
+  api,
+}))(localeConnector(HomePage)) as any);

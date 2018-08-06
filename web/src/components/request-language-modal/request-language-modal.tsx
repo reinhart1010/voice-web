@@ -53,7 +53,7 @@ class RequestLanguageModal extends React.Component<Props, State> {
   private update = ({ target }: any) => {
     this.setState({
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
-    });
+    } as any);
   };
 
   private updateOtherLanguage = (otherLanguage: string) => {
@@ -71,6 +71,7 @@ class RequestLanguageModal extends React.Component<Props, State> {
   };
 
   render() {
+    const { onRequestClose } = this.props;
     const {
       email,
       language,
@@ -82,20 +83,15 @@ class RequestLanguageModal extends React.Component<Props, State> {
       <Modal
         innerClassName={
           'request-language-modal ' + (isSubmitted ? '' : 'left-align')
-        }>
+        }
+        onRequestClose={onRequestClose}>
         {isSubmitted ? (
-          <LanguageRequestSuccess onRequestClose={this.props.onRequestClose} />
+          <LanguageRequestSuccess onRequestClose={onRequestClose} />
         ) : (
           <form onSubmit={this.save}>
             <div className="title-and-action">
               <Localized id="request-language-title">
                 <h2 />
-              </Localized>
-              <Localized id="request-language-cancel">
-                <a
-                  href="javascript:void(0)"
-                  onClick={this.props.onRequestClose}
-                />
               </Localized>
             </div>
 

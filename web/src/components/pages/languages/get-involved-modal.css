@@ -5,17 +5,8 @@
     overflow-y: auto;
     text-align: start;
 
-    & .cancel {
-        display: flex;
-        justify-content: end;
-        font-size: var(--font-size-small);
-        font-weight: 600;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
     & p {
-        color: var(--grey-font-color);
+        color: var(--near-black);
 
         & a {
             color: var(--link-color);
@@ -34,10 +25,9 @@
 
     & .signup-success {
         & img {
+            margin: 2rem auto 2.5rem;
+            width: 50px;
             display: block;
-            margin-top: 2rem;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         & button {
@@ -49,11 +39,6 @@
         margin-bottom: 1.5rem;
         font-family: var(--base-font-family);
         font-weight: normal;
-    }
-
-    & img {
-        width: 50px;
-        margin-bottom: 2.5rem;
     }
 
     & .center {

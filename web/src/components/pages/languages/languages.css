@@ -109,6 +109,7 @@
                 }
 
                 & button {
+                    text-transform: none;
                     max-width: 5rem;
                 }
             }
@@ -126,14 +127,28 @@
         }
 
         & .labels {
+            border-bottom: 1px solid var(--grey);
+            margin-bottom: 20px;
             display: flex;
             flex-direction: row;
-            border-bottom: 1px solid var(--grey);
+            flex-wrap: wrap;
+            overflow-x: auto;
         }
 
         & h2 {
+            white-space: nowrap;
             padding: 1rem;
             cursor: pointer;
+            font-size: 18px;
+
+            @media (--xs-up) {
+                font-size: 24px;
+            }
+        }
+
+        & button {
+            align-self: center;
+            margin-left: auto;
         }
     }
 
@@ -158,8 +173,55 @@
         border-bottom: 3px solid var(--red);
     }
 
-    & .selected-launched .language-sections section {
+    & .selected-in-progress .language-sections section {
         margin-left: calc(-100vw);
+
+        @media (--md-up) {
+            margin-left: 0;
+        }
+    }
+
+    & .title-and-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @media (--sm-down) {
+            display: none;
+        }
+    }
+
+    & .search {
+        border: solid 1px var(--grey);
+        border-radius: 22px;
+        margin-left: auto;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: var(--lighter-grey);
+
+        @media (--sm-down) {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        & input {
+            outline: none;
+            border: none;
+            margin: 0 10px;
+            width: 100%;
+            background: transparent;
+            color: var(--near-black);
+            font-family: var(--base-font-family);
+        }
+
+        & img {
+            padding-top: 2px;
+            width: 16px;
+        }
     }
 
     & .language-sections {
@@ -172,6 +234,8 @@
         }
 
         & ul {
+            display: flex;
+            flex-wrap: wrap;
             margin-bottom: 0;
             padding: 0;
             list-style: none;
@@ -183,8 +247,24 @@
             transition: margin-left var(--transition-duration-slow) var(--easing);
 
             @media (--md-up) {
-                margin-top: 2.5rem;
+                margin-top: 4rem;
                 width: auto;
+            }
+
+            & > p {
+                color: var(--near-black);
+                max-width: 740px;
+                line-height: 24px;
+
+                @media (--sm-down) {
+                    padding-top: 20px;
+                    padding-bottom: 5px;
+                }
+
+                @media (--md-up) {
+                    padding-top: 5px;
+                    padding-bottom: 20px;
+                }
             }
 
             &:nth-child(2) {
@@ -192,6 +272,7 @@
 
                 @media (--md-up) {
                     margin-left: 0;
+                    margin-bottom: 32px;
                 }
             }
         }
@@ -268,7 +349,7 @@
 
                 @media (--xs-up) {
                     margin-bottom: 0;
-                    padding: var(--standard-margin);
+                    padding: 1rem;
                 }
             }
 
@@ -293,8 +374,14 @@
                     letter-spacing: 0.8px;
                 }
 
+                & .value {
+                    text-align: right;
+                    font-style: normal;
+                    letter-spacing: normal;
+                }
+
                 & b {
-                    color: var(--grey-font-color);
+                    color: var(--near-black);
                 }
             }
 
@@ -319,6 +406,19 @@
             &:hover {
                 background: var(--light-grey);
             }
+        }
+    }
+
+    & h1, & h2 {
+        display: flex;
+        align-items: center;
+
+        & .count {
+            &:before {
+                content: '\00a0 ';
+            }
+
+            font-size: 70%;
         }
     }
 }

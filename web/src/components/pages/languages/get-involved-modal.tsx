@@ -4,7 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Modal from '../../modal/modal';
 import { SuccessIcon } from '../../ui/icons';
-import { Button, Hr, LabeledInput } from '../../ui/ui';
+import { Button, Hr, LabeledInput, TextButton } from '../../ui/ui';
 import { RequestedLanguages } from '../../../stores/requested-languages';
 import StateTree from '../../../stores/tree';
 import { User } from '../../../stores/user';
@@ -43,7 +43,7 @@ class GetInvolvedModal extends React.Component<Props, State> {
   private update = ({ target }: any) => {
     this.setState({
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
-    });
+    } as any);
   };
 
   private save = (event: React.FormEvent<HTMLFormElement>) => {
@@ -61,14 +61,9 @@ class GetInvolvedModal extends React.Component<Props, State> {
     const nativeName = ISO6391.getNativeName(locale.code) || locale.name;
 
     return (
-      <Modal innerClassName="get-involved-modal">
-        <Localized id="get-involved-cancel">
-          <a
-            className="cancel"
-            href="javascript:void(0)"
-            onClick={onRequestClose}
-          />
-        </Localized>
+      <Modal
+        innerClassName="get-involved-modal"
+        onRequestClose={onRequestClose}>
         <br />
         <Localized id="get-involved-title" $lang={nativeName}>
           <h2 />

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Link, LinkProps, NavLink, NavLinkProps } from 'react-router-dom';
 import { Locale } from '../stores/locale';
 import StateTree from '../stores/tree';
-import { CONTRIBUTABLE_LOCALES } from '../services/localization';
-import { isStaging } from '../utility';
+import { isProduction } from '../utility';
+
+export const contributableLocales = require('../../../locales/contributable.json');
 
 export interface LocalePropsFromState {
   locale: Locale.State;
@@ -15,10 +16,10 @@ interface LocaleProps extends LocalePropsFromState {
   dispatch: any;
 }
 
-const toLocaleRouteBuilder = (locale: string) => (path: string) =>
+export const toLocaleRouteBuilder = (locale: string) => (path: string) =>
   `/${locale}${path}`;
 
-export const localeConnector = connect<LocalePropsFromState>(
+export const localeConnector: any = connect<LocalePropsFromState>(
   ({ locale }: StateTree) => ({
     locale,
     toLocaleRoute: toLocaleRouteBuilder(locale),
@@ -30,12 +31,23 @@ export const localeConnector = connect<LocalePropsFromState>(
 
 export const LocaleLink = localeConnector(
   ({
+    blank = false,
     dispatch,
     locale,
     to,
     toLocaleRoute,
     ...props
-  }: LinkProps & LocaleProps) => <Link to={toLocaleRoute(to)} {...props} />
+  }: { blank?: boolean } & LinkProps & LocaleProps) =>
+    blank ? (
+      <a
+        href={toLocaleRoute(to)}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      />
+    ) : (
+      <Link to={toLocaleRoute(to)} {...props} />
+    )
 );
 
 export const LocaleNavLink = localeConnector(
@@ -51,7 +63,7 @@ export const LocaleNavLink = localeConnector(
 );
 
 export function isContributable(locale: string) {
-  return isStaging() || CONTRIBUTABLE_LOCALES.includes(locale);
+  return contributableLocales.includes(locale);
 }
 
 export const ContributableLocaleLock = localeConnector(

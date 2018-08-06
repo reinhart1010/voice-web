@@ -1,5 +1,7 @@
+import { LanguageStats } from '../../../common/language-stats';
 import { Locale } from '../stores/locale';
 import { User } from '../stores/user';
+import { Recordings } from '../stores/recordings';
 
 export interface Clip {
   id: string;
@@ -18,9 +20,6 @@ interface FetchOptions {
 }
 
 const API_PATH = location.origin + '/api/v1';
-const CLIP_PATH = API_PATH + '/clips';
-const SENTENCES_PATH = API_PATH + '/sentences';
-
 export default class API {
   private readonly locale: Locale.State;
   private readonly user: User.State;
@@ -35,63 +34,58 @@ export default class API {
       { isJSON: true },
       options
     );
-    return new Promise(
-      (resolve: (r: any) => void, reject: (r: XMLHttpRequest) => void) => {
-        const request = new XMLHttpRequest();
-        request.open(method || 'GET', path);
 
-        const finalHeaders = Object.assign(
-          {
-            'Content-type': isJSON
-              ? 'application/json; charset=utf-8'
-              : 'text/plain',
-          },
-          headers
-        );
-
-        if (path.startsWith(location.origin)) {
-          finalHeaders.uid = this.user.userId;
-        }
-
-        for (const header of Object.keys(finalHeaders)) {
-          request.setRequestHeader(header, finalHeaders[header]);
-        }
-
-        request.addEventListener('load', () => {
-          if (request.status === 200) {
-            resolve(
-              isJSON ? JSON.parse(request.response) : request.responseText
-            );
-          } else {
-            reject(request);
+    const finalHeaders = Object.assign(
+      isJSON
+        ? {
+            'Content-Type': 'application/json; charset=utf-8',
           }
-        });
-        request.send(body instanceof Blob ? body : JSON.stringify(body));
-      }
+        : {},
+      headers
     );
+
+    if (path.startsWith(location.origin)) {
+      finalHeaders.uid = this.user.userId;
+    }
+
+    return fetch(path, {
+      method: method || 'GET',
+      headers: finalHeaders,
+      body: body
+        ? body instanceof Blob ? body : JSON.stringify(body)
+        : undefined,
+    }).then(response => (isJSON ? response.json() : response.text()));
   }
 
-  fetchRandomSentences(count: number = 1): Promise<string[]> {
-    return this.fetch(`${SENTENCES_PATH}?count=${count}`);
+  getLocalePath() {
+    return API_PATH + '/' + this.locale;
+  }
+
+  getClipPath() {
+    return this.getLocalePath() + '/clips';
+  }
+
+  fetchRandomSentences(count: number = 1): Promise<Recordings.Sentence[]> {
+    return this.fetch(`${this.getLocalePath()}/sentences?count=${count}`);
   }
 
   fetchRandomClips(count: number = 1): Promise<Clip[]> {
-    return this.fetch(`${CLIP_PATH}?count=${count}`);
+    return this.fetch(`${this.getClipPath()}?count=${count}`);
   }
 
   syncDemographics(): Promise<Event> {
     // Note: Do not add more properties of this.user w/o legal review
-    const { userId, accent, age, gender } = this.user;
+    const { userId, accents, age, gender } = this.user;
     return this.fetch(API_PATH + '/user_clients/' + userId, {
       method: 'PUT',
-      body: { accent, age, gender },
+      body: { accents, age, gender },
     });
   }
 
   syncUser(): Promise<any> {
     const {
       age,
-      accent,
+      accents,
       email,
       gender,
       hasDownloaded,
@@ -103,7 +97,7 @@ export default class API {
       method: 'PUT',
       body: {
         age,
-        accent,
+        accents,
         email,
         gender,
         has_downloaded: hasDownloaded,
@@ -112,26 +106,35 @@ export default class API {
     });
   }
 
-  uploadClip(blob: Blob, sentence: string): Promise<void> {
-    return this.fetch(CLIP_PATH, {
+  uploadClip(blob: Blob, sentenceId: string, sentence: string): Promise<void> {
+    return this.fetch(this.getClipPath(), {
       method: 'POST',
       headers: {
         'Content-Type': blob.type,
         sentence: encodeURIComponent(sentence),
+        sentence_id: sentenceId,
       },
       body: blob,
     });
   }
 
   saveVote(id: string, isValid: boolean): Promise<Event> {
-    return this.fetch(`${CLIP_PATH}/${id}/votes`, {
+    return this.fetch(`${this.getClipPath()}/${id}/votes`, {
       method: 'POST',
       body: { isValid },
     });
   }
 
   fetchValidatedHours(): Promise<number> {
-    return this.fetch(CLIP_PATH + '/validated_hours');
+    return this.fetch(this.getClipPath() + '/validated_hours');
+  }
+
+  fetchDailyClipsCount(): Promise<number> {
+    return this.fetch(this.getClipPath() + '/daily_count');
+  }
+
+  fetchDailyVotesCount(): Promise<number> {
+    return this.fetch(this.getClipPath() + '/votes/daily_count');
   }
 
   fetchLocaleMessages(locale: string): Promise<string> {
@@ -141,7 +144,9 @@ export default class API {
   }
 
   async fetchCrossLocaleMessages(): Promise<string[][]> {
-    return Object.entries(await this.fetch(`/cross-locale-messages.json`));
+    return Object.entries(
+      await this.fetch(`/cross-locale-messages.json`)
+    ) as string[][];
   }
 
   fetchRequestedLanguages(): Promise<string[]> {
@@ -155,32 +160,19 @@ export default class API {
     });
   }
 
-  fetchPontoonLanguages() {
-    return this.fetch('https://pontoon.mozilla.org/graphql', {
-      method: 'POST',
-      body: {
-        query: `{
-          project(slug: "common-voice") {
-            slug
-            localizations {
-              totalStrings
-              approvedStrings
-              locale {
-                code
-                name
-                population
-              }
-            }
-          }
-        }`,
-        variables: null,
-      },
-    });
+  async fetchLanguageStats(): Promise<LanguageStats> {
+    return this.fetch(`${API_PATH}/language_stats`);
   }
 
   fetchDocument(name: 'privacy' | 'terms'): Promise<string> {
     return this.fetch(`/${name}/${this.locale}.html`, {
       isJSON: false,
+    });
+  }
+
+  skipSentence(id: string) {
+    return this.fetch(`${API_PATH}/skipped_sentences/` + id, {
+      method: 'POST',
     });
   }
 }

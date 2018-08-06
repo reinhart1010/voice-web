@@ -10,21 +10,26 @@ function track(
     | 'Profile'
     | 'Data'
     | 'Sharing',
-  action: string
+  action: string,
+  locale?: string
 ) {
   if (isProduction() && typeof ga === 'function') {
-    ga('send', 'event', category, action);
+    ga('send', 'event', category, action, locale);
   }
 }
 
-export function trackRecording(action: 'record' | 'submit' | 'rerecord') {
-  track('Recording', action);
+export function trackRecording(
+  action: 'record' | 'submit' | 'rerecord' | 'shortcut',
+  locale: string
+) {
+  track('Recording', action, locale);
 }
 
 export function trackListening(
-  action: 'listen' | 'vote-yes' | 'vote-no' | 'shortcut'
+  action: 'listen' | 'listen-home' | 'vote-yes' | 'vote-no' | 'shortcut',
+  locale: string
 ) {
-  track('Listening', action);
+  track('Listening', action, locale);
 }
 
 export function trackProfile(

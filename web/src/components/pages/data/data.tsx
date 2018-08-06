@@ -22,7 +22,7 @@ const datasets = [
     name: 'LibriSpeech',
     nick: 'librispeech',
     size: 57.2,
-    url: 'http://www.openslr.org/12',
+    url: 'https://www.openslr.org/12',
     download: [],
     license: {
       name: 'CC-BY-4.0',
@@ -31,9 +31,9 @@ const datasets = [
   },
   {
     nick: 'ted',
-    size: 19.8,
-    url: 'http://www.openslr.org/7/',
-    download: ['http://www.openslr.org/resources/7/TEDLIUM_release1.tar.gz'],
+    size: 54,
+    url: 'https://www.openslr.org/51/',
+    download: ['https://www.openslr.org/resources/51/TEDLIUM_release-3.tgz'],
     license: {
       name: 'CC-BY-NC-ND 3.0',
       url: 'https://creativecommons.org/licenses/by-nc-nd/3.0/',

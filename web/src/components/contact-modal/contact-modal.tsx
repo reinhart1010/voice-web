@@ -1,21 +1,18 @@
+import { Localized } from 'fluent-react';
 import * as React from 'react';
 import Modal from '../modal/modal';
-import { Button, LabeledInput, LabeledTextArea } from '../ui/ui';
-import { Localized } from 'fluent-react';
+import { Button, LabeledInput, LabeledTextArea, TextButton } from '../ui/ui';
 
 interface Props {
   onRequestClose: () => void;
 }
 
 export default ({ onRequestClose }: Props) => (
-  <Modal innerClassName="contact-modal">
+  <Modal innerClassName="contact-modal" onRequestClose={onRequestClose}>
     <form action="mailto:mikey@mozilla.com" method="post" encType="text/plain">
       <div className="title-and-action">
         <Localized id="contact-title">
           <h1 />
-        </Localized>
-        <Localized id="contact-cancel">
-          <a href="javascript:void(0)" onClick={onRequestClose} />
         </Localized>
       </div>
 

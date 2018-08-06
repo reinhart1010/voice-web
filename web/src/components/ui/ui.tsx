@@ -19,11 +19,11 @@ export const Button = ({
   />
 );
 
-export const CardAction = (props: any) =>
+export const CardAction = ({ className, ...props }: any) =>
   props.to ? (
-    <LocaleLink className="card-action" {...props} />
+    <LocaleLink className={'card-action ' + className} {...props} />
   ) : (
-    <Button outline className="card-action" {...props} />
+    <Button outline className={'card-action ' + className} {...props} />
   );
 
 export const Hr = (props: any) => <hr className="hr" {...props} />;
@@ -63,4 +63,25 @@ export const LabeledSelect = (props: any) => (
 
 export const LabeledTextArea = (props: any) => (
   <LabeledFormControl component="textarea" {...props} />
+);
+
+export const LinkButton = ({
+  className = '',
+  outline = false,
+  rounded = false,
+  ...props
+}: any) => (
+  <LocaleLink
+    className={[
+      'button',
+      outline ? 'outline' : '',
+      rounded ? 'rounded' : '',
+      className,
+    ].join(' ')}
+    {...props}
+  />
+);
+
+export const TextButton = ({ className = '', ...props }: any) => (
+  <button type="button" className={'text-button ' + className} {...props} />
 );
