@@ -8,59 +8,92 @@ email-input =
     .label = E-mail
 submit-form-action = Wyślij
 loading = Wczytywanie…
-audio-loading-error = Przetwarzamy pliki dźwiękowe, proszę spróbować ponownie za chwilę.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = aragoński
+ar = arabski
+as = asamski
+ast = asturyjski
+az = azerski
 bn = bengalski
+br = bretoński
+bxr = buriacki
 ca = kataloński
+cak = kakczikel
+cnh = haka czin
 cs = czeski
 cv = czuwaski
 cy = walijski
 da = duński
 de = niemiecki
+dsb = dolnołużycki
 el = grecki
 en = angielski
+eo = esperanto
 es = hiszpański
-es-AR = hiszpański (Argentyna)
-es-CL = hiszpański (Chile)
+et = estoński
+fi = fiński
+fo = farerski
 fr = francuski
 fy-NL = fryzyjski
 ga-IE = irlandzki
 he = hebrajski
+hsb = górnołużycki
 hu = węgierski
+ia = interlingua
 id = indonezyjski
+is = islandzki
 it = włoski
+ja = japoński
 ka = gruziński
+kab = kabylski
+kk = kazachski
 ko = koreański
+kpv = komi (zyriański)
 kw = kornijski
+ky = kirgiski
 mk = macedoński
+myv = erzja
 nb-NO = norweski (bokmål)
+ne-NP = nepalski
 nl = holenderski
 nn-NO = norweski (nynorsk)
 or = orija
 pl = polski
 pt-BR = portugalski (Brazylia)
+rm = retoromański
 ro = rumuński
 ru = rosyjski
+sah = jakucki
 sk = słowacki
+sl = słoweński
 sq = albański
+sr = serbski
 sv-SE = szwedzki
 ta = tamilski
+te = telugu
 th = tajski
 tr = turecki
 tt = tatarski
 uk = ukraiński
+ur = urdu
 uz = uzbecki
 zh-CN = chiński (Chiny)
+zh-HK = chiński (Hongkong)
 zh-TW = chiński (Tajwan)
+
+# [/]
+
 
 ## Layout
 
 speak = Nagrywaj
+speak-now = Wymów teraz
 datasets = Zestawy danych
 languages = Języki
 profile = Profil
@@ -73,7 +106,11 @@ faq = Często zadawane pytania
 content-license-text = Treść dostępna na warunkach <licenseLink>licencji Creative Commons</licenseLink>
 share-title = Zachęć innych do nagrania swojego głosu!
 share-text = Pomóż nauczyć komputery, jak mówią prawdziwi ludzie — wspomóż swoim głosem na { $link }
+link-copied = Skopiowano odnośnik
 back-top = Powrót na górę
+contribution-banner-text = Właśnie włączyliśmy interfejs nowego uczestnika
+contribution-banner-button = Wypróbuj
+report-bugs-link = Pomóż zgłaszać błędy
 
 ## Home Page
 
@@ -85,8 +122,35 @@ wall-of-text-more-desktop = Teraz możesz nagrać swój głos i pomóc nam twor
 show-wall-of-text = Więcej
 help-us-title = Pomóż nam zweryfikować nagrania!
 help-us-explain = Odsłuchaj i potwierdź, czy zdanie jest poprawnie wymówione.
+no-clips-to-validate = Wygląda na to, że dla tego języka nie ma żadnych nagrań do odsłuchania. Pomóż nam wypełnić kolejkę nagrywając się teraz.
 vote-yes = Tak
 vote-no = Nie
+toggle-play-tooltip = Naciśnij { shortcut-play-toggle }, aby zmienić tryb odtwarzania
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = p
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = o
+shortcut-play-toggle-label = Odtwórz/zatrzymaj
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = t
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = Nagraj/zatrzymaj
 request-language-text = Common Voice nie oferuje jeszcze Twojego języka?
 request-language-button = Poproś o dodanie języka
 
@@ -103,7 +167,6 @@ status-hours =
 # Variables:
 # $goal - number of hours representing the next goal
 status-goal = Następny cel: { $goal }
-status-more-soon = Więcej języków już niedługo!
 english = angielski
 
 ## ProfileForm
@@ -114,7 +177,6 @@ profile-form-username =
     .label = Nazwa użytkownika
 profile-form-language =
     .label = Język
-profile-form-more-languages = Więcej języków już niedługo!
 profile-form-accent =
     .label = Akcent
 profile-form-age =
@@ -122,7 +184,7 @@ profile-form-age =
 profile-form-gender =
     .label = Płeć
 profile-form-submit-save = Zapisz
-profile-form-submit-saved = Zapisano
+profile-form-submit-saved = Zapisane
 profile-keep-data = Zachowaj dane
 profile-delete-data = Usuń dane
 male = Mężczyzna
@@ -136,6 +198,7 @@ profile-create = Utwórz profil
 profile-create-success = Pomyślnie utworzono profil.
 profile-close = Zamknij
 profile-clear-modal = Wyczyszczenie danych profilu oznacza, że te informacje demograficzne nie będą już wysyłane do projektu Common Voice razem z nagraniami.
+profile-explanation = Kontroluj swój postęp za pomocą profilu i pomóż zwiększyć dokładność naszych danych.
 
 ## FAQ
 
@@ -162,7 +225,7 @@ faq-source-a2 = Możesz zobaczyć teksty źródłowe <dataLink>w tym repozytori
 
 ## Profile
 
-profile-why-title = Dlaczego profil?
+profile-why-title = Po co profil?
 profile-why-content = Dodając informację o sobie, dane zbierane w projekcie Common Voice będą bardziej użyteczne dla systemów rozpoznawania mowy, co może poprawić dokładność wyników.
 
 ## NotFound
@@ -199,8 +262,8 @@ record-platform-not-supported = Przepraszamy, używana platforma nie jest obecni
 record-platform-not-supported-desktop = Na komputerze można pobrać najnowszą wersję:
 record-platform-not-supported-ios = Użytkownicy <bold>iOS</bold> mogą pobrać bezpłatną aplikację:
 record-must-allow-microphone = Musisz zezwolić na dostęp do mikrofonu.
-record-cancel = Anuluj nagrywanie
 record-retry = Ponów
+record-no-mic-found = Nie odnaleziono mikrofonu.
 record-error-too-short = Nagranie jest za krótkie.
 record-error-too-long = Nagranie jest za długie.
 record-error-too-quiet = Nagranie jest za ciche.
@@ -232,7 +295,6 @@ download-no = Nie, dziękuję
 ## Contact Modal
 
 contact-title = Formularz kontaktowy
-contact-cancel = Anuluj
 contact-form-name =
     .label = Imię i nazwisko
 contact-form-message =
@@ -242,7 +304,6 @@ contact-required = * wymagane
 ## Request Language Modal
 
 request-language-title = Poproś o język
-request-language-cancel = Opuść formularz
 request-language-form-language =
     .label = Język
 request-language-success-title = Prośba o język została pomyślnie przesłana, dziękujemy.
@@ -251,8 +312,54 @@ request-language-success-content = Już niedługo udzielimy więcej informacji o
 ## Languages Overview
 
 language-section-in-progress = W trakcie
-language-section-launched = Działa
+language-section-in-progress-description = Te języki są obecnie przygotowywane do przyjmowania nagrań od naszych społeczności. Ich postęp odzwierciedla poziom etapów lokalizacji witryny i zbierania zdań.
+language-section-launched = Działające
+language-section-launched-description = Dla tych języków pomyślnie zlokalizowano witrynę i zebrano wystarczającą liczbę zdań, aby umożliwić <italic>{ speak }</italic> i <italic>{ listen }</italic>.
 languages-show-more = Więcej
 languages-show-less = Mniej
 language-speakers = Osoby mówiące
+language-meter-in-progress = Postęp
 language-total-progress = Razem
+language-search-input =
+    .placeholder = Szukaj
+language-speakers = Osoby mówiące
+localized = Przetłumaczone
+sentences = Zdania
+total-hours = Razem godzin
+
+## New Contribution
+
+action-click = Kliknij
+action-tap = Stuknij
+contribute = Nagraj
+listen = Posłuchaj
+skip = Pomiń
+shortcuts = Skróty
+clips = Nagrania
+goal-help-recording = Twój udział pomógł projektowi Common Voice osiągnąć <goalPercentage></goalPercentage> dziennego celu nagrywania ({ $goalValue })!
+goal-help-validation = Twój udział pomógł projektowi Common Voice osiągnąć <goalPercentage></goalPercentage> dziennego celu weryfikowania ({ $goalValue })!
+contribute-more = Zrobimy jeszcze { $count }?
+record-cta = Zacznij nagrywanie
+record-instruction = { $actionType } <recordIcon></recordIcon>, a następnie przeczytaj to zdanie
+record-stop-instruction = { $actionType } <stopIcon></stopIcon> po ukończeniu
+record-three-more-instruction = Zostały trzy!
+record-again-instruction = Świetnie! <recordIcon></recordIcon> Nagraj następne zdanie
+record-again-instruction2 = Tak trzymaj, nagraj jeszcze raz <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> Ostatnie!
+review-tooltip = Weryfikuj i ponownie nagrywaj w czasie pracy
+unable-speak = Nie można teraz wymówić zdania
+review-instruction = Weryfikuj i ponownie nagrywaj w razie potrzeby
+record-submit-tooltip = { $actionType } „Wyślij” po ukończeniu
+clips-uploaded = Wysłano nagrania
+record-abort-title = Najpierw dokończyć nagrywanie?
+record-abort-text = Wyjście teraz oznacza utratę postępów
+record-abort-submit = Wyślij nagrania
+record-abort-continue = Dokończ nagrywanie
+record-abort-delete = Wyjdź i usuń nagrania
+listen-instruction = { $actionType } <playIcon></playIcon> czy poprawnie wymówiono zdanie?
+listen-again-instruction = Świetna robota! <playIcon></playIcon> Posłuchaj ponownie
+listen-3rd-time-instruction = Dwa zrobione <playIcon></playIcon>, tak trzymaj!
+listen-last-time-instruction = <playIcon></playIcon> Ostatnie!
+nothing-to-validate = Nie mamy nic do zweryfikowania w tym języku, pomóż nam wypełnić kolejkę.
+record-button-label = Nagraj swój głos
+share-title-new = <bold>Pomóż nam</bold> znaleźć więcej głosów

@@ -7,44 +7,69 @@ email-input =
     .label = Email
 submit-form-action = Submit
 loading = Loading…
-audio-loading-error = Sorry! We are processing our audio files, please try again shortly.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
-#[Languages]
+# [Languages]
 ## Languages
+an = Aragonese
+ar = Arabic
+as = Assamese
+ast = Asturian
+az = Azerbaijani
 bn = Bengali
+br = Breton
+bxr = Buryat
 ca = Catalan
+cak = Kaqchikel
+cnh = Hakha Chin
 cs = Czech
 cv = Chuvash
 cy = Welsh
 da = Danish
 de = German
+dsb = Sorbian, Lower
 el = Greek
 en = English
+eo = Esperanto
 es = Spanish
-es-AR = Spanish (Argentina)
-es-CL = Spanish (Chile)
+et = Estonian
+fi = Finnish
+fo = Faroese
 fr = French
 fy-NL = Frisian
 ga-IE = Irish
 he = Hebrew
+hsb = Sorbian, Upper
 hu = Hungarian
+ia = Interlingua
 id = Indonesian
+is = Icelandic
 it = Italian
+ja = Japanese
 ka = Georgian
+kab = Kabyle
+kk = Kazakh
 ko = Korean
+kpv = Komi-Zyrian
 kw = Cornish
+ky = Kyrgyz
 mk = Macedonian
+myv = Erzya
 nb-NO = Norwegian Bokmål
+ne-NP = Nepali
 nl = Dutch
 nn-NO = Norwegian Nynorsk
 or = Odia
 pl = Polish
 pt-BR = Portuguese (Brazil)
+rm = Romansh
 ro = Romanian
 ru = Russian
+sah = Sakha
 sk = Slovak
+sl = Slovenian
 sq = Albanian
+sr = Serbian
 sv-SE = Swedish
 ta = Tamil
 te = Telugu
@@ -52,13 +77,16 @@ th = Thai
 tr = Turkish
 tt = Tatar
 uk = Ukrainian
+ur = Urdu
 uz = Uzbek
 zh-CN = Chinese (China)
+zh-HK = Chinese (Hong Kong)
 zh-TW = Chinese (Taiwan)
-#[/]
+# [/]
 
 ## Layout
 speak = Speak
+speak-now = Speak now
 datasets = Datasets
 languages = Languages
 profile = Profile
@@ -71,7 +99,11 @@ faq = FAQ
 content-license-text = Content available under a <licenseLink>Creative Commons license</licenseLink>
 share-title = Help us find others to donate their voice!
 share-text = Help teach machines how real people speak, donate your voice at { $link }
+link-copied = Link Copied
 back-top = Back to Top
+contribution-banner-text = We've just launched a new contribution experience
+contribution-banner-button = Take a look
+report-bugs-link = Help report bugs
 
 ## Home Page
 home-title =
@@ -93,8 +125,32 @@ wall-of-text-more-desktop =
 show-wall-of-text = Read More
 help-us-title = Help us validate sentences!
 help-us-explain = Press play, listen & tell us: did they accurately speak the sentence below?
+no-clips-to-validate = Looks like there aren't any clips to listen to in this language. Help us fill the queue by recording some now.
 vote-yes = Yes
 vote-no = No
+toggle-play-tooltip = Press { shortcut-play-toggle } to toggle play mode
+
+## Speak & Listen Shortcuts
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = s
+
+## Listen Shortcuts
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = p
+shortcut-play-toggle-label = Play/Stop
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = y
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = Record/Stop
 
 request-language-text = Don't see your language on Common Voice yet?
 request-language-button = Request a Language
@@ -119,7 +175,6 @@ profile-form-username =
     .label = User Name
 profile-form-language =
     .label = Language
-profile-form-more-languages = More languages coming soon!
 profile-form-accent =
     .label = Accent
 profile-form-age =
@@ -145,6 +200,7 @@ profile-close = Close
 profile-clear-modal =
   Clearing your profile data means this demographic information will no longer be submitted to Common Voice with your
   clip recordings.
+profile-explanation = Keep track of your progress with a profile and help our voice data be more accurate.
 
 ## FAQ
 faq-title = Frequently Asked Questions
@@ -203,8 +259,8 @@ record-platform-not-supported = We’re sorry, but your platform is not currentl
 record-platform-not-supported-desktop = On desktop computers, you can download the latest:
 record-platform-not-supported-ios = <bold>iOS</bold> users can download our free app:
 record-must-allow-microphone = You must allow microphone access.
-record-cancel = Cancel
 record-retry = Retry
+record-no-mic-found = No microphone found.
 record-error-too-short = The recording was too short.
 record-error-too-long = The recording was too long.
 record-error-too-quiet = The recording was too quiet.
@@ -235,7 +291,6 @@ download-no = No Thanks
 
 ## Contact Modal
 contact-title = Contact Form
-contact-cancel = Cancel
 contact-form-name =
     .label = Name
 contact-form-message =
@@ -244,7 +299,6 @@ contact-required = *required
 
 ## Request Language Modal
 request-language-title = Language Request
-request-language-cancel = Exit Form
 request-language-form-language =
     .label = Language
 request-language-success-title = Language request successfully submitted, thank you.
@@ -252,8 +306,58 @@ request-language-success-content = We will be in touch with more information abo
 
 ## Languages Overview
 language-section-in-progress = In Progress
+language-section-in-progress-description = In progress languages are currently being built for contribution by our communities; their progress reflects where they are across the website localization and sentence collection phases.
 language-section-launched = Launched
+language-section-launched-description = For these launched languages the website has been successfully localized, and has enough sentences collected, to allow for ongoing <italic>{ speak }</italic> and <italic>{ listen }</italic> contribution.
 languages-show-more = See More
 languages-show-less = See Less
 language-speakers = Speakers
+language-meter-in-progress = Progress
 language-total-progress = Total
+language-search-input =
+    .placeholder = Search
+language-speakers = Speakers
+localized = Localized
+sentences = Sentences
+total-hours = Validated Hrs
+
+## New Contribution
+action-click = Click
+action-tap = Tap
+contribute = Contribute
+listen = Listen
+skip = Skip
+shortcuts = Shortcuts
+clips = Clips
+goal-help-recording = You've helped Common Voice reach <goalPercentage></goalPercentage> of our daily { $goalValue } recording goal!
+goal-help-validation = You've helped Common Voice reach <goalPercentage></goalPercentage> of our daily { $goalValue } validation goal!
+contribute-more =
+    { $count ->
+       *[other] Ready to do { $count } more?
+    }
+record-cta = Start recording
+record-instruction = { $actionType }<recordIcon></recordIcon> then read the sentence aloud
+record-stop-instruction = { $actionType }<stopIcon></stopIcon> when done
+record-three-more-instruction = Three to go!
+record-again-instruction = Great!<recordIcon></recordIcon> Record your next clip
+record-again-instruction2 = Keep it up, record again <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> Last one!
+review-tooltip = Review & re-record clips here as you go
+unable-speak = Unable to speak right now?
+review-instruction = Review & re-record clips if needed
+record-submit-tooltip = { $actionType } submit when ready
+clips-uploaded = Clips Uploaded
+record-abort-title = Finish recording first?
+record-abort-text = Leaving now means you'll lose your progress
+record-abort-submit = Submit clips
+record-abort-continue = Finish recording
+record-abort-delete = Exit & Delete clips
+listen-instruction = { $actionType }<playIcon></playIcon> did they accurately speak the sentence?
+listen-again-instruction = Great work!<playIcon></playIcon> Listen again when you're ready
+listen-3rd-time-instruction = 2 down, keep it up!<playIcon></playIcon>
+listen-last-time-instruction = <playIcon></playIcon>Last one!
+nothing-to-validate = We don't have anything to validate in this language, help us fill the queue.
+record-button-label = Record your voice
+share-title-new = <bold>Help us</bold> find more voices
+
+

@@ -8,59 +8,92 @@ email-input =
     .label = Email
 submit-form-action = Invia
 loading = Caricamento in corso…
-audio-loading-error = Spiacenti, i file audio sono in fase di elaborazione. Riprova tra poco.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragonese
+ar = Arabo
+as = Assamese
+ast = Asturiano
+az = Azerbaigiano
 bn = Bengalese
+br = Bretone
+bxr = Buriato
 ca = Catalano
+cak = Kaqchikel
+cnh = Hakha Chin
 cs = Ceco
 cv = Ciuvascio
 cy = Gallese
 da = Danese
 de = Tedesco
+dsb = Basso sorabo
 el = Greco
 en = Inglese
+eo = Esperanto
 es = Spagnolo
-es-AR = Spagnolo (Argentina)
-es-CL = Spagnolo (Cile)
+et = Estone
+fi = Finlandese
+fo = Faroese
 fr = Francese
 fy-NL = Frisone
 ga-IE = Irlandese
 he = Ebraico
+hsb = Alto sorabo
 hu = Ungherese
+ia = Interlingua
 id = Indonesiano
+is = Islandese
 it = Italiano
+ja = Giapponese
 ka = Georgiano
+kab = Cabilo
+kk = Kazako
 ko = Coreano
+kpv = Komi-Zyrian
 kw = Cornico
+ky = Kirghiso
 mk = Macedone
+myv = Erza
 nb-NO = Bokmål (Norvegia)
+ne-NP = Nepalese
 nl = Olandese
 nn-NO = Norvegese Nynorsk
 or = Oriya
 pl = Polacco
 pt-BR = Portoghese (Brasile)
+rm = Romancio
 ro = Rumeno
 ru = Russo
+sah = Sacha
 sk = Slovacco
+sl = Sloveno
 sq = Albanese
+sr = Serbo
 sv-SE = Svedese
 ta = Tamil
+te = Telugu
 th = Tailandese
 tr = Turco
 tt = Tataro
 uk = Ucraino
+ur = Urdu
 uz = Uzbeco
 zh-CN = Cinese (Cina)
+zh-HK = Cinese (Hong Kong)
 zh-TW = Cinese (Taiwan)
+
+# [/]
+
 
 ## Layout
 
 speak = Parla
+speak-now = Parla ora
 datasets = Dataset
 languages = Lingue
 profile = Profilo
@@ -73,7 +106,11 @@ faq = FAQ
 content-license-text = Contenuto disponibile sotto <licenseLink>licenza Creative Commons</licenseLink>
 share-title = Aiutaci a trovare altri donatori di voce!
 share-text = Aiutaci a insegnare alle macchine come le persone parlano nella vita reale, dona la tua voce su { $link }
+link-copied = Link copiato
 back-top = Torna in alto
+contribution-banner-text = È disponibile una nuova esperienza di contribuzione
+contribution-banner-button = Dai un’occhiata
+report-bugs-link = Aiutaci segnalando bug
 
 ## Home Page
 
@@ -85,8 +122,35 @@ wall-of-text-more-desktop = Ora puoi donare la tua voce per aiutarci a costruire
 show-wall-of-text = Ulteriori informazioni
 help-us-title = Aiutaci a confermare le frasi!
 help-us-explain = Premi Avvia, ascolta e indica se l’audio corrisponde alla frase qui sotto.
+no-clips-to-validate = Sembra non ci siano registrazioni in questa lingua. Contribuisci registrando qualcosa.
 vote-yes = Sì
 vote-no = No
+toggle-play-tooltip = Premere { shortcut-play-toggle } per passare alla modalità di riproduzione
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = s
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = p
+shortcut-play-toggle-label = Riproduci/Interrompi
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = y
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = Registra/Interrompi
 request-language-text = Non trovi la tua lingua su Common Voice?
 request-language-button = Richiedi una lingua
 
@@ -112,7 +176,6 @@ profile-form-username =
     .label = Nome utente
 profile-form-language =
     .label = Lingua
-profile-form-more-languages = Nuove lingue in arrivo!
 profile-form-accent =
     .label = Accento
 profile-form-age =
@@ -134,13 +197,14 @@ profile-create = Crea un profilo
 profile-create-success = Profilo creato con successo
 profile-close = Chiudi
 profile-clear-modal = Cancellare i dati del tuo profilo significa che le informazioni demografiche non saranno più inviate a Common Voice con le tue registrazioni.
+profile-explanation = Registra un profilo per tenere traccia dei tuoi progressi e aiutarci a migliorare la precisione dei dati vocali.
 
 ## FAQ
 
 faq-title = Domande più frequenti
 faq-what-q = Che cosa è Common Voice?
 faq-what-a = La tecnologia di riconoscimento vocale può rivoluzionare il modo in cui interagiamo con le macchine, ma i sistemi attualmente disponibili sono tutti costosi e proprietari. Common Voice è un progetto nato per realizzare una tecnologia di riconoscimento vocale accessibile a chiunque. Le persone donano la loro voce a un grande database che chiunque potrà sfruttare per addestrare applicativi basati sul controllo vocale in modo semplice e veloce. Tutti i dati vocali raccolti saranno messi a disposizione degli sviluppatori.
-faq-important-q = Perchè è così importante?
+faq-important-q = Perché è così importante?
 faq-important-a = La voce è naturale, la voce è umanità. È il modo più immediato e spontaneo che conosciamo per comunicare. Tutti gli sviluppatori dovrebbero avere la possibilità di realizzare applicazioni innovative, dai traduttori automatici in tempo reale fino agli assistenti digitali parlanti. Finora questo tipo di applicazioni è rimasto fuori dalla portata dei piccoli sviluppatori a causa della mancanza di dati vocali liberamente accessibili. Con il progetto Common Voice desideriamo offrire a tutti le potenzialità per realizzare qualcosa di innovativo. 
 faq-get-q = Come posso ottenere i dati di Common Voice?
 faq-get-a = Puoi scaricare il dataset dalla <downloadLink>pagina di download</downloadLink> sotto licenza <licenseLink>CC-0</licenseLink>.
@@ -197,8 +261,8 @@ record-platform-not-supported = La piattaforma in uso non è attualmente support
 record-platform-not-supported-desktop = Su computer desktop puoi scaricare l'ultima versione:
 record-platform-not-supported-ios = Gli utenti <bold>iOS</bold> possono scaricare la nostra applicazione gratuita:
 record-must-allow-microphone = È necessario consentire l’accesso al microfono del dispositivo.
-record-cancel = Annulla la nuova registrazione
 record-retry = Riprova
+record-no-mic-found = Impossibile trovare il microfono.
 record-error-too-short = La registrazione è troppo breve.
 record-error-too-long = La registrazione è troppo lunga.
 record-error-too-quiet = Il volume della registrazione è troppo basso.
@@ -230,7 +294,6 @@ download-no = No, grazie
 ## Contact Modal
 
 contact-title = Modulo di contatto
-contact-cancel = Annulla
 contact-form-name =
     .label = Nome
 contact-form-message =
@@ -240,7 +303,6 @@ contact-required = *obbligatorio
 ## Request Language Modal
 
 request-language-title = Richiesta nuova lingua
-request-language-cancel = Chiudi modulo
 request-language-form-language =
     .label = Lingua
 request-language-success-title = Richiesta per una nuova lingua inviata. Grazie per il tuo interessamento.
@@ -249,8 +311,54 @@ request-language-success-content = Presto riceverai istruzioni su come aggiunger
 ## Languages Overview
 
 language-section-in-progress = In corso
+language-section-in-progress-description = Le lingue “in corso” non sono ancora pronte per ricevere i contributi della comunità. La barra del progresso indica a che punto sono nelle fasi di localizzazione del sito e di raccolta frasi.
 language-section-launched = Avviato
+language-section-launched-description = Se una lingua è “avviata” significa che il suo sito è stato completamente tradotto e sono state raccolte frasi a sufficienza per consentire ai volontari di contribuire continuativamente in <italic>{ speak }</italic> e { listen }</italic>.
 languages-show-more = Visualizza più elementi
 languages-show-less = Visualizza meno elementi
 language-speakers = Parlato da
+language-meter-in-progress = Progresso
 language-total-progress = Totale
+language-search-input =
+    .placeholder = Cerca
+language-speakers = Parlato da
+localized = Localizzate
+sentences = Frasi
+total-hours = Ore totali
+
+## New Contribution
+
+action-click = Clic
+action-tap = Tocca
+contribute = Contribuisci
+listen = Ascolta
+skip = Salta
+shortcuts = Scorciatoie
+clips = Registrazioni
+goal-help-recording = Hai aiutato Common Voice a raggiungere <goalPercentage></goalPercentage> del traguardo giornaliero { $goalValue } per le registrazioni.
+goal-help-validation = Hai aiutato Common Voice a raggiungere <goalPercentage></goalPercentage> del traguardo giornaliero { $goalValue } per le conferme.
+contribute-more = Sei pronto a farne ancora { $count }?
+record-cta = Avvia la registrazione
+record-instruction = { $actionType }<recordIcon></recordIcon>, quindi leggi la frase ad alta voce
+record-stop-instruction = { $actionType }<stopIcon></stopIcon> quando hai finito
+record-three-more-instruction = Ancora tre!
+record-again-instruction = Ottimo! <recordIcon></recordIcon> Registra la successiva
+record-again-instruction2 = Continua così, registra di nuovo <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> L'ultima!
+review-tooltip = Riascolta e, se necessario, ripeti le registrazioni prima di proseguire
+unable-speak = Non posso parlare in questo momento
+review-instruction = Riascolta le registrazioni e, se necessario, ripetile
+record-submit-tooltip = { $actionType } carica il tuo contributo quando è pronto
+clips-uploaded = Registrazioni caricate
+record-abort-title = Non vuoi finire la registrazione prima?
+record-abort-text = Se esci adesso perderai i progressi fatti
+record-abort-submit = Invia registrazioni
+record-abort-continue = Porta a termine la registrazione
+record-abort-delete = Esci ed elimina le registrazioni
+listen-instruction = { $actionType } <playIcon></playIcon> La frase è stata letta correttamente?
+listen-again-instruction = Ottimo lavoro! <playIcon></playIcon> Riascolta la registrazione quando sei pronto
+listen-3rd-time-instruction = 2 andate <playIcon></playIcon>, avanti un'altra!
+listen-last-time-instruction = <playIcon></playIcon> L'ultima!
+nothing-to-validate = Non sono presenti registrazioni da confermare in questa lingua, aiutaci registrando qualche frase.
+record-button-label = Registra la tua voce
+share-title-new = <bold>Aiutaci</bold> a trovare altre voci

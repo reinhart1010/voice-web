@@ -8,59 +8,92 @@ email-input =
     .label = E-bost
 submit-form-action = Cyflwyno
 loading = Llwytho…
-audio-loading-error = Ymddiheuriadau! Rydym yn prosesu ein ffeiliau sain, ceisiwch eto cyn bo hir.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragoneg
+ar = Arabeg
+as = Asameg
+ast = Asturieg
+az = Aserbaijaneg
 bn = Bengaleg
+br = Llydaweg
+bxr = Buryat
 ca = Catalaneg
+cak = Kaqchikel
+cnh = Hakha Chin
 cs = Tsiec
 cv = Chuvash
 cy = Cymraeg
 da = Daneg
 de = Almaeneg
+dsb = Sorbeg Is
 el = Groeg
 en = Saesneg
+eo = Esperanto
 es = Sbaeneg
-es-AR = Sbaeneg (Yr Ariannin)
-es-CL = Sbaeneg (Chile)
+et = Estoneg
+fi = Ffinneg
+fo = Ffaroeg
 fr = Ffrangeg
 fy-NL = Ffriseg
 ga-IE = Gwyddeleg
 he = Hebraeg
+hsb = Sorbeg Uwch
 hu = Hwngareg
+ia = Interlingua
 id = Indoneseg
+is = Eislandeg
 it = Eidaleg
+ja = Japanëeg
 ka = Georgeg
+kab = Kabyle
+kk = Casac
 ko = Corëeg
+kpv = Komi-Zyrian
 kw = Cernyweg
+ky = Kyrgyz
 mk = Macedoneg
+myv = Erzya
 nb-NO = Bokmål Norwyeg
+ne-NP = Nepaleg
 nl = Iseldireg
 nn-NO = Norwyeg Nynorsk
 or = Odia
 pl = Pwyleg
 pt-BR = Portiwgaleg (Brasil)
+rm = Romansh
 ro = Rwmaneg
 ru = Rwsieg
+sah = Sakha
 sk = Slofaceg
+sl = Slofeneg
 sq = Albaneg
+sr = Serbeg
 sv-SE = Swedeg
 ta = Tamil
+te = Telugu
 th = Thai
 tr = Twrceg
 tt = Tartareg
 uk = Wcraneg
+ur = Urdu
 uz = Wsbeceg
 zh-CN = Tsieinëeg (Tsiena)
+zh-HK = Tsieinëeg (Hong Kong)
 zh-TW = Tsieinëeg (Taiwan)
+
+# [/]
+
 
 ## Layout
 
 speak = Siarad
+speak-now = Siaradwch nawr
 datasets = Setiau data
 languages = Ieithoedd
 profile = Proffil
@@ -73,7 +106,11 @@ faq = Cwestiynau Cyffredin
 content-license-text = Mae'r cynnwys ar gael o dan <licenseLink>drwydded Creative Commons</licenseLink>
 share-title = Helpwch ni i gael rhagor o bobl i gyfrannu eu lleisiau!
 share-text = Helpwch beiriannau i ddysgu sut mae pobl go iawn yn siarad, cyfrannwch eich llais yn { $link }
+link-copied = Dolen wedi'i chopïo
 back-top = Nôl i'r Brig
+contribution-banner-text = Rydym newydd lansio profiad cyfrannwr newydd
+contribution-banner-button = Cymrwch olwg
+report-bugs-link = Adrodd ar wallau
 
 ## Home Page
 
@@ -87,8 +124,35 @@ wall-of-text-more-desktop =
 show-wall-of-text = Darllen Rhagor
 help-us-title = Helpwch ni i ddilysu brawddegau!
 help-us-explain = Pwyswch chwarae, gwrando a dweud: ydyn nhw wedi dweud y frawddeg isod yn iawn?
+no-clips-to-validate = Mae'n ymddangos nad oes unrhyw glipiau i wrando arnynt yn yr iaith hon. Helpwch ni i lanw'r bwlch dry recordio rhai nawr.
 vote-yes = Iawn
 vote-no = Na
+toggle-play-tooltip = Cliciwch { shortcut-play-toggle } i newid y modd chwarae
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = H
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = c
+shortcut-play-toggle-label = Chwarae/Atal
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = i
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = Recordio/Atal
 request-language-text = Ddim yn gweld eich iaith ar Common Voice eto?
 request-language-button = Cais am Iaith
 
@@ -108,7 +172,6 @@ status-hours =
 # Variables:
 # $goal - number of hours representing the next goal
 status-goal = Nod Nesaf: { $goal }
-status-more-soon = Mae rhagor o ieithoedd ar eu ffordd!
 english = Saesneg
 
 ## ProfileForm
@@ -119,7 +182,6 @@ profile-form-username =
     .label = Enw Defnyddiwr
 profile-form-language =
     .label = Iaith
-profile-form-more-languages = Mae rhagor o ieithoedd ar eu ffordd!
 profile-form-accent =
     .label = Acen
 profile-form-age =
@@ -141,6 +203,7 @@ profile-create = Creu proffil
 profile-create-success = Llwyddiant, wedi creu proffil!
 profile-close = Cau
 profile-clear-modal = Bydd clirio data eich proffil yn golygu na fydd y wybodaeth ddemograffig yma'n cael ei chyflwyno i Common Voice gyda'ch clipiau recordio.
+profile-explanation = Cadw golwg o'ch cynnydd gyda phroffil a helpu'n data llais i fod yn fwy cywir.
 
 ## FAQ
 
@@ -204,8 +267,8 @@ record-platform-not-supported = Ymddiheuriadau ond nid yw eich platfform yn cael
 record-platform-not-supported-desktop = Ar gyfrifiaduron bwrdd gwaith, gallwch lwytho i lawr y diweddaraf:
 record-platform-not-supported-ios = Gall defnyddwyr <bold>iOS</bold> lwytho i lawr ein ap am ddim:
 record-must-allow-microphone = Rhaid i chi ganiatáu mynediad i'r meicroffon.
-record-cancel = Diddymu Ail-recordio
 record-retry = Ceisio eto
+record-no-mic-found = Heb ganfod meicroffon.
 record-error-too-short = Roedd y recordiad yn rhy fyr.
 record-error-too-long = Roedd y recordiad yn rhy hir.
 record-error-too-quiet = Roedd y recordiad yn rhy dawel.
@@ -237,7 +300,6 @@ download-no = Dim Diolch
 ## Contact Modal
 
 contact-title = Ffurflen Gysylltu
-contact-cancel = Diddymu
 contact-form-name =
     .label = Enw
 contact-form-message =
@@ -247,7 +309,6 @@ contact-required = *angenrheidiol
 ## Request Language Modal
 
 request-language-title = Cais am Iaith
-request-language-cancel = Gadael y Ffurflen
 request-language-form-language =
     .label = Iaith
 request-language-success-title = Mae'r cais am iaith wedi ei gyflwyno'n llwyddiannus, diolch.
@@ -255,9 +316,55 @@ request-language-success-content = Byddwn mewn cysylltiad gyda rhagor o wybodaet
 
 ## Languages Overview
 
-language-section-in-progress = Ar Waith
+language-section-in-progress = Yn Cael eu Datblygu
+language-section-in-progress-description = Mae ieithoedd sy'n cael eu datblygu yn cael eu hadeiladu ar hyn o bryd ar gyfer cyfraniadau gan ein cymunedau; mae eu cynnydd yn adlewyrchu lle maen nhw arni ar draws cyfnodau lleolieddio'r wefan a'r casglu brawddegau.
 language-section-launched = Wedi Cychwyn
+language-section-launched-description = Ar gyfer ieithoedd sydd wedi eu cyflwyno mae'r wefan wedi ei leoleiddio'n llwyddiannus ac mae digon o frawddegau wedi eu casglu i ganiatáu cyfraniadau <italic>{ speak }</italic> a <italic>{ listen }</italic> parhaus.
 languages-show-more = Gweld Mwy
 languages-show-less = Gweld Llai
 language-speakers = Siaradwyr
+language-meter-in-progress = Cynnydd
 language-total-progress = Cyfanswm
+language-search-input =
+    .placeholder = Chwilio
+language-speakers = Siaradwyr
+localized = Wedi ei leoleiddio
+sentences = Brawddegau
+total-hours = Cyfanswm Oriau
+
+## New Contribution
+
+action-click = Cliciwch
+action-tap = Tapiwch
+contribute = Cyfrannwch
+listen = Gwrando
+skip = Hepgor
+shortcuts = Llwybrau Byr
+clips = Clip
+goal-help-recording = Rydych wedi cynorthwyo Common Voice i gyrraedd <goalPercentage></goalPercentage> o { $goalValue }, ein nod recordio dyddiol!
+goal-help-validation = Rydych wedi cynorthwyo Common Voice i gyrraedd <goalPercentage></goalPercentage> o { $goalValue }, ein nod dilysu dyddiol!
+contribute-more = Barod i wneud { $count } yn rhagor?
+record-cta = Cychwyn recordio
+record-instruction = { $actionType }<recordIcon></recordIcon> ac yna darllen y frawddeg yn uchel
+record-stop-instruction = { $actionType }<stopIcon></stopIcon> ar ôl gorffen
+record-three-more-instruction = Tair i fynd!
+record-again-instruction = Gwych! <recordIcon></recordIcon> Recordiwch eich clip nesaf
+record-again-instruction2 = Daliwch ati, recordiwch eto <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> Yr un olaf!
+review-tooltip = Adolygu ac ail recordio clipiau yma wrth fynd
+unable-speak = Methu siarad nawr
+review-instruction = Adolygu ac ail recordio clipiau os oes angen
+record-submit-tooltip = { $actionType } cyflwyno pan yn barod
+clips-uploaded = Clipiau Wedi'u Llwytho
+record-abort-title = Gorffen recordio yn gyntaf?
+record-abort-text = Bydd gadael nawr yn golygu eich bod yn colli eich cyfraniad
+record-abort-submit = Cyflwyno clipiau
+record-abort-continue = Gorffen recordio
+record-abort-delete = Gadael a Dileu clipiau
+listen-instruction = { $actionType } <playIcon> </playIcon> os ydyn nhw wedi ynganu'r brawddegau'n gywir
+listen-again-instruction = Da iawn! <playIcon> </playIcon> Gwrandewch eto pan fyddwch yn barod
+listen-3rd-time-instruction = 2 i lawr <playIcon> </playIcon> , daliwch ati!
+listen-last-time-instruction = <playIcon> </playIcon> Yr un olaf!
+nothing-to-validate = Nid oes gennym unrhyw beth i ddilysu'r iaith hon, helpwch ni i lanw'r ciw
+record-button-label = Recordio eich llais
+share-title-new = <bold>Helpwch ni</bold> i ganfod rhagor o leisiau

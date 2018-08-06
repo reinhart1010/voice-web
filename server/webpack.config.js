@@ -8,7 +8,7 @@ const OUTPUT_PATH = path.resolve(__dirname, 'js');
  * from node_modules into our output file (since we have access to node_modules
  * at runtime), so this inserts runtime 'require()' calls using modules.
  * 
- * See http://jlongster.com/Backend-Apps-with-Webpack--Part-I
+ * See https://jlongster.com/Backend-Apps-with-Webpack--Part-I
  */
 const nodeModules = {};
 fs
@@ -22,6 +22,7 @@ fs
 
 module.exports = {
   entry: './src/server.ts',
+  mode: 'development',
   output: {
     path: OUTPUT_PATH,
     filename: 'server.js',
@@ -47,9 +48,9 @@ module.exports = {
         use: [
           {
             loader: 'ts-loader',
-            options: {
-              silent: true,
-            },
+            // options: {
+            //   silent: true,
+            // },
           },
         ],
       },

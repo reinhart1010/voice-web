@@ -8,59 +8,92 @@ email-input =
     .label = E-mail
 submit-form-action = Elküldés
 loading = Betöltés…
-audio-loading-error = Sajnáljuk! Jelenleg a hangfájlok feldolgozása folyik, próbálja újra később.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragóniai
+ar = Arab
+as = Asszámi
+ast = Asztúriai
+az = Azeri
 bn = Bengáli
+br = Breton
+bxr = Burját
 ca = Katalán
+cak = Kacsikel
+cnh = Hakha Chin
 cs = Cseh
 cv = Csuvas
 cy = Walesi
 da = Dán
 de = Német
+dsb = Szorb, alsó
 el = Görög
 en = Angol
+eo = Eszperantó
 es = Spanyol
-es-AR = Spanyol (Argentína)
-es-CL = Spanyol (Chile)
+et = Észt
+fi = Finn
+fo = Feröeri
 fr = Francia
 fy-NL = Fríz
 ga-IE = Ír
 he = Héber
+hsb = Szorb, felső
 hu = Magyar
+ia = Interlingva
 id = Indonéz
+is = Izlandi
 it = Olasz
+ja = Japán
 ka = Grúz
+kab = Kabil
+kk = Kazak
 ko = Koreai
+kpv = Komi-zürjén
 kw = Cornwalli
+ky = Kirgiz
 mk = Macedón
+myv = Erza
 nb-NO = Norvég bokmål
+ne-NP = Nepáli
 nl = Holland
 nn-NO = Norvég nynorsk
 or = Orija
 pl = Lengyel
 pt-BR = Portugál (Brazília)
+rm = Rétoromán
 ro = Román
 ru = Orosz
+sah = Szaha
 sk = Szlovák
+sl = Szlovén
 sq = Albán
+sr = Szerb
 sv-SE = Svéd
 ta = Tamil
+te = Telugu
 th = Thai
 tr = Török
 tt = Tatár
 uk = Ukrán
+ur = Urdu
 uz = Üzbég
 zh-CN = Kínai (Kína)
+zh-HK = Kínai (Hong Kong)
 zh-TW = Kínai (Tajvan)
+
+# [/]
+
 
 ## Layout
 
 speak = Beszéljen
+speak-now = Most beszéljen
 datasets = Adatkészletek
 languages = Nyelvek
 profile = Profil
@@ -70,29 +103,60 @@ privacy = Adatvédelem
 terms = Jogi feltételek
 cookies = Sütik
 faq = GYIK
-content-license-text = A tartalom <licenseLink>Creative Commons licenc</licenseLink> alatt elérhető el.
+content-license-text = A tartalom <licenseLink>Creative Commons licenc</licenseLink> alatt érhető el.
 share-title = Segítsen olyanokat találni, akik a hangjukat adják.
 share-text = Segítsen megtanítani a gépeknek, hogyan beszélnek az emberek. Adja a hangját: { $link }
+link-copied = Hivatkozás másolva
 back-top = Vissza a tetejére
+contribution-banner-text = Elindítottuk az új közreműködési élményt
+contribution-banner-button = Nézze meg
+report-bugs-link = Segítsen a hibák jelentésében
 
 ## Home Page
 
 home-title = A Common Voice projekt egy Mozilla kezdeményezés arra, hogy segítsük a gépeket megtanítani, hogyan beszélnek az emberek. 
 home-cta = Szólaljon meg, működjön közre.
 wall-of-text-start = A beszéd természetes, a beszéd emberi. Ezért lelkesedünk egy gépeink számára használható beszédtechnológia létrehozásáért. Azonban ehhez hatalmas mennyiségű beszédmintára van szükség.
-wall-of-text-more-mobile = A nagyvállalatok által használt hangminták a legtöbb ember számára nem elérhetőek. Szerintünk ez elfojtja az innovációt. Ezért létrehoztuk a Common Voice projektet, hogy segítsük a hangfelismerési technológiát mindenki számára hozzáférhetővé tenni.
+wall-of-text-more-mobile = A nagyvállalatok által használt hangminták a legtöbb ember számára nem érhetőek el. Szerintünk ez elfojtja az innovációt. Ezért létrehoztuk a Common Voice projektet, hogy segítsük a hangfelismerési technológiát mindenki számára hozzáférhetővé tenni.
 wall-of-text-more-desktop = Most adhatja a hangját, hogy segítsen nekünk egy nyílt forrású hang adatbázist építeni, amit bárki szabadon használhat arra, hogy innovatív alkalmazásokat készítsen eszközökre és a webre.<lineBreak></lineBreak>Olvasson fel egy mondatot, hogy segítse a gépeket megtanulni, hogyan beszélnek az emberek. Ellenőrizze mások hozzájárulásait, javítva a minőséget. Ilyen egyszerű! 
 show-wall-of-text = Bővebben
 help-us-title = Segítsen jóváhagyni a mondatokat.
 help-us-explain = Nyomja meg a lejátszás gombot, hallgassa meg a mondatot és mondja el: helyesen hangzik el az alábbi mondat?
+no-clips-to-validate = Úgy néz ki egyetlen meghallgató klip sincs ezen a nyelven. Segítsen feltölteni a sor azzal, hogy rögzít néhányat.
 vote-yes = Igen
 vote-no = Nem
+toggle-play-tooltip = Nyomja meg az { shortcut-play-toggle } gombot a lejátszási módba váltáshoz
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = k
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = l
+shortcut-play-toggle-label = Lejátszás/leállítás
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = i
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = Rözgzítés/leállítás
 request-language-text = Nem látja az anyanyelvét a Common Voice-on? 
 request-language-button = Nyelv kérése
 
 ## ProjectStatus
 
-status-title = Összesített projekt státusz: nézze meg hol tartunk.
+status-title = Projekt összesített állapota: nézze meg hol tartunk.
 status-contribute = Adja a hangját
 status-hours =
     { $hours ->
@@ -102,7 +166,6 @@ status-hours =
 # Variables:
 # $goal - number of hours representing the next goal
 status-goal = Következő cél: { $goal }
-status-more-soon = Hamarosan további nyelvek is lesznek!
 english = Angol
 
 ## ProfileForm
@@ -113,7 +176,6 @@ profile-form-username =
     .label = Felhasználónév
 profile-form-language =
     .label = Nyelv
-profile-form-more-languages = Hamarosan lesznek további nyelvek!
 profile-form-accent =
     .label = Akcentus
 profile-form-age =
@@ -135,6 +197,7 @@ profile-create = Profil létrehozása
 profile-create-success = Profil sikeresen létrehozva!
 profile-close = Bezárás
 profile-clear-modal = A profiladatok törlése azt jelenti, hogy ezek a demográfiai információk többé már nem lesznek beküldve a Common Voice-ba a hangrögzítéseivel.
+profile-explanation = Kövesse az előrehaladását egy profillal, és segítsen pontosabbá tenni az adatainkat.
 
 ## FAQ
 
@@ -198,8 +261,8 @@ record-platform-not-supported = Sajnáljuk, de a platformja jelenleg nem támoga
 record-platform-not-supported-desktop = Asztali számítógépekre, letöltheti a legfrissebbet:
 record-platform-not-supported-ios = Az <bold>iOS</bold> felhasználók letölthetik szabad szoftver alkalmazásunkat:
 record-must-allow-microphone = Engedélyezni kell a mikrofon hozzáférést.
-record-cancel = Újrarögzítés megszakítása
 record-retry = Újra
+record-no-mic-found = Nem található mikrofon.
 record-error-too-short = A felvétel túl rövid volt.
 record-error-too-long = A felvétel túl hosszú volt.
 record-error-too-quiet = A felvétel túl halk volt.
@@ -231,7 +294,6 @@ download-no = Köszönöm, nem
 ## Contact Modal
 
 contact-title = Kapcsolatfelvétel
-contact-cancel = Mégse
 contact-form-name =
     .label = Név
 contact-form-message =
@@ -241,7 +303,6 @@ contact-required = *kötelező
 ## Request Language Modal
 
 request-language-title = Nyelv kérése
-request-language-cancel = Űrlap bezárása
 request-language-form-language =
     .label = Nyelv
 request-language-success-title = Nyelvkérés sikeresen beküldve, köszönjük.
@@ -250,8 +311,54 @@ request-language-success-content = Hamarosan jelenkezünk további információk
 ## Languages Overview
 
 language-section-in-progress = Folyamatban
+language-section-in-progress-description = A folyamatban lévő nyelveket a közösség közreműködésére építjük; az előrehaladás a weboldal honosítását, és a mondatgyűjtési fázist tükrözi.
 language-section-launched = Elindítva
+language-section-launched-description = Ezen elindított nyelvek esetén a weboldal sikeresen honosítva lett, és elég mondat lett összegyűjtve ahhoz, hogy lehetővé tegye a <italic>{ speak }</italic> és <italic>{ listen }</italic> típusú közreműködést.
 languages-show-more = Több
 languages-show-less = Kevesebb
 language-speakers = Beszélők
+language-meter-in-progress = Előrehaladás
 language-total-progress = Összesen
+language-search-input =
+    .placeholder = Keresés
+language-speakers = Beszélők
+localized = Honosított
+sentences = Mondatok
+total-hours = Órák összesen
+
+## New Contribution
+
+action-click = Kattintson
+action-tap = Koppintson
+contribute = Közreműködés
+listen = Figyeljen
+skip = Kihagyás
+shortcuts = Gyorsbillentyűk
+clips = Klipek
+goal-help-recording = Segítettél a Common Voice-nak elérni a napi rögzítési céljának ({ $goalValue }) <goalPercentage></goalPercentage>-át!
+goal-help-validation = Segítettél a Common Voice-nak elérni a napi ellenőrzési céljának ({ $goalValue }) <goalPercentage></goalPercentage>-át!
+contribute-more = Készen áll még { $count } felvételre?
+record-cta = Felvétel indítása
+record-instruction = { $actionType } a <recordIcon></recordIcon> ikonra, és olvassa fel hangosan a mondatot
+record-stop-instruction = { $actionType } a <stopIcon></stopIcon> ikonra ha kész
+record-three-more-instruction = Még három!
+record-again-instruction = Nagyszerű! <recordIcon></recordIcon> A következő klip felvételéhez
+record-again-instruction2 = Csak így tovább, vegyen fel újra <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> Az utolsó!
+review-tooltip = Ellenőrizze, és ha kell, vegye fel újra a klipeket sorban
+unable-speak = Most nem tud beszélni
+review-instruction = Ellenőrizze, és ha kell, vegye fel újra a klipeket
+record-submit-tooltip = { $actionType } a beküldéshez, ha kész
+clips-uploaded = Klipek feltöltve
+record-abort-title = Előbb befejezi a felvételt?
+record-abort-text = Ha most elmegy, akkor elveszti az előrehaladást
+record-abort-submit = Klipek beküldése
+record-abort-continue = Rögzítés befejezése
+record-abort-delete = Kilépés és klipek törlése
+listen-instruction = { $actionType } a <playIcon></playIcon> ikonra, pontosan olvasták fel a mondatot?
+listen-again-instruction = Jó munka! <playIcon></playIcon> Hallgassa meg újra, ha kész
+listen-3rd-time-instruction = 2 kész <playIcon></playIcon>, csak így tovább!
+listen-last-time-instruction = <playIcon></playIcon> Utolsó!
+nothing-to-validate = Még nincs semmit ellenőrizni ezen a nyelven, segítsen feltölteni a sort.
+record-button-label = Rögzítse a hangját
+share-title-new = <bold>Segítsen nekünk</bold> további hangokat találni

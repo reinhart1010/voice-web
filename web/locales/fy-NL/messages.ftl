@@ -8,46 +8,72 @@ email-input =
     .label = E-mailadres
 submit-form-action = Yntsjinje
 loading = Lade…
-audio-loading-error = Sorry! Op dit stuit ferwurkje wy ús audiobestannen, probearje it letter nochris.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragoneesk
+ar = Arabysk
+as = Assameesk
+ast = Asturysk
+az = Azerbeidzjaansk
 bn = Bingaalsk
+br = Bretonsk
+bxr = Burjatysk
 ca = Katalaansk
+cak = Kaqchikel
+cnh = Hakha Chin
 cs = Tsjechysk
 cv = Chuvash
 cy = Welsk
 da = Deensk
 de = Dútsk
+dsb = Leger Sorbysk
 el = Gryksk
 en = Ingelsk
+eo = Esperanto
 es = Spaansk
-es-AR = Spaansk (Argentinië)
-es-CL = Spaansk (Chili)
+et = Estysk
+fi = Finsk
+fo = Fariseesk
 fr = Frânsk
 fy-NL = Frysk
 ga-IE = Iersk
 he = Hebriuwsk
+hsb = Boppe-Sorbysk
 hu = Hongaarsk
+ia = Ynterlingua
 id = Yndonezysk
+is = Iislânsk
 it = Italiaansk
+ja = Japansk
 ka = Georgysk
+kab = Kabylysk
+kk = Kazaksk
 ko = Koreaansk
+kpv = Kom-Zyrian
 kw = Kornish
+ky = Kirgizysk
 mk = Masedoanysk
+myv = Erzja
 nb-NO = Noarsk Bokmål
+ne-NP = Nepaleesk
 nl = Nederlânsk
 nn-NO = Norwegysk Nynorsk
 or = Odia
 pl = Poalsk
 pt-BR = Portugeesk (Braziliaansk)
+rm = Romaansk
 ro = Roemeensk
 ru = Russysk
+sah = Sakha
 sk = Slowaaksk
+sl = Sloveensk
 sq = Albaneesk
+sr = Servysk
 sv-SE = Sweedsk
 ta = Tamilsk
 te = Telugu
@@ -55,13 +81,19 @@ th = Taisk
 tr = Turksk
 tt = Tatarsk
 uk = Oekraynsk
+ur = Urdu
 uz = Oezbeeksk
 zh-CN = Sineesk (Sina)
+zh-HK = Sineesk (Hong Kong)
 zh-TW = Sineesk (Taiwan)
+
+# [/]
+
 
 ## Layout
 
 speak = Sprekke
+speak-now = Sprek no
 datasets = Datasets
 languages = Talen
 profile = Profyl
@@ -74,7 +106,11 @@ faq = FAQ
 content-license-text = Ynhâld beskikber ûnder in <licenseLink>Creative Commons-lisinsje</licenseLink>
 share-title = Help ús oaren te finen om harren stim te donearjen!
 share-text = Help mei masinen te learen hoe't echte minsken prate, donearje jo stim op { $link }
+link-copied = Keppeling kopiearre
 back-top = Nei boppe
+contribution-banner-text = Wy hawwe krekt in nije ûnderfining foar meiwurkers lansearre
+contribution-banner-button = Sjoch ris rûn
+report-bugs-link = Rapportearje bugs
 
 ## Home Page
 
@@ -96,8 +132,35 @@ wall-of-text-more-desktop =
 show-wall-of-text = Mear ynfo
 help-us-title = Help ús sinnen te falidearjen!
 help-us-explain = Klik op de ôfspylknop, lústerje en fertel ús: wurdt de ûndersteande sin korrekt útsprutsen?
+no-clips-to-validate = It liket der op dat der noch gjin fragminten binne om yn dizze taal nei te lústerjen. Help ús in nustje te meitsjen troch no in pear op te nimmen.
 vote-yes = Ja
 vote-no = Nee
+toggle-play-tooltip = Druk op { shortcut-play-toggle } om de ôfspylmodus yn/út te skeakeljen
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = s
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = p
+shortcut-play-toggle-label = Ofspylje/Stopje
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = J
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = N
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = O
+shortcut-record-toggle-label = Opnimme/Stopje
 request-language-text = Sjogge jo jo taal noch net op Common Voice?
 request-language-button = In taal oanfreegje
 
@@ -123,7 +186,6 @@ profile-form-username =
     .label = Brûkersnamme
 profile-form-language =
     .label = Taal
-profile-form-more-languages = Ynkoarten mear talen beskikber!
 profile-form-accent =
     .label = Aksint
 profile-form-age =
@@ -145,6 +207,7 @@ profile-create = Profyl oanmeitsje
 profile-create-success = Profyl mei sukses oanmakke!
 profile-close = Slute
 profile-clear-modal = It wiskjen fan jo profylgegevens betsjut dat dizze demografyske gegevens net mear tegearre mei jo opnamen by Common Voice yntsjinne wurde.
+profile-explanation = Hâld jo foarútgong yn 'e gaten mei in profyl en help om ús stimgegevens sekuerder te wêzen.
 
 ## FAQ
 
@@ -208,8 +271,8 @@ record-platform-not-supported = It spyt ús, mar jo platfoarm wurdt op dit stuit
 record-platform-not-supported-desktop = Op desktopkompjûters, download de lêste:
 record-platform-not-supported-ios = <bold>iOS</bold>-brûkers kinne ús fergese app downloade:
 record-must-allow-microphone = Jo moatte tagong ta jo mikrofoan tastean.
-record-cancel = Opnij opnimmen annulearje
 record-retry = Opnij probearje
+record-no-mic-found = Gjin mikrofoan fûn.
 record-error-too-short = De opname wie te koart.
 record-error-too-long = De opname wie te lang.
 record-error-too-quiet = De opname wie te súntsjes
@@ -221,7 +284,7 @@ terms-agree = Ik gean akkoard
 terms-disagree = Ik gean net akkoard
 review-aborted = Oplaad ôfbrutsen. Wolle jo jo opnamen wiskje?
 review-submit-title = Beoardiele & yntsjinje
-review-submit-msg = Tank foar jo opname!<lineBreak></lineBreak>Beoardielje en tsjinje jo ûndersteande clips yn.
+review-submit-msg = Tank foar jo opname!<lineBreak></lineBreak>Beoardielje en tsjinje jo ûndersteande fragminten yn.
 review-recording = Beoardieling
 review-rerecord = Opnij opnimme
 review-cancel = Ynstjoering annulearje
@@ -241,7 +304,6 @@ download-no = Nee tanke
 ## Contact Modal
 
 contact-title = Kontaktformulier
-contact-cancel = Annulearje
 contact-form-name =
     .label = Namme
 contact-form-message =
@@ -251,7 +313,6 @@ contact-required = *fereaske
 ## Request Language Modal
 
 request-language-title = Taaloanfraach
-request-language-cancel = Formulier ferlitte
 request-language-form-language =
     .label = Taal
 request-language-success-title = Taaloanfraach mei sukses yntsjinne, tank.
@@ -260,8 +321,54 @@ request-language-success-content = Wy nimme ynkoarten kontakt op mei mear ynform
 ## Languages Overview
 
 language-section-in-progress = Yn útfiering
+language-section-in-progress-description = Talen yn útfiering wurde op dit stuit ree makke foar meiwurking troch ús mienskippen; harren foarútgong lit sjen hoefier't se binne mei it oersetten fan de website en it sammeljen fan sinnen.
 language-section-launched = Lansearre
+language-section-launched-description = Foar dizze lansearre talen is de website mei sukses oerset en binne der genôch sinnen sammele om troch te gean mei meiwurkjen oan <italic>{ speak }</italic> en <italic>{ listen }</italic>.
 languages-show-more = Mear besjen
 languages-show-less = Minder besjen
 language-speakers = Sprekkers
+language-meter-in-progress = Yn útfiering
 language-total-progress = Totaal
+language-search-input =
+    .placeholder = Sykje
+language-speakers = Sprekkers
+localized = Oerset
+sentences = Sinnen
+total-hours = Oeren totaal
+
+## New Contribution
+
+action-click = Klikke
+action-tap = Tikke
+contribute = Meiwurkje
+listen = Lústerje
+skip = Oerslaan
+shortcuts = Fluchkeppelingen
+clips = Fragminten
+goal-help-recording = Jo hawwe Common Voice holpen om <goalPercentage></goalPercentage> fan harren deistige { $goalValue } doel te beheljen!
+goal-help-validation = Jo hawwe Common Voice holpen om <goalPercentage></goalPercentage> fan harren deistige { $goalValue } falidaasje te beheljen!
+contribute-more = Klear om der noch { $count } te dwaan?
+record-cta = Opname starte
+record-instruction = { $actionType } <recordIcon></recordIcon> en lês de sin dêrnei hurdop
+record-stop-instruction = { $actionType } <stopIcon></stopIcon> as jo klear binne
+record-three-more-instruction = Noch trije te gean!
+record-again-instruction = Fantastysk! <recordIcon></recordIcon> Nim jo folgjende fragmint op
+record-again-instruction2 = Gean sa troch, nim noch in kear op <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> De lêste!
+review-tooltip = Beoardielje en nim nochris fragminten op as jo wolle
+unable-speak = Kin op dit stuit net sprekke
+review-instruction = Beoardielje en nim nochris fragminten op as jo wolle
+record-submit-tooltip = { $actionType } yntsjinje wannear ree
+clips-uploaded = Clips opladen
+record-abort-title = Opname earst beëinigje?
+record-abort-text = No stopje betsjut dat jo jo foarútgong kwytreitsje
+record-abort-submit = Fragminten yntsjinje
+record-abort-continue = Opname foltôgje
+record-abort-delete = Ofslute en fragminten fuortsmite
+listen-instruction = { $actionType } <playIcon></playIcon> waard de sin dúdlik útsprutsen?
+listen-again-instruction = Goed wurk! <playIcon></playIcon> Lústerje opnij wannear't jo klear binne
+listen-3rd-time-instruction = 2 klear <playIcon></playIcon> , gean sa troch!
+listen-last-time-instruction = <playIcon></playIcon> De lêste!
+nothing-to-validate = Wy hawwe yn dizze taal neat om te falidearjen, help ús de rige te foljen.
+record-button-label = Nim jo stim op
+share-title-new = <bold>Help ús</bold> mear stimmen te finen

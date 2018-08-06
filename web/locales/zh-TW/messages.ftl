@@ -8,46 +8,72 @@ email-input =
     .label = 電子郵件地址
 submit-form-action = 送出
 loading = 載入中…
-audio-loading-error = 很抱歉，我們正在處理音訊檔案，請稍候再試。
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = 亞拉岡語
+ar = 阿拉伯語
+as = 阿薩姆語
+ast = 阿斯圖里亞斯語
+az = 亞塞拜然語
 bn = 孟加拉語
+br = 布里多尼語
+bxr = 布里亞特語
 ca = 加泰隆語
+cak = 喀克奇可語
+cnh = 哈卡秦語
 cs = 捷克語
 cv = 楚瓦什語
 cy = 威爾斯語
 da = 丹麥語
 de = 德語
+dsb = 下索布語
 el = 希臘語
 en = 英語
+eo = 世界語（Esperanto）
 es = 西班牙語
-es-AR = 西班牙語（阿根廷）
-es-CL = 西班牙語（智利）
+et = 愛沙尼亞語
+fi = 芬蘭語
+fo = 法羅語
 fr = 法語
 fy-NL = 弗利西亞語
 ga-IE = 愛爾蘭語
 he = 希伯來語
+hsb = 上索布語
 hu = 匈牙利語
+ia = 國際語
 id = 印尼語
+is = 冰島語
 it = 義大利語
+ja = 日語
 ka = 喬治亞語
+kab = 卡拜爾語
+kk = 哈薩克語
 ko = 韓語
+kpv = 科米-齊良語
 kw = 康瓦爾語
+ky = 吉爾吉斯語
 mk = 馬其頓語
+myv = 厄茲亞語
 nb-NO = 挪威語（Bokmål）
+ne-NP = 尼泊爾語
 nl = 荷蘭語
 nn-NO = 挪威語（Nynorsk）
 or = 奧里亞語
 pl = 波蘭語
 pt-BR = 葡萄牙語（巴西）
+rm = 羅曼什語
 ro = 羅馬尼亞語
 ru = 俄語
+sah = 薩哈語
 sk = 斯洛伐克語
+sl = 斯洛維尼亞語
 sq = 阿爾巴尼亞語
+sr = 塞爾維亞語
 sv-SE = 瑞典語
 ta = 坦米爾語
 te = 泰盧固語
@@ -55,13 +81,19 @@ th = 泰語
 tr = 土耳其語
 tt = 韃靼語
 uk = 烏克蘭語
+ur = 烏爾都語
 uz = 烏茲別克語
 zh-CN = 華語（中國）
+zh-HK = 華語（香港）
 zh-TW = 華語（台灣）
+
+# [/]
+
 
 ## Layout
 
 speak = 說話
+speak-now = 現在說話
 datasets = 資料集
 languages = 語言
 profile = 帳號資料
@@ -74,7 +106,11 @@ faq = 常見問題
 content-license-text = 內容依照 <licenseLink>Creative Commons 條款</licenseLink>授權大眾使用
 share-title = 幫助我們找人一起獻聲！
 share-text = 請到 { $link } 獻聲，協助我們教導機器了解人們是如何說話的。
+link-copied = 已複製鍊結
 back-top = 回到頁面頂端
+contribution-banner-text = 我們剛推出全新的貢獻方式
+contribution-banner-button = 體驗一下
+report-bugs-link = 協助回報問題
 
 ## Home Page
 
@@ -88,8 +124,35 @@ wall-of-text-more-desktop =
 show-wall-of-text = 了解更多
 help-us-title = 請幫助我們驗證句子！
 help-us-explain = 按下播放按鈕，聽一聽，然後告訴我們: 他們正確說出下面的句子了嗎？
+no-clips-to-validate = 看來這個語言沒有任何片段可聽。請幫助我們錄下一些片段。
 vote-yes = 是
 vote-no = 否
+toggle-play-tooltip = 按下 { shortcut-play-toggle } 即可切換播放模式
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = s
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = p
+shortcut-play-toggle-label = 播放/停止
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = y
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = r
+shortcut-record-toggle-label = 錄音/停止
 request-language-text = 沒在 Common Voice 看到您的語言嗎？
 request-language-button = 要求新語言
 
@@ -114,7 +177,6 @@ profile-form-username =
     .label = 使用者名稱
 profile-form-language =
     .label = 語言
-profile-form-more-languages = 更多語言即將到來！
 profile-form-accent =
     .label = 腔調
 profile-form-age =
@@ -136,6 +198,7 @@ profile-create = 註冊帳號
 profile-create-success = 帳號建立成功！
 profile-close = 關閉
 profile-clear-modal = 清除您的帳號資料後，就代表您錄音時，不會再一同傳送人口統計資料給 Common Voice。
+profile-explanation = 保留您的專案紀錄，並幫助增加我們的語音資料準確度。
 
 ## FAQ
 
@@ -199,11 +262,11 @@ record-platform-not-supported = 很抱歉，目前暫不支援您的平台。
 record-platform-not-supported-desktop = 在桌上型電腦，您可以下載最新版的:
 record-platform-not-supported-ios = <bold>iOS</bold> 使用者可下載我們的免費程式:
 record-must-allow-microphone = 您必須允許使用麥克風。
-record-cancel = 取消重新錄音
 record-retry = 重試
+record-no-mic-found = 找不到麥克風
 record-error-too-short = 錄音太短了。
 record-error-too-long = 錄音太長了。
-record-error-too-quiet = 錄音太安靜了。
+record-error-too-quiet = 錄音太小聲了。
 record-submit-success = 成功送出，要再錄一次嗎？
 record-help = 點擊後開始錄音，然後大聲朗讀上面的句子。
 record-cancel = 取消重新錄音
@@ -232,7 +295,6 @@ download-no = 不要，謝謝
 ## Contact Modal
 
 contact-title = 聯絡表單
-contact-cancel = 取消
 contact-form-name =
     .label = 姓名
 contact-form-message =
@@ -242,7 +304,6 @@ contact-required = * 必填
 ## Request Language Modal
 
 request-language-title = 語言請求
-request-language-cancel = 離開表單
 request-language-form-language =
     .label = 語言
 request-language-success-title = 已收到新語言請求，感謝您。
@@ -251,8 +312,54 @@ request-language-success-content = 我們將很快在您的語言於 Common Voic
 ## Languages Overview
 
 language-section-in-progress = 準備中
+language-section-in-progress-description = 處理中的語言，代表我們的該語言社群正在進行貢獻，當中的進度反映了網站的在地化翻譯進度，以及語句收集進度。
 language-section-launched = 已上線
+language-section-launched-description = 若是已上線的語言，代表網站已經完整的翻譯完成，也收集了足夠的語句，足以提供<italic>{ speak }</italic>及<italic>{ listen }</italic>的貢獻。
 languages-show-more = 檢視更多
 languages-show-less = 檢視更少
 language-speakers = 使用者數
+language-meter-in-progress = 進度
 language-total-progress = 總計
+language-search-input =
+    .placeholder = 搜尋
+language-speakers = 使用者數
+localized = 已翻譯
+sentences = 句子
+total-hours = 總時數
+
+## New Contribution
+
+action-click = 點擊
+action-tap = 點選
+contribute = 參與貢獻
+listen = 聆聽
+skip = 略過
+shortcuts = 捷徑
+clips = 片段
+goal-help-recording = 您已幫助 Common Voice 完成 <goalPercentage></goalPercentage> 的每日 { $goalValue } 錄音目標！
+goal-help-validation = 您已幫助 Common Voice 完成 <goalPercentage></goalPercentage> 的每日 { $goalValue } 驗證目標！
+contribute-more = 準備好再作 { $count } 筆了嗎？
+record-cta = 開始錄音
+record-instruction = { $actionType } 按下 <recordIcon></recordIcon> 然後大聲說出句子
+record-stop-instruction = { $actionType } 完成後按下 <stopIcon></stopIcon>
+record-three-more-instruction = 還有三筆！
+record-again-instruction = 好！點擊<recordIcon></recordIcon>錄下下個片段
+record-again-instruction2 = 繼續加油，再錄一筆！<recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon>最後一筆了！
+review-tooltip = 在此確認或重錄片段
+unable-speak = 現在無法說話
+review-instruction = 確認錄音內容，有需要的話可以重錄
+record-submit-tooltip = 準備好即可{ $actionType }送出
+clips-uploaded = 已上傳片段
+record-abort-title = 不先完成錄音嗎？
+record-abort-text = 如果要現在離開，會失去目前的進度
+record-abort-submit = 送出片段
+record-abort-continue = 完成錄音
+record-abort-delete = 結束並刪除片段
+listen-instruction = { $actionType }<playIcon></playIcon> 他們有準確地說出句子嗎？
+listen-again-instruction = 幹得好！<playIcon></playIcon> 準備好就可以再聽一次
+listen-3rd-time-instruction = 完成兩筆了 <playIcon></playIcon>，繼續保持！
+listen-last-time-instruction = <playIcon></playIcon> 最後一筆了！
+nothing-to-validate = 我們沒有這個語言可供驗證的錄音，請幫助我們多錄一些。
+record-button-label = 錄下您的聲音
+share-title-new = <bold>請幫助我們</bold>找到更多聲音

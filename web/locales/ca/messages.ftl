@@ -8,48 +8,92 @@ email-input =
     .label = Adreça electrònica
 submit-form-action = Envia
 loading = S'està carregant…
-audio-loading-error = Estem processant els fitxers d'àudio. Torneu a provar-ho d'aquí una mica.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
-ga-IE = irlandès
-cs = txec
-uz = uzbek
-de = alemany
+an = aragonès
+ar = àrab
+as = assamès
+ast = asturià
+az = àzeri
 bn = bengalí
-sk = eslovac
+br = bretó
+bxr = buriat
 ca = català
+cak = kaqtxikel
+cnh = Hakha Chin
+cs = txec
+cv = txuvaix
+cy = gal·lès
+da = danès
+de = alemany
+dsb = baix sòrab
+el = grec
+en = anglès
+eo = esperanto
+es = espanyol
+et = estonià
+fi = finès
+fo = feroès
+fr = francès
+fy-NL = frisó
+ga-IE = irlandès
+he = hebreu
+hsb = alt sòrab
+hu = hongarès
+ia = interlingua
+id = indonesi
+is = islandès
+it = italià
+ja = japonès
+ka = georgià
+kab = cabilenc
+kk = kazakh
 ko = coreà
-es-CL = espanyol (Xile)
-th = tailandès
+kpv = komi
+kw = còrnic
+ky = kirguís
+mk = macedònic
+myv = mordovià erza
+nb-NO = Bokmål noruec
+ne-NP = nepalès
+nl = neerlandès
+nn-NO = Nynorsk noruec
+or = oriya
 pl = polonès
 pt-BR = portuguès (Brasil)
-id = indonesi
-zh-TW = xinès (Taiwan)
-cy = gal·lès
-el = grec
-cv = txuvaix
+rm = romanx
+ro = romanès
+ru = rus
+sah = iacut
+sk = eslovac
+sl = eslovè
+sq = albanès
+sr = serbi
 sv-SE = suec
-mk = macedònic
-nn-NO = Nynorsk noruec
-fr = francès
+ta = tamil
+te = telugu
+th = tailandès
 tr = turc
 tt = tàtar
-fy-NL = frisó
-he = hebreu
+uk = ucraïnès
+ur = urdú
+uz = uzbek
 zh-CN = xinès (Xina)
-nl = neerlandès
-sq = albanès
-ru = rus
-it = italià
-en = anglès
+zh-HK = xinès (Hong Kong)
+zh-TW = xinès (Taiwan)
+
+# [/]
+
 
 ## Layout
 
-speak = Parleu
+speak = Parla
+speak-now = Parleu ara
 datasets = Conjunts de dades
 languages = Llengües
 profile = Perfil
@@ -60,29 +104,60 @@ terms = Condicions d'ús
 cookies = Galetes
 faq = PMF
 content-license-text = Contingut disponible en els termes de la <licenseLink>llicència Creative Commons</licenseLink>
-share-title = Ajudeu-nos a trobar altres persones que donin la veu!
-share-text = Ajudeu a ensenyar a les màquines com parla la gent real. Doneu la vostra veu a { $link }
+share-title = Ajudeu-nos a trobar més persones que donin la veu!
+share-text = Ensenyeu a les màquines com parlem la gent de debò. Col·laboreu amb la vostra veu a { $link }
+link-copied = S'ha copiat l'enllaç
 back-top = Torna a dalt
+contribution-banner-text = Hem millorat el disseny de la interfície de col·laboració
+contribution-banner-button = Prova-la
+report-bugs-link = Ajudeu a notificar errors
 
 ## Home Page
 
-home-title = El projecte Common Voice és una iniciativa de Mozilla que ajuda a les màquines a aprendre com parlen les persones reals.
-home-cta = Alceu la veu! Contribuïu-hi!
+home-title = El projecte Common Voice és la iniciativa de Mozilla per ajudar les màquines a aprendre com parlem les persones de debò.
+home-cta = Alceu la veu i col·laboreu-hi!
 wall-of-text-start = La veu és natural, la veu és humana. És per això que volem crear tecnologies de veu de qualitat per a les màquines. Però el desenvolupament d'aquests sistemes requereix un gran volum de dades de veu.
 wall-of-text-more-mobile = La majoria de les dades usades per grans companyies no estan disponibles per a tothom. Considerem que això frena la innovació. Per això, hem iniciat el projecte Common Voice, per tal de fer que la tecnologia de reconeixement de la veu estigui oberta a tothom.
-wall-of-text-more-desktop = Ara podeu donar la vostra veu per a ajudar-nos a construir una base de dades de veu amb llicència oberta que qualsevol pot usar per a desenvolupar aplicacions innovadores per als aparells i el web.<lineBreak></lineBreak>Llegiu una frase per a ajudar les màquines a aprendre com parlen les persones reals. Reviseu la feina d'altres col·laboradors per a millorar la qualitat. Així de fàcil!
+wall-of-text-more-desktop = Ara podeu donar la vostra veu per ajudar-nos a construir una base de dades de veu amb llicència oberta que qualsevol pot usar per a desenvolupar aplicacions innovadores per als aparells i el web.<lineBreak></lineBreak>Llegiu una frase per ajudar les màquines a aprendre com parlem les persones de debò. Reviseu la feina d'altres col·laboradors per a millorar la qualitat. Així de fàcil!
 show-wall-of-text = Més informació
 help-us-title = Ajudeu-nos a validar frases!
 help-us-explain = Premeu el botó de reproducció, escolteu i digueu-nos si l'àudio correspon exactament a la frase de sota:
+no-clips-to-validate = Sembla que no hi ha cap tall de veu per revisar en aquesta llengua. Ajudeu-nos a emplenar la cua enregistrant-ne alguns ara.
 vote-yes = Sí
 vote-no = No
+toggle-play-tooltip = Premeu { shortcut-play-toggle } per iniciar i aturar la reproducció
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = o
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = r
+shortcut-play-toggle-label = Reprodueix/atura
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = s
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = e
+shortcut-record-toggle-label = Enregistra/atura
 request-language-text = No trobeu la vostra llengua al Common Voice?
 request-language-button = Sol·licita una llengua
 
 ## ProjectStatus
 
 status-title = Estat general del projecte: veieu fins on hem arribat!
-status-contribute = Col·laboreu amb la vostra veu
+status-contribute = Col·laboreu-hi amb la vostra veu
 status-hours =
     { $hours ->
         [one] Ja s'ha validat { $hours } hora!
@@ -90,8 +165,7 @@ status-hours =
     }
 # Variables:
 # $goal - number of hours representing the next goal
-status-goal = Objectiu següent: { $goal }
-status-more-soon = Aviat hi haurà més llengües disponibles!
+status-goal = Següent objectiu: { $goal }
 english = anglès
 
 ## ProfileForm
@@ -102,7 +176,6 @@ profile-form-username =
     .label = Nom d'usuari
 profile-form-language =
     .label = Llengua
-profile-form-more-languages = Aviat hi haurà més llengües disponibles!
 profile-form-accent =
     .label = Accent
 profile-form-age =
@@ -123,6 +196,8 @@ edit-profile = Edita el perfil
 profile-create = Crea un perfil
 profile-create-success = Fet. S'ha creat el perfil!
 profile-close = Tanca
+profile-clear-modal = Si esborreu les vostres dades del perfil, es deixarà d'enviar aquesta informació demogràfica al Common Voice amb els vostres enregistraments.
+profile-explanation = Un perfil permet fer el seguiment del vostre progrés i ajuda a fer que les dades de veu siguin més precises.
 
 ## FAQ
 
@@ -130,7 +205,7 @@ faq-title = Preguntes més freqüents
 faq-what-q = Què és Common Voice?
 faq-what-a = La tecnologia de reconeixement de la veu podria revolucionar com interactuem amb les màquines, però els sistemes disponibles actualment són cars i privatius. El Common Voice és un projecte per a fer fàcilment accessible la tecnologia de reconeixement de la veu a tothom. Les persones donen la seva veu a una base de dades massiva que permetrà a qualsevol entrenar aplicacions amb funcions de veu de forma ràpida i fàcil. Totes les dades de veu seran disponibles als desenvolupadors.
 faq-important-q = Per què és important?
-faq-important-a = La veu és natural, la veu és humana. Es la forma més fàcil i més natural de comunicar-se. Volem que els desenvolupadors puguin crear projectes fantàstics: des de traductors en temps real fins a assistents administratius. Però ara mateix no hi ha prou dades disponibles públicament per crear aquests tipus d'aplicacions. Esperem que el Common Voice oferirà als desenvolupadors allò que necessiten per innovar.
+faq-important-a = La veu és natural, la veu és humana. És la forma més fàcil i més natural de comunicar-se. Volem que els desenvolupadors puguin crear projectes fantàstics: des de traductors en temps real fins a assistents administratius. Però ara mateix no hi ha prou dades disponibles públicament per crear aquests tipus d'aplicacions. Esperem que el Common Voice oferirà als desenvolupadors allò que necessiten per innovar.
 faq-get-q = Com puc obtenir les dades de Common Voice?
 faq-get-a = El conjunt de dades està disponible en la <downloadLink>pàgina de baixada</downloadLink> amb llicència <licenseLink>CC-0</licenseLink>.
 faq-mission-q = Per què Common Voice és part de la missió de Mozilla?
@@ -139,7 +214,7 @@ faq-native-q = Sóc un parlant no natiu de { $lang } i parlo amb accent. Tot i a
 faq-native-a = Sí, volem la vostra veu! Part de l'objectiu del Common Voice és recollir tants accents diferents com sigui possible, de manera que els ordinadors puguin entendre millor <bold>tothom</bold> quan parli.
 faq-firefox-q = Amb el Common Voice, algun dia la funcionalitat de veu a text s'integrarà en el Firefox?
 faq-firefox-a = El Common Voice té un potencial il·limitat i, de fet, estem estudiant l'ús d'interfícies de veu en molts dels productes de Mozilla, inclòs el Firefox.
-faq-quality-q = Quin nivell de qualitat d'àudio és necessari per a que sigui útil?
+faq-quality-q = Quin nivell de qualitat d'àudio és necessari per tal que sigui útil?
 faq-quality-a = Volem que la qualitat d'àudio reflecteixi la qualitat d'àudio que un motor de veu a text veurà en el món real. Per tant, volem varietat. Així, el motor de veu a text aprendrà a gestionar sense errors tot tipus de situacions (amb gent parlant al fons, soroll de cotxes o del ventilador, etc.).
 faq-hours-q = Per què l'objectiu és enregistrar 10.000 hores d'àudio?
 faq-hours-a = Aquest és, aproximadament, el nombre d'hores necessari per a entrenar un sistema de reconeixement de la veu en producció.
@@ -176,7 +251,7 @@ data-other-ted-description = El corpus de TED-LIUM es va crear a partir d'enregi
 data-other-voxforge-description = VoxForge es va crear per recollir transcripcions de diàlegs que es puguin utilitzar en motors de reconeixement de la veu de codi obert.
 data-other-tatoeba-description = Tatoeba és una gran base de dades de frases, traduccions i enregistraments d'àudio per a l'ús en l'aprenentatge de llengües. Aquesta baixada conté tots els enregistraments d'anglès parlat fets per la comunitat.
 data-bundle-button = Baixa el paquet del conjunt de dades
-data-bundle-description = Dades del Common Voice més tot els conjunts de dades de veu anteriors.
+data-bundle-description = Dades del Common Voice més tots els conjunts de dades de veu anteriors.
 license = Llicència: <licenseLink>{ $license }</licenseLink>
 license-mixed = Mixta
 
@@ -186,8 +261,8 @@ record-platform-not-supported = Malauradament, la vostra plataforma no és compa
 record-platform-not-supported-desktop = En ordinadors d'escriptori, podeu baixar l'últim:
 record-platform-not-supported-ios = Els usuaris de l'<bold>iOS</bold> poden baixar la nostra aplicació gratuïta:
 record-must-allow-microphone = Cal que permeteu l'accés al micròfon.
-record-cancel = Cancel·la el reenregistrament
 record-retry = Reintenta
+record-no-mic-found = No s'ha trobat cap micròfon.
 record-error-too-short = L'enregistrament és massa curt.
 record-error-too-long = L'enregistrament és massa llarg.
 record-error-too-quiet = El volum de l'enregistrament és massa baix.
@@ -198,7 +273,7 @@ review-terms = En usar Common Voice, accepteu les <termsLink>condicions d'ús</t
 terms-agree = D'acord
 terms-disagree = No hi estic d'acord
 review-aborted = S'ha cancel·lat l'enviament. Voleu suprimir els vostres enregistraments?
-review-submit-title = Revisa i envia
+review-submit-title = Reviseu i envieu-ho
 review-submit-msg = Gràcies pel vostre enregistrament!<lineBreak></lineBreak>A continuació podeu revisar i enviar els vostres talls de veu.
 review-recording = Revisa
 review-rerecord = Torna a enregistrar
@@ -219,7 +294,6 @@ download-no = No, gràcies
 ## Contact Modal
 
 contact-title = Formulari de contacte
-contact-cancel = Cancel·la
 contact-form-name =
     .label = Nom
 contact-form-message =
@@ -229,7 +303,6 @@ contact-required = * necessari
 ## Request Language Modal
 
 request-language-title = Sol·licitud de llengua
-request-language-cancel = Surt del formulari
 request-language-form-language =
     .label = Llengua
 request-language-success-title = La sol·licitud de llengua s'ha enviat correctament, gràcies.
@@ -238,8 +311,58 @@ request-language-success-content = Aviat ens posarem en contacte amb més inform
 ## Languages Overview
 
 language-section-in-progress = En curs
-language-section-launched = Publicats
-languages-show-more = Més informació
-languages-show-less = Menys informació
-language-speakers = Parlants
+language-section-in-progress-description = Les llengües en curs s'estan preparant per rebre contribucions de la comunitat. El seu progrés reflecteix l'estat en què es troben pel que fa a la traducció del lloc web i a la recol·lecció de frases.
+language-section-launched = En producció
+language-section-launched-description = Les llengües en producció tenen el lloc web totalment traduït i s'han reunit prou frases per permetre les col·laboracions (<italic>{ speak }</italic> i <italic>{ listen }</italic>).
+languages-show-more = Mostra'n més
+languages-show-less = Mostra'n menys
+language-speakers = Locutors
+language-meter-in-progress = Progrés
 language-total-progress = Total
+language-search-input =
+    .placeholder = Cerca
+language-speakers = Locutors
+localized = Traducció
+sentences = Frases
+total-hours = Hores
+
+## New Contribution
+
+action-click = Feu clic a
+action-tap = Toqueu
+contribute = Col·laboreu‑hi
+listen = Escolta
+skip = Omet
+shortcuts = Dreceres
+clips = talls
+goal-help-recording = Heu ajudat el Common Voice a assolir el <goalPercentage></goalPercentage> de l'objectiu diari de { $goalValue } enregistraments!
+goal-help-validation = Heu ajudat el Common Voice a assolir el <goalPercentage></goalPercentage> de l'objectiu diari de { $goalValue } validacions!
+contribute-more =
+    { $count ->
+        [one] Preparat per fer-ne { $count } més?
+       *[other] Preparat per fer-ne { $count } més?
+    }
+record-cta = Enregistreu
+record-instruction = { $actionType } <recordIcon></recordIcon>i llegiu la frase en veu alta
+record-stop-instruction = { $actionType } <stopIcon></stopIcon> quan hàgiu acabat
+record-three-more-instruction = Només en falten tres!
+record-again-instruction = Molt bé! <recordIcon></recordIcon> Enregistreu un altre tall
+record-again-instruction2 = Seguiu així! Enregistreu-ne un altre <recordIcon></recordIcon>
+record-last-instruction = <checkIcon></checkIcon> L'últim!
+review-tooltip = Reviseu i torneu a enregistrar talls des d'aquí mateix
+unable-speak = No podeu parlar, ara?
+review-instruction = Reviseu els talls i, si cal, torneu-los a enregistrar
+record-submit-tooltip = { $actionType } Envia quan hàgiu enllestit
+clips-uploaded = Talls pujats
+record-abort-title = Voleu acabar l'enregistrament primer?
+record-abort-text = Si sortiu ara, perdreu el vostre progrés
+record-abort-submit = Envia els talls
+record-abort-continue = Finalitza l'enregistrament
+record-abort-delete = Surt i suprimeix els talls
+listen-instruction = { $actionType } <playIcon></playIcon> Han pronunciat la frase correctament?
+listen-again-instruction = Bona feina! <playIcon></playIcon> Escolteu una altra vegada quan estigueu a punt
+listen-3rd-time-instruction = 2 menys! Mantingueu el ritme! <playIcon></playIcon>
+listen-last-time-instruction = <playIcon></playIcon> L'últim!
+nothing-to-validate = No hi ha res per validar en aquesta llengua. Ajudeu-nos a enregistrar-ne més per omplir la cua.
+record-button-label = Enregistreu la vostra veu
+share-title-new = <bold>Ajudeu-nos</bold> a trobar més veus

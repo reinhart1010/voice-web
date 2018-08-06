@@ -8,60 +8,92 @@ email-input =
     .label = E-mailadres
 submit-form-action = Indienen
 loading = Laden…
-audio-loading-error = Sorry! We verwerken onze audiobestanden, probeer het binnenkort nog eens.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragonees
+ar = Arabisch
+as = Assamees
+ast = Asturisch
+az = Azeri
 bn = Bengaals
+br = Bretons
+bxr = Boerjatisch
 ca = Catalaans
+cak = Kaqchikel
+cnh = Hakha Chin
 cs = Tsjechisch
 cv = Chuvash
 cy = Welsh
 da = Deens
 de = Duits
+dsb = Nedersorbisch
 el = Grieks
 en = Engels
+eo = Esperanto
 es = Spaans
-es-AR = Spaans (Argentinië)
-es-CL = Spaans (Chili)
+et = Estisch
+fi = Fins
+fo = Faeröers
 fr = Frans
 fy-NL = Fries
 ga-IE = Iers
 he = Hebreeuws
+hsb = Oppersorbisch
 hu = Hongaars
+ia = Interlingua
 id = Indonesisch
+is = IJslands
 it = Italiaans
+ja = Japans
 ka = Georgisch
+kab = Kabylisch
+kk = Kazachs
 ko = Koreaans
+kpv = Zurjeens
 kw = Cornish
+ky = Kirgizisch
 mk = Macedonisch
+myv = Erzja
 nb-NO = Noors Bokmål
+ne-NP = Nepalees
 nl = Nederlands
 nn-NO = Noors Nynorsk
 or = Odia
 pl = Pools
 pt-BR = Portugees (Brazilië)
+rm = Romaans
 ro = Roemeens
 ru = Russisch
+sah = Jakoets
 sk = Slowaaks
+sl = Sloveens
 sq = Albanees
+sr = Servisch
 sv-SE = Zweeds
 ta = Tamil
 te = Telugu
-th = Thais
+th = Thai
 tr = Turks
 tt = Tataars
 uk = Oekraïens
+ur = Urdu
 uz = Oezbeeks
 zh-CN = Chinees (China)
+zh-HK = Chinees (Hongkong)
 zh-TW = Chinees (Taiwan)
+
+# [/]
+
 
 ## Layout
 
 speak = Spreken
+speak-now = Nu spreken
 datasets = Gegevenssets
 languages = Talen
 profile = Profiel
@@ -74,7 +106,11 @@ faq = FAQ
 content-license-text = Inhoud is beschikbaar onder een <licenseLink>Creative Commons-licentie</licenseLink>
 share-title = Help ons anderen te vinden die hun stem willen doneren!
 share-text = Help machines te leren hoe echte mensen spreken, doneer uw stem op { $link }
+link-copied = Koppeling gekopieerd
 back-top = Naar boven
+contribution-banner-text = We hebben onlangs een nieuwe manier om bij te dragen gelanceerd
+contribution-banner-button = Een kijkje nemen
+report-bugs-link = Help bij het melden van bugs
 
 ## Home Page
 
@@ -86,8 +122,35 @@ wall-of-text-more-desktop = U kunt nu uw stem doneren om ons te helpen een opens
 show-wall-of-text = Meer lezen
 help-us-title = Help ons zinnen te valideren!
 help-us-explain = Klik op de afspeelknop, luister en vertel ons: wordt de onderstaande zin juist uitgesproken?
+no-clips-to-validate = Het lijkt erop dat er in deze taal geen te beluisteren fragmenten zijn. Help de rij te vullen door er nu een paar op te nemen.
 vote-yes = Ja
 vote-no = Nee
+toggle-play-tooltip = Druk op { shortcut-play-toggle } om de afspeelmodus in/uit te schakelen
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = s
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = p
+shortcut-play-toggle-label = Afspelen/Stoppen
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = J
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = N
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = O
+shortcut-record-toggle-label = Opnemen/Stoppen
 request-language-text = Ziet u uw taal nog niet op Common Voice?
 request-language-button = Een taal aanvragen
 
@@ -113,7 +176,6 @@ profile-form-username =
     .label = Gebruikersnaam
 profile-form-language =
     .label = Taal
-profile-form-more-languages = Meer talen volgen binnenkort!
 profile-form-accent =
     .label = Accent
 profile-form-age =
@@ -134,7 +196,8 @@ edit-profile = Profiel bewerken
 profile-create = Een profiel aanmaken
 profile-create-success = Gelukt, profiel aangemaakt!
 profile-close = Sluiten
-profile-clear-modal = Het wissen van uw profielgegevens betekent dat deze demografische gegevens niet meer samen met uw clipopnamen bij Common Voice worden ingediend.
+profile-clear-modal = Het wissen van uw profielgegevens betekent dat deze demografische gegevens niet meer samen met uw fragmentopnamen bij Common Voice worden ingediend.
+profile-explanation = Houd uw voortgang bij met een profiel en help onze stemgegevens nauwkeuriger te zijn.
 
 ## FAQ
 
@@ -154,7 +217,7 @@ faq-firefox-a = Common Voice heeft een onbegrensd potentieel, en we verkennen in
 faq-quality-q = Wat is het benodigde kwaliteitsniveau voor audio voor bruikbaarheid?
 faq-quality-a = We willen dat de geluidskwaliteit een weergave is van de kwaliteit zoals die straks in het echt zal worden bereikt. Daarom willen we variatie. Dit leert de spraak-naar-tekst-engine om foutloos om te gaan met diverse situaties - spraak op de achtergrond, autogeluiden, ventilatiegeluiden.
 faq-hours-q = Waarom is 10.000 uur het doel voor geluidsopnamen?
-faq-hours-a = Dit is bij benadering het aantal benodigde uren om een operationeel spraak-naar-tekst-systeem te trainen.
+faq-hours-a = Dit is ongeveer het aantal benodigde uren om een operationeel spraak-naar-tekst-systeem te trainen.
 faq-source-q = Waar komt de brontekst vandaan?
 faq-source-a1 = De huidige zinnen komen van medewerkersdonaties, alsmede van dialogen uit openbare filmscripts zoals <italic>It’s a Wonderful Life.</italic>
 faq-source-a2 = U kunt onze bronzinnen bekijken in <dataLink>deze GitHub-map</dataLink>.
@@ -182,7 +245,7 @@ data-get-started = <speechBlogLink>Beginnen met spraakherkenning</speechBlogLink
 data-other-title = Andere stemgegevenssets…
 data-other-goto = Naar { $name }
 data-other-download = Gegevens downloaden
-data-other-librispeech-description = LibriSpeech is een pakket met bij benadering 1000 uur aan 16 kHz gesproken Engels, afgeleid van opgelezen audioboeken uit het LibriVox-project.
+data-other-librispeech-description = LibriSpeech is een pakket met circa 1000 uur aan 16 kHz gesproken Engels, afgeleid van opgelezen audioboeken uit het LibriVox-project.
 data-other-ted-name = TED-LIUM-corpus
 data-other-ted-description = Het TED-LIUM-corpus is samengesteld uit audiotoespraken en hun transcripties, zoals beschikbaar op de TED-website.
 data-other-voxforge-description = VoxForge is opgezet om spraaktranscripties te verzamelen voor gebruik met gratis en opensource-spraakherkenningsengines.
@@ -198,20 +261,20 @@ record-platform-not-supported = Sorry, maar uw platform wordt nog niet ondersteu
 record-platform-not-supported-desktop = Op desktopcomputers kunt u de meest recente downloaden:
 record-platform-not-supported-ios = <bold>iOS</bold>-gebruikers kunnen onze gratis app downloaden:
 record-must-allow-microphone = U dient toegang tot uw microfoon te geven.
-record-cancel = Nieuwe opname annuleren
 record-retry = Opnieuw proberen
+record-no-mic-found = Geen microfoon gevonden.
 record-error-too-short = De opname was te kort.
 record-error-too-long = De opname was te lang.
 record-error-too-quiet = De opname was te zacht.
 record-submit-success = Indienen gelukt! Wilt u nog iets opnemen?
-record-help = Tik of klik om op te nemen, en lees bovenstaande zin hardop.
+record-help = Tik of klik om op te nemen, en lees de bovenstaande zin hardop.
 record-cancel = Nieuwe opname annuleren
 review-terms = Door gebruik te maken van Common Voice, gaat u akkoord met onze <termsLink>Voorwaarden</termsLink> en <privacyLink>Privacyverklaring</privacyLink>
 terms-agree = Ik ga akkoord
 terms-disagree = Ik ga niet akkoord
 review-aborted = Upload afgebroken. Wilt u uw opnamen verwijderen?
 review-submit-title = Beoordelen en indienen
-review-submit-msg = Bedankt voor uw opname!<lineBreak></lineBreak>Beoordeel nu hieronder uw opnamen en dien ze in.
+review-submit-msg = Bedankt voor uw opname!<lineBreak></lineBreak>Beoordeel nu hieronder uw fragmenten en dien ze in.
 review-recording = Beoordelen
 review-rerecord = Opnieuw opnemen
 review-cancel = Inzending annuleren
@@ -231,8 +294,6 @@ download-no = Nee, bedankt
 ## Contact Modal
 
 contact-title = Contactformulier
-contact-cancel = Annuleren
-    .label = E-mailadres
 contact-form-name =
     .label = Naam
 contact-form-message =
@@ -242,7 +303,6 @@ contact-required = *vereist
 ## Request Language Modal
 
 request-language-title = Taalaanvraag
-request-language-cancel = Formulier afsluiten
 request-language-form-language =
     .label = Taal
 request-language-success-title = Taalaanvraag met succes ingediend, bedankt.
@@ -251,8 +311,54 @@ request-language-success-content = We nemen binnenkort contact op met meer infor
 ## Languages Overview
 
 language-section-in-progress = In uitvoering
+language-section-in-progress-description = Talen in uitvoering worden momenteel opgezet voor bijdragen vanuit onze gemeenschappen; de voortgang geeft weer hoe ver ze zijn met de websitevertaling en fasen van zinnenverzameling.
 language-section-launched = Beschikbaar
+language-section-launched-description = Voor deze gelanceerde talen is de website met succes vertaald, en zijn er voldoende zinnen verzameld voor doorlopende bijdragen aan het <italic>{ speak }</italic> en <italic>{ listen }</italic>.
 languages-show-more = Meer zien
 languages-show-less = Minder zien
 language-speakers = Sprekers
+language-meter-in-progress = Voortgang
 language-total-progress = Totaal
+language-search-input =
+    .placeholder = Zoeken
+language-speakers = Sprekers
+localized = Vertaald
+sentences = Zinnen
+total-hours = Uren totaal
+
+## New Contribution
+
+action-click = Klik op
+action-tap = Tik op
+contribute = Bijdragen
+listen = Luisteren
+skip = Overslaan
+shortcuts = Sneltoetsen
+clips = Fragmenten
+goal-help-recording = U hebt Common Voice geholpen <goalPercentage></goalPercentage> van het dagelijkse doel van { $goalValue } opnamen te bereiken!
+goal-help-validation = U hebt Common Voice geholpen <goalPercentage></goalPercentage> van het dagelijkse doel van { $goalValue } validaties te bereiken!
+contribute-more = Klaar om er nog { $count } te doen?
+record-cta = Opname starten
+record-instruction = { $actionType } <recordIcon></recordIcon> en lees de zin vervolgens hardop
+record-stop-instruction = { $actionType } <stopIcon></stopIcon> wanneer gereed
+record-three-more-instruction = Nog drie te gaan!
+record-again-instruction = Geweldig! <recordIcon></recordIcon> Neem uw volgende fragment op
+record-again-instruction2 = Ga zo door, neem nog een keer op <recordIcon></recordIcon>
+record-last-instruction = <checkIcon></checkIcon> De laatste!
+review-tooltip = Beoordeel en neem nogmaals fragmenten op als u wilt
+unable-speak = Kunt u nu niet spreken?
+review-instruction = Beoordeel fragmenten en neem ze zo nodig opnieuw op
+record-submit-tooltip = { $actionType } Indienen wanneer gereed
+clips-uploaded = Fragmenten geüpload
+record-abort-title = Opname eerst voltooien?
+record-abort-text = Door nu af te sluiten, verliest u uw voortgang
+record-abort-submit = Fragmenten indienen
+record-abort-continue = Opname voltooien
+record-abort-delete = Afsluiten en fragmenten verwijderen
+listen-instruction = { $actionType } <playIcon></playIcon> - is de zin duidelijk uitgesproken?
+listen-again-instruction = Goed werk! <playIcon></playIcon> Luister opnieuw wanneer u klaar bent
+listen-3rd-time-instruction = 2 gedaan, ga zo door! <playIcon></playIcon>
+listen-last-time-instruction = <playIcon></playIcon> De laatste!
+nothing-to-validate = Er is niets in deze taal te valideren; help ons de rij te vullen.
+record-button-label = Uw stem opnemen
+share-title-new = <bold>Help ons</bold> meer stemmen te vinden

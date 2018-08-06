@@ -13,8 +13,6 @@ const Transcoder = require('stream-transcoder');
 
 const SALT = '8hd3e8sddFSdfj';
 
-const AVG_CLIP_SECONDS = 4.7; // I queried 40 recordings from prod and avg'd them
-
 export const hash = (str: string) =>
   crypto
     .createHmac('sha256', SALT)
@@ -36,12 +34,14 @@ export default class Clip {
   }
 
   getRouter() {
-    const router = PromiseRouter();
+    const router = PromiseRouter({ mergeParams: true });
 
     router.post('/:clipId/votes', this.saveClipVote);
     router.post('*', this.saveClip);
 
     router.get('/validated_hours', this.serveValidatedHoursCount);
+    router.get('/daily_count', this.serveDailyCount);
+    router.get('/votes/daily_count', this.serveDailyVotesCount);
     router.get('*', this.serveRandomClips);
 
     return router;
@@ -83,9 +83,9 @@ export default class Clip {
    * Save the request body as an audio file.
    */
   saveClip = async (request: Request, response: Response) => {
-    const info = request.headers;
-    const uid = info.uid as string;
-    const sentence = decodeURI(info.sentence as string);
+    const { headers, params } = request;
+    const uid = headers.uid as string;
+    const sentence = decodeURIComponent(headers.sentence as string);
 
     if (!uid || !sentence) {
       throw new ClientParameterError();
@@ -104,7 +104,7 @@ export default class Clip {
 
     // If upload was base64, make sure we decode it first.
     let transcoder;
-    if ((info['content-type'] as string).includes('base64')) {
+    if ((headers['content-type'] as string).includes('base64')) {
       // If we were given base64, we'll need to concat it all first
       // So we can decode it in the next step.
       const chunks: Buffer[] = [];
@@ -147,44 +147,45 @@ export default class Clip {
 
     await this.model.saveClip({
       client_id: uid,
+      locale: params.locale,
       original_sentence_id: filePrefix,
       path: clipFileName,
       sentence,
+      sentenceId: headers.sentence_id,
     });
 
     response.json(filePrefix);
   };
 
   serveRandomClips = async (
-    request: Request,
+    { headers, params, query }: Request,
     response: Response
   ): Promise<void> => {
-    const uid = request.headers.uid as string;
+    const uid = headers.uid as string;
     if (!uid) {
       throw new ClientParameterError();
     }
 
     const clips = await this.bucket.getRandomClips(
       uid,
-      parseInt(request.query.count, 10) || 1
+      params.locale,
+      parseInt(query.count, 10) || 1
     );
     response.json(clips);
   };
 
-  private validatedHours: number;
-  private lastValidatedHoursCheck: Date;
   serveValidatedHoursCount = async (request: Request, response: Response) => {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    if (
-      !this.lastValidatedHoursCheck ||
-      this.lastValidatedHoursCheck < yesterday
-    ) {
-      this.validatedHours = Math.round(
-        (await this.model.db.getValidatedClipsCount()) * AVG_CLIP_SECONDS / 3600
-      );
-      this.lastValidatedHoursCheck = new Date();
-    }
-    response.json(this.validatedHours);
+    response.json(await this.model.getValidatedHours());
+  };
+
+  private serveDailyCount = async (request: Request, response: Response) => {
+    response.json(await this.model.db.getDailyClipsCount());
+  };
+
+  private serveDailyVotesCount = async (
+    request: Request,
+    response: Response
+  ) => {
+    response.json(await this.model.db.getDailyVotesCount());
   };
 }

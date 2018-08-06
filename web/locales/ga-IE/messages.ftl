@@ -8,37 +8,55 @@ email-input =
     .label = Ríomhphost
 submit-form-action = Seol
 loading = Á lódáil...
-audio-loading-error = Ár leithscéal! Táimid ag próiseáil ár gcuid comhad fuaime. Bain triail eile as ar ball.
 
 # Don't rename the following section, its contents are auto-inserted based on the name (see scripts/pontoon-languages-to-ftl.js)
+# [Languages]
 
 
 ## Languages
 
+an = Aragóinis
+ar = Araibis
+as = Asaimis
+ast = Astúiris
+az = Asarbaiseáinis
 bn = Beangáilis
+br = Briotáinis
 ca = Catalóinis
 cs = Seicis
 cv = Suvaisis
 cy = Breatnais
 da = Danmhairgis
 de = Gearmáinis
+dsb = Sorbais Íochtarach
 el = Gréigis
 en = Béarla
 es = Spáinnis
-es-AR = Spáinnis (An Airgintín)
-es-CL = Spáinnis (An tSile)
+et = Eastóinis
+fi = Fionlainnis
+fo = Faróis
 fr = Fraincis
 fy-NL = Freaslannais
 ga-IE = Gaeilge
 he = Eabhrais
+hsb = Sorbais Uachtarach
 hu = Ungáiris
+ia = Interlingua
 id = Indinéisis
+is = Íoslainnis
 it = Iodáilis
+ja = Seapáinis
 ka = Seoirsis
+kab = Ceabáilis
+kk = Casaicis
 ko = Cóiréis
+kpv = Coimis
 kw = Coirnis
+ky = Cirgisis
 mk = Macadóinis
+myv = Éarsais
 nb-NO = Ioruais Bokmål
+ne-NP = Neipeailis
 nl = Ollainnis
 nn-NO = Ioruais Nynorsk
 or = Oirísis
@@ -46,21 +64,30 @@ pl = Polainnis
 pt-BR = Portaingéilis (An Bhrasaíl)
 ro = Rómáinis
 ru = Rúisis
+sah = Sachais
 sk = Slóvaicis
+sl = Slóivéinis
 sq = Albáinis
+sr = Seirbis
 sv-SE = Sualainnis
 ta = Tamailis
+te = Teileagúis
 th = Téalainnis
 tr = Tuircis
 tt = Tatairis
 uk = Úcráinis
 uz = Úisbéicis
 zh-CN = Sínis (An tSín)
+zh-HK = Sínis (Hong Cong)
 zh-TW = Sínis (An Téaváin)
+
+# [/]
+
 
 ## Layout
 
 speak = Abair
+speak-now = Abair leat anois
 datasets = Tacair sonraí
 languages = Teangacha
 profile = Próifíl
@@ -85,8 +112,35 @@ wall-of-text-more-desktop = Anois is féidir leat do ghuth a bhronnadh dúinn ch
 show-wall-of-text = Tuilleadh Eolais
 help-us-title = Cabhraigh linn abairtí a dheimhniú!
 help-us-explain = Cliceáil an tsaighead, éist, agus abair linn: an bhfuil an taifeadadh cruinn?
+no-clips-to-validate = Is cosúil nach bhfuil aon taifeadtaí sa teanga seo fós. Cabhraigh linn an ciú a líonadh trí chúpla taifead a dhéanamh anois.
 vote-yes = Tá
 vote-no = Níl
+toggle-play-tooltip = Brúigh { shortcut-play-toggle } chun an mód seinnte a athrú
+
+## Speak & Listen Shortcuts
+
+# Must be one letter that appears in the translated { skip } string.
+shortcut-skip = a
+
+## Listen Shortcuts
+
+# Must be one letter that appears in the translated play-string inside of { shortcut-play-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-play-toggle = s
+shortcut-play-toggle-label = Seinn/Stop
+# Must be one letter that appears in the { vote-yes } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-no } and { shortcut-play-toggle }
+shortcut-vote-yes = t
+# Must be one letter that appears in the { vote-no } string.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-play-toggle }
+shortcut-vote-no = n
+
+## Speak Shortcuts
+
+# Must be one letter that appears in the translated record-string inside of { shortcut-record-toggle-label }.
+# Must be different from { shortcut-skip }, { shortcut-vote-yes } and { shortcut-vote-no }
+shortcut-record-toggle = f
+shortcut-record-toggle-label = Taifead/Stop
 request-language-text = Cá bhfuil mo theangasa?
 request-language-button = Iarr Teanga Nua
 
@@ -115,7 +169,6 @@ profile-form-username =
     .label = Ainm Úsáideora
 profile-form-language =
     .label = Teanga
-profile-form-more-languages = Tuilleadh teangacha le teacht!
 profile-form-accent =
     .label = Blas
 profile-form-age =
@@ -136,6 +189,8 @@ edit-profile = Cuir mo Phróifíl in Eagar
 profile-create = Cruthaigh próifíl
 profile-create-success = Cruthaíodh do phróifíl!
 profile-close = Dún
+profile-clear-modal = Má ghlanann tú do phróifíl, ní sheolfar an fhaisnéis dhéimeagrafach seo chuig Common Voice in éindí le do chuid taifeadtaí.
+profile-explanation = Cruthaigh próifíl chun do chuid oibre a leanúint agus chun cabhrú linn cruinneas na sonraí gutha a fheabhsú.
 
 ## FAQ
 
@@ -199,19 +254,19 @@ record-platform-not-supported = Ár leithscéal, ach ní thacaímid leis an ard�
 record-platform-not-supported-desktop = Ar ríomhaire, is féidir leat na leaganacha is déanaí a íoslódáil:
 record-platform-not-supported-ios = Is féidir le daoine ar <bold>iOS</bold> aip saor in aisce a íoslódáil:
 record-must-allow-microphone = Caithfidh tú cead a thabhairt dúinn an micreafón a úsáid.
-record-cancel = Cealaigh an t-ataifeadadh
 record-retry = Bain triail eile as
+record-no-mic-found = Níor aimsíodh micreafón.
 record-error-too-short = Bhí an taifeadadh róghearr.
 record-error-too-long = Bhí an taifeadadh rófhada.
 record-error-too-quiet = Bhí an taifeadadh róchiúin.
-record-submit-success = D'éirigh leis! An bhfuil fonn ort ceann amháin eile a thaifeadadh?
+record-submit-success = D'éirigh leis! An bhfuil fonn ort cúpla ceann eile a thaifeadadh?
 record-help = Tapáil leis an taifeadadh a thosú, ansin léigh an abairt thuas os ard.
 record-cancel = Cealaigh an t-ataifeadadh
 review-terms = Má úsáideann tú Common Voice, glacann tú leis na <termsLink>Téarmaí</termsLink> agus leis an <privacyLink>bhFógra Príobháideachais</privacyLink>
 terms-agree = Aontaím
 terms-disagree = Ní aontaím
-review-aborted = Stopadh an uaslódáil. An bhfuil fonn ort na taifeadtaí a scriosadh?
-review-submit-title = Athbhreithnigh agus Seol
+review-aborted = Cealaíodh an uaslódáil. An bhfuil fonn ort na taifeadtaí a scriosadh?
+review-submit-title = Athbhreithniú agus Seoladh
 review-submit-msg = Go raibh maith agat!<lineBreak></lineBreak>Anois, déan athbhreithniú ar na taifeadtaí a rinne tú, ansin seol chugainn iad.
 review-recording = Athbhreithnigh
 review-rerecord = Ataifead
@@ -232,7 +287,6 @@ download-no = Níl, GRMA
 ## Contact Modal
 
 contact-title = Foirm Teagmhála
-contact-cancel = Cealaigh
 contact-form-name =
     .label = Ainm
 contact-form-message =
@@ -242,7 +296,6 @@ contact-required = *riachtanach
 ## Request Language Modal
 
 request-language-title = Iarratas ar Theanga Nua
-request-language-cancel = Fág an Fhoirm
 request-language-form-language =
     .label = Teanga
 request-language-success-title = Fuaireamar an t-iarratas, go raibh maith agat.
@@ -255,4 +308,54 @@ language-section-launched = Seolta
 languages-show-more = Níos Mó
 languages-show-less = Níos Lú
 language-speakers = Cainteoirí
+language-meter-in-progress = Dul Chun Cinn
 language-total-progress = Iomlán
+language-search-input =
+    .placeholder = Cuardaigh
+
+## New Contribution
+
+action-click = Cliceáil
+action-tap = Tapáil
+contribute = Rannpháirtíocht
+listen = Éist
+skip = Ar Aghaidh
+shortcuts = Aicearraí
+clips = Gearrthóga
+contribute-more =
+    { $count ->
+        [one] An bhfuil tú réidh ceann amháin eile a dhéanamh?
+        [two] An bhfuil tú réidh { $count } cheann eile a dhéanamh?
+        [few] An bhfuil tú réidh { $count } cinn eile a dhéanamh?
+        [many] An bhfuil tú réidh { $count } gcinn eile a dhéanamh?
+       *[other] An bhfuil tú réidh { $count } ceann eile a dhéanamh?
+    }
+record-cta = Tosaigh ag taifeadadh
+record-instruction = { $actionType } <recordIcon></recordIcon>ansin léigh an abairt os ard
+record-stop-instruction = { $actionType } <stopIcon></stopIcon> nuair a bheidh tú críochnaithe
+record-three-more-instruction = Trí cinn fágtha!
+record-again-instruction = Iontach! <recordIcon></recordIcon> Taifead abairt eile
+record-again-instruction2 = Lean ort, déan taifead eile <recordIcon></recordIcon>
+record-last-instruction = <recordIcon></recordIcon> An ceann deireanach!
+review-tooltip = Athbhreithnigh agus ataifead gearrthóga anseo
+unable-speak = Níl tú in ann labhairt anois?
+review-instruction = Athbhreithnigh agus ataifead más gá
+record-submit-tooltip = { $actionType } Seol nuair a bheidh tú réidh
+clips-submitted =
+    { $count ->
+        [one] Gearrthóg amháin seolta
+        [two] { $count } ghearrthóg seolta
+        [few] { $count } ghearrthóg seolta
+        [many] { $count } ngearrthóg seolta
+       *[other] { $count } gearrthóg seolta
+    }
+record-abort-title = An bhfuil fonn ort na taifeadtaí a chríochnú ar dtús?
+record-abort-text = Má fhágann tú anois, caillfidh tú aon dul chun cinn a rinne tú
+record-abort-submit = Seol gearrthóga
+record-abort-continue = Críochnaigh
+record-abort-delete = Scoir agus scrios na gearrthóga
+listen-instruction = { $actionType } <playIcon></playIcon> — an bhfuil an taifeadadh cruinn?
+listen-again-instruction = Maith thú! <playIcon></playIcon> Éist le ceann eile nuair a bheidh tú réidh
+listen-3rd-time-instruction = Sin dhá cheann, lean ort! <playIcon></playIcon>
+listen-last-time-instruction = <playIcon></playIcon> An ceann deireanach!
+share-title-new = <bold>Cabhraigh linn</bold> tuilleadh guthanna a fháil

@@ -24,35 +24,41 @@ export default class Bucket {
     return this.s3.getSignedUrl('getObject', {
       Bucket: getConfig().BUCKET_NAME,
       Key: key,
+      Expires: 24 * 60 * 30,
     });
   }
 
   /**
    * Grab metadata to play clip on the front end.
    */
-  async getRandomClips(uid: string, count: number): Promise<any[]> {
-    const clips = await this.model.findEligibleClips(uid, count);
-    if (clips.length == 0) {
-      throw new ServerError('Could not find any eligible clips for this user');
+  async getRandomClips(
+    uid: string,
+    locale: string,
+    count: number
+  ): Promise<{ id: number; glob: string; text: string; sound: string }[]> {
+    const clips = await this.model.findEligibleClips(uid, locale, count);
+    try {
+      return await Promise.all(
+        clips.map(async ({ id, path, sentence }) => {
+          // We get a 400 from the signed URL without this request
+          await this.s3
+            .headObject({
+              Bucket: getConfig().BUCKET_NAME,
+              Key: path,
+            })
+            .promise();
+
+          return {
+            id,
+            glob: path.replace('.mp3', ''),
+            text: sentence,
+            sound: this.getPublicUrl(path),
+          };
+        })
+      );
+    } catch (e) {
+      console.log('aws error', e, e.stack);
+      return [];
     }
-
-    return Promise.all(
-      clips.map(async ({ id, path, sentence }) => {
-        // We get a 400 from the signed URL without this request
-        await this.s3
-          .headObject({
-            Bucket: getConfig().BUCKET_NAME,
-            Key: path,
-          })
-          .promise();
-
-        return {
-          id,
-          glob: path.replace('.mp3', ''),
-          text: sentence,
-          sound: this.getPublicUrl(path),
-        };
-      })
-    );
   }
 }
